@@ -1,0 +1,9 @@
+---
+
+- name: install useful pkgs
+  hosts: all
+  become: true
+  tasks:
+  - name: install vim
+    pkgng:
+      name: vim
