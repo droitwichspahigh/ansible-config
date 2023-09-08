@@ -1,0 +1,16 @@
+---
+
+- name: install sudo
+  hosts: all
+  become: true
+  tasks:
+  - name: install sudo
+    pkgng:
+      name: sudo
+  - name: enable staff nopasswd
+    community.general.sudoers:
+      commands: ALL
+      name: staff_nopasswd
+      group: staff
+      nopassword: true
+      sudoers_path: /usr/local/etc/sudoers.d
