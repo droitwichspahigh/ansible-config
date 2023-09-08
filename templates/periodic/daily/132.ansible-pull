@@ -1,0 +1,31 @@
+#!/bin/sh -
+#
+# $FreeBSD: head/audio/ampache/files/500.ampache-cron.in 564645 2021-02-07 20:36:26Z crees $
+#
+
+if [ -r /etc/defaults/periodic.conf ]; then
+	. /etc/defaults/periodic.conf
+	source_periodic_confs
+fi
+
+rc=0
+
+case "${daily_ansible_pull_github_enable:-no}" in
+[Nn][Oo])
+	;;
+*)
+	if [ -z "$daily_ansible_pull_github_token" -o -z "$daily_ansible_pull_github_repo" ]; then
+		echo 'please check the ansible-pull script to check all vars filled in'
+		exit 2
+	fi
+
+	pullcmd="/usr/local/bin/ansible-pull -U https://$daily_ansible_pull_github_token@github.com/$daily_ansible_pull_github_repo"
+
+	if ! $pullcmd >/dev/null 2>&1 ; then
+		echo 'ansible-pull script failed- try running it manually'
+		rc=2
+	fi
+	;;
+esac
+
+exit $rc
