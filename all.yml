@@ -2,3 +2,6 @@
 
 - ansible.builtin.import_playbook: playbooks/runit.yml
 - ansible.builtin.import_playbook: playbooks/essential_pkgs.yml
+- ansible.builtin.import_playbook: playbooks/cron.yml
+- ansible.builtin.import_playbook: playbooks/sshd.yml
+- ansible.builtin.import_playbook: playbooks/ntpd.yml

@@ -1,0 +1,23 @@
+---
+
+- name: enable runit for ntpd
+  hosts: all
+  become: true
+  tasks:
+  - name: add ntpd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/ntpd
+      state: directory
+      mode: '0755'
+  - name: add ntpd runsv file
+    ansible.builtin.template:
+      src: ../templates/runit/ntpd_run
+      dest: /etc/sv/ntpd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable ntpd boot
+    ansible.builtin.file:
+      src: /etc/sv/ntpd
+      dest: /var/service/ntpd
+      state: link

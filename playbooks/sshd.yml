@@ -1,0 +1,28 @@
+---
+
+- name: enable GSSAPI and runit for sshd
+  hosts: all
+  become: true
+  tasks:
+  - name: configure sshd
+    ansible.builtin.replace:
+      path: /etc/ssh/sshd_config
+      regexp: '^# ?(GSSAPI[^ ]+) .*'
+      replace: '\1 yes'
+  - name: add sshd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/sshd
+      state: directory
+      mode: '0755'
+  - name: add sshd runsv file
+    ansible.builtin.template:
+      src: ../templates/runit/sshd_run
+      dest: /etc/sv/sshd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable sshd boot
+    ansible.builtin.file:
+      src: /etc/sv/sshd
+      dest: /var/service/sshd
+      state: link

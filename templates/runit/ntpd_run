@@ -1,0 +1,5 @@
+#!/bin/sh
+
+ping -t 1 $(/bin/hostname) || exit 1
+
+exec /usr/sbin/ntpd -ng -c /etc/ntp.conf -f /var/db/ntp/ntpd.drift
