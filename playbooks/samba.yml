@@ -6,7 +6,7 @@
   tasks:
   - name: install samba416
     pkgng:
-      name: samba416
+      name: samba413
   - name: add samba runsv directory
     ansible.builtin.file:
       path: "/etc/sv/{{ item }}"
