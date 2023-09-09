@@ -10,6 +10,8 @@
       # sssd expects that
       # Also, don't expect SSSD to work with AD unless
       # openldap-client is built with GSSAPI support
+      # It's a pretty good idea to mark sssd-smb and pam_mkhomedir
+      # as vital as well.
       name: sssd-smb ldb23 pam_mkhomedir
   - name: configure sssd
     ansible.builtin.template:
