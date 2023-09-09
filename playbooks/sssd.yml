@@ -1,0 +1,54 @@
+---
+
+- name: install and activate sssd
+  hosts: dshs
+  become: true
+  tasks:
+  - name: install sssd
+    pkgng:
+      # We need ldb23 while Timur decides how to handle it;
+      # sssd expects that
+      # Also, don't expect SSSD to work with AD unless
+      # openldap-client is built with GSSAPI support
+      name: sssd-smb ldb23 pam_mkhomedir
+  - name: configure sssd
+    ansible.builtin.template:
+      src: ../templates/sssd/sssd.conf
+      dest: /usr/local/etc/sssd/sssd.conf
+      owner: root
+      group: wheel
+      mode: '0600'
+  - name: add sssd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/sssd
+      state: directory
+      mode: '0755'
+  - name: add sssd runsv file
+    ansible.builtin.template:
+      src: ../templates/runit/sssd_run
+      dest: /etc/sv/sssd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable sssd boot
+    ansible.builtin.file:
+      src: /etc/sv/sssd
+      dest: /var/service/sssd
+      state: link
+  - name: add to nsswitch
+    ansible.builtin.replace:
+      path: /etc/nsswitch.conf
+      regexp: '^(group|passwd): compat$'
+      replace: '\1: files sss'
+  - name: configure pam for sssd
+    ansible.builtin.template:
+      src: ../templates/pam.d/system
+      dest: /etc/pam.d/system
+      owner: root
+      group: wheel
+      mode: '0644'
+#  - name: remove builtin staff group
+#    ansible.builtin.lineinfile:
+#      line: 'staff:*:20:'
+#      path: /etc/group
+#      state: absent

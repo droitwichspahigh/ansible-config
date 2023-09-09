@@ -10,7 +10,7 @@
   - name: enable staff nopasswd
     community.general.sudoers:
       commands: ALL
-      name: staff_nopasswd
-      group: staff
+      name: domain_admins_nopasswd
+      group: 'domain\ admins'
       nopassword: true
       sudoers_path: /usr/local/etc/sudoers.d

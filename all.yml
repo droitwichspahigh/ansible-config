@@ -7,4 +7,5 @@
 - ansible.builtin.import_playbook: playbooks/ntpd.yml
 - ansible.builtin.import_playbook: playbooks/samba.yml
 - ansible.builtin.import_playbook: playbooks/sshd.yml
+- ansible.builtin.import_playbook: playbooks/sssd.yml
 - ansible.builtin.import_playbook: playbooks/sudo.yml
