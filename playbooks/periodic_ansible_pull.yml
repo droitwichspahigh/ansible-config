@@ -4,7 +4,7 @@
   hosts: all
   become: true
   tasks:
-  - name: add ntpd runsv directory
+  - name: add periodic daily directory
     ansible.builtin.file:
       path: /usr/local/etc/periodic/daily
       state: directory
