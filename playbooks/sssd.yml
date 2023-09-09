@@ -47,8 +47,8 @@
       owner: root
       group: wheel
       mode: '0644'
-#  - name: remove builtin staff group
-#    ansible.builtin.lineinfile:
-#      line: 'staff:*:20:'
-#      path: /etc/group
-#      state: absent
+  - name: reload sssd
+    community.general.runit:
+      name: sssd
+      state: reloaded
+      service_dir: /var/service

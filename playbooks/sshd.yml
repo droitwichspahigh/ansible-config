@@ -26,3 +26,8 @@
       src: /etc/sv/sshd
       dest: /var/service/sshd
       state: link
+  - name: reload sshd
+    community.general.runit:
+      name: sshd
+      state: reloaded
+      service_dir: /var/service

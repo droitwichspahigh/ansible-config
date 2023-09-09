@@ -40,3 +40,11 @@
     loop:
       - smbd
       - nmbd
+  - name: reload samba
+    community.general.runit:
+      name: "{{ item }}"
+      state: reloaded
+      service_dir: /var/service
+    loop:
+      - smbd
+      - nmbd
