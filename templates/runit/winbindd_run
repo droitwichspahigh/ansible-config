@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec /usr/local/sbin/winbindd -F --configfile=/usr/local/etc/smb4.conf

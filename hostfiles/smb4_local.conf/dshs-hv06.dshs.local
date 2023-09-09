@@ -1,0 +1,6 @@
+# Need to set aclmode=restricted and aclinherit=passthrough on
+# the ZFS volume as well
+[backups]
+	vfs objects = zfsacl
+	path = /dumpster/backups
+	writeable = Yes
