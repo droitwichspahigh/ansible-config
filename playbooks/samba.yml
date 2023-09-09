@@ -1,0 +1,42 @@
+---
+
+- name: install and configure samba416
+  hosts: all
+  become: true
+  tasks:
+  - name: install samba416
+    pkgng:
+      name: samba416
+  - name: add samba runsv directory
+    ansible.builtin.file:
+      path: "/etc/sv/{{ item }}"
+      state: directory
+      mode: '0755'
+    loop:
+      - smbd
+      - nmbd
+  - name: add samba runsv file
+    ansible.builtin.template:
+      src: "../templates/runit/{{ item }}_run"
+      dest: "/etc/sv/{{ item }}/run"
+      owner: root
+      group: wheel
+      mode: '0755'
+    loop:
+      - smbd
+      - nmbd
+  - name: configure samba
+    ansible.builtin.template:
+      src: ../templates/smb4.conf
+      dest: /usr/local/etc/smb4.conf
+      owner: root
+      group: wheel
+      mode: '0600'
+  - name: enable samba boot
+    ansible.builtin.file:
+      src: "/etc/sv/{{ item }}"
+      dest: "/var/service/{{ item }}"
+      state: link
+    loop:
+      - smbd
+      - nmbd
