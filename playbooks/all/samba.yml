@@ -18,7 +18,7 @@
       - winbindd
   - name: add samba runsv file
     ansible.builtin.template:
-      src: "../templates/runit/{{ item }}_run"
+      src: "../../templates/runit/{{ item }}_run"
       dest: "/etc/sv/{{ item }}/run"
       owner: root
       group: wheel
@@ -29,17 +29,17 @@
       - winbindd
   - name: configure samba
     ansible.builtin.template:
-      src: ../templates/smb4.conf
+      src: ../../templates/smb4.conf
       dest: /usr/local/etc/smb4.conf
       owner: root
       group: wheel
       mode: '0644'
   - name: check host-specific smb config file exists for {{ ansible_fqdn }}
-    local_action: "stat path=../hostfiles/smb4_local.conf/{{ ansible_fqdn }}"
+    local_action: "stat path=../../hostfiles/smb4_local.conf/{{ ansible_fqdn }}"
     register: smb4_local_conf
   - name: add host-specific smb config file if exists
     ansible.builtin.template:
-      src: "../hostfiles/smb4_local.conf/{{ ansible_fqdn }}"
+      src: "../../hostfiles/smb4_local.conf/{{ ansible_fqdn }}"
       dest: /usr/local/etc/smb4_local.conf
       owner: root
       group: wheel

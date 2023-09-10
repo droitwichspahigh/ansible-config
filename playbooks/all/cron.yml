@@ -13,7 +13,7 @@
       mode: '0755'
   - name: add {{ srv }} runsv file
     ansible.builtin.template:
-      src: '../templates/runit/{{ srv }}_run'
+      src: '../../templates/runit/{{ srv }}_run'
       dest: '/etc/sv/{{ srv }}/run'
       owner: root
       group: wheel

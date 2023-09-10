@@ -16,7 +16,7 @@
       mode: '0755'
   - name: add sshd runsv file
     ansible.builtin.template:
-      src: ../templates/runit/sshd_run
+      src: ../../templates/runit/sshd_run
       dest: /etc/sv/sshd/run
       owner: root
       group: wheel

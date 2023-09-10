@@ -11,7 +11,7 @@
       mode: '0755'
   - name: add periodic script
     ansible.builtin.template:
-      src: ../templates/periodic/daily/132.ansible-pull
+      src: ../../templates/periodic/daily/132.ansible-pull
       dest: /usr/local/etc/periodic/daily/132.ansible-pull
       owner: root
       group: wheel

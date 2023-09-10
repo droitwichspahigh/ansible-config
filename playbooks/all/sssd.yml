@@ -15,7 +15,7 @@
       name: sssd-smb ldb23 pam_mkhomedir
   - name: configure sssd
     ansible.builtin.template:
-      src: ../templates/sssd/sssd.conf
+      src: ../../templates/sssd/sssd.conf
       dest: /usr/local/etc/sssd/sssd.conf
       owner: root
       group: wheel
@@ -27,7 +27,7 @@
       mode: '0755'
   - name: add sssd runsv file
     ansible.builtin.template:
-      src: ../templates/runit/sssd_run
+      src: ../../templates/runit/sssd_run
       dest: /etc/sv/sssd/run
       owner: root
       group: wheel
@@ -44,7 +44,7 @@
       replace: '\1: files sss'
   - name: configure pam for sssd
     ansible.builtin.template:
-      src: ../templates/pam.d/system
+      src: ../../templates/pam.d/system
       dest: /etc/pam.d/system
       owner: root
       group: wheel

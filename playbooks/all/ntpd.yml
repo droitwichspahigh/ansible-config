@@ -11,7 +11,7 @@
       mode: '0755'
   - name: add ntpd runsv file
     ansible.builtin.template:
-      src: ../templates/runit/ntpd_run
+      src: ../../templates/runit/ntpd_run
       dest: /etc/sv/ntpd/run
       owner: root
       group: wheel
