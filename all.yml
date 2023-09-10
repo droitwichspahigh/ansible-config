@@ -8,6 +8,7 @@
 
 - ansible.builtin.import_playbook: playbooks/all/runit.yml
 - ansible.builtin.import_playbook: playbooks/all/cron.yml
+- ansible.builtin.import_playbook: playbooks/all/devd.yml
 - ansible.builtin.import_playbook: playbooks/all/ntpd.yml
 - ansible.builtin.import_playbook: playbooks/all/samba.yml
 - ansible.builtin.import_playbook: playbooks/all/sshd.yml

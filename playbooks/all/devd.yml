@@ -1,0 +1,29 @@
+---
+
+- name: run devd from runit
+  hosts: all
+  vars:
+    srv: devd
+  become: true
+  tasks:
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link
+  - name: disable {{ srv }} rc.conf
+    community.general.sysrc:
+      name: '{{ srv }}_enable'
+      value: NO
