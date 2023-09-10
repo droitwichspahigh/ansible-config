@@ -1,7 +1,7 @@
 ---
 
 - name: install workstation pkgs
-  hosts: workstations
+  hosts: workstation
   become: true
   tasks:
   - name: install workstation pkgs
