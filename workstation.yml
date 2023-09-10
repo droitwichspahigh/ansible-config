@@ -3,6 +3,7 @@
 - ansible.builtin.import_playbook: all.yml
 - ansible.builtin.import_playbook: playbooks/workstation/workstation_pkgs.yml
 
+- ansible.builtin.import_playbook: playbooks/workstation/boot_loader_conf.yml
 - ansible.builtin.import_playbook: playbooks/workstation/dbus.yml
 - ansible.builtin.import_playbook: playbooks/workstation/graphics_load.yml
 - ansible.builtin.import_playbook: playbooks/workstation/sddm.yml

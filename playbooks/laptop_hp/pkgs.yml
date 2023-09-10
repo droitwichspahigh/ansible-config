@@ -1,0 +1,9 @@
+---
+
+- name: install workstation pkgs
+  hosts: laptop_hp
+  become: true
+  tasks:
+  - name: install workstation pkgs
+    pkgng:
+      name: "{{ lookup('file', '../../templates/poudriere/poudriere.d/pkglist-dshs-workstation-laptop-hp') }}"

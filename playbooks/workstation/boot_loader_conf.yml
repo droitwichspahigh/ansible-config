@@ -1,0 +1,14 @@
+---
+
+- name: add items to loader.conf
+  hosts: workstation
+  become: true
+  tasks:
+  - name: fix loader.conf
+    community.general.sysrc:
+      name: '{{ item.v }}'
+      value: '{{ item.val }}'
+      path: /boot/loader.conf
+    loop:
+      - { v: acpi_video_load, val: yes }
+      - { v: autoboot_delay, val: '-1' }

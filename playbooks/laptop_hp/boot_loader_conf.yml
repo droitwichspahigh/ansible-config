@@ -1,0 +1,13 @@
+---
+
+- name: add items to loader.conf
+  hosts: laptop_hp
+  become: true
+  tasks:
+  - name: fix loader.conf
+    community.general.sysrc:
+      name: '{{ item.v }}'
+      value: '{{ item.val }}'
+      path: /boot/loader.conf
+    loop:
+      - { v: acpi_hp_load, val: yes }
