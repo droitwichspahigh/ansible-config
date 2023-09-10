@@ -1,0 +1,39 @@
+---
+
+- name: install and activate poudriere
+  hosts: dshs-hv06.dshs.local
+  become: true
+  tasks:
+  - name: install poudriere
+    pkgng:
+      name: poudriere ccache
+  - name: configure poudriere
+    ansible.builtin.template:
+      src: ../../templates/poudriere/poudriere.conf
+      dest: /usr/local/etc/poudriere.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: make sure filesystems are created
+    ansible.builtin.command:
+      cmd: /usr/local/bin/poudriere jail -l
+      creates: /poudriere
+  - name: create directories
+    ansible.builtin.file:
+      path: "/poudriere/data/{{ item }}"
+      state: directory
+      mode: 0755
+    loop:
+      - scripts
+      - src
+  - name: copy script for periodic running
+    ansible.builtin.template:
+      src: "../../templates/poudriere/{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: wheel
+      mode: '0755'
+    loop:
+      - { src: base_pkg_build.sh, dest: /poudriere/data/scripts/base_pkg_build.sh }
+      - { src: poudriere.d/make.conf, dest: /usr/local/etc/poudriere.d/make.conf }
+      - { src: poudriere.d/pkglist-dshs, dest: /usr/local/etc/poudriere.d/pkglist-dshs }

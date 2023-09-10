@@ -1,0 +1,11 @@
+devel/ccache
+devel/git
+databases/ldb23
+net/openldap26-client
+security/pam_mkhomedir
+ports-mgmt/poudriere
+sysutils/ansible
+sysutils/runit
+security/sssd
+security/sudo
+editors/vim

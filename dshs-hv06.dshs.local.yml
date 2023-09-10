@@ -1,3 +1,4 @@
 ---
 
 - ansible.builtin.import_playbook: all.yml
+- ansible.builtin.import_playbook: package_builder.yml
