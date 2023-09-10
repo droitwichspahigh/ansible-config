@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir /var/run/dbus
+exec /usr/local/bin/dbus-daemon --system --nofork

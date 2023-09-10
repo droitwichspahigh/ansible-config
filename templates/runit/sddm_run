@@ -1,0 +1,6 @@
+#!/bin/sh
+pgrep -f /usr/libexec/getty >/dev/null || exit 1
+
+sv start dbus || exit 1
+
+exec /usr/bin/env LANG=en_US.UTF-8 /usr/local/bin/sddm
