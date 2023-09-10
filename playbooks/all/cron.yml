@@ -23,7 +23,13 @@
       src: '/etc/sv/{{ srv }}'
       dest: '/var/service/{{ srv }}'
       state: link
-  - name: disable cron rc.conf
+  - name: disable {{ srv }} rc.conf
     community.general.sysrc:
       name: '{{ srv }}_enable'
       value: NO
+    register: sysrc
+  - name: kill {{ srv }} for runit takeover
+    ansible.builtin.service:
+      name: '{{ srv }}'
+      state: stopped
+    when: sysrc.changed

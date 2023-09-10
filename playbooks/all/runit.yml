@@ -18,3 +18,8 @@
     community.general.sysrc:
       name: runsvdir_enable
       value: yes
+    register: sysrc
+  - name: Start runsvdir
+    ansible.builtin.service:
+      name: runsvdir
+      state: started

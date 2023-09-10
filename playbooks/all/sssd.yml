@@ -20,6 +20,7 @@
       owner: root
       group: wheel
       mode: '0600'
+    register: conf
   - name: add sssd runsv directory
     ansible.builtin.file:
       path: /etc/sv/sssd
@@ -54,3 +55,4 @@
       name: sssd
       state: reloaded
       service_dir: /var/service
+    when: conf.changed

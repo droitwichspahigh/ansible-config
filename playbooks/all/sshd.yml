@@ -14,6 +14,7 @@
       path: /etc/sv/sshd
       state: directory
       mode: '0755'
+    register: conf
   - name: add sshd runsv file
     ansible.builtin.template:
       src: ../../templates/runit/sshd_run
@@ -31,3 +32,4 @@
       name: sshd
       state: reloaded
       service_dir: /var/service
+    when: conf.changed

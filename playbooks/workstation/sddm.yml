@@ -27,3 +27,9 @@
     community.general.sysrc:
       name: '{{ srv }}_enable'
       value: NO
+    register: sysrc
+  - name: kill {{ srv }} for runit takeover
+    ansible.builtin.service:
+      name: '{{ srv }}'
+      state: stopped
+    when: sysrc.changed

@@ -34,6 +34,7 @@
       owner: root
       group: wheel
       mode: '0644'
+    register: conf
   - name: check host-specific smb config file exists for {{ ansible_fqdn }}
     local_action: "stat path=../../hostfiles/smb4_local.conf/{{ ansible_fqdn }}"
     register: smb4_local_conf
@@ -45,6 +46,7 @@
       group: wheel
       mode: '0644'
     when: smb4_local_conf.stat.exists
+    register: local_conf
   - name: enable samba boot
     ansible.builtin.file:
       src: "/etc/sv/{{ item }}"
@@ -63,3 +65,4 @@
       - smbd
       - nmbd
       - winbindd
+    when: local_conf.changed or conf.changed
