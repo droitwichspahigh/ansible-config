@@ -1,11 +1,14 @@
 ---
 
-- ansible.builtin.import_playbook: playbooks/all/runit.yml
+- ansible.builtin.import_playbook: playbooks/all/sudo.yml
+
+- ansible.builtin.import_playbook: playbooks/all/keymap.yml
 - ansible.builtin.import_playbook: playbooks/all/essential_pkgs.yml
-- ansible.builtin.import_playbook: playbooks/all/cron.yml
 - ansible.builtin.import_playbook: playbooks/all/periodic_ansible_pull.yml
+
+- ansible.builtin.import_playbook: playbooks/all/runit.yml
+- ansible.builtin.import_playbook: playbooks/all/cron.yml
 - ansible.builtin.import_playbook: playbooks/all/ntpd.yml
 - ansible.builtin.import_playbook: playbooks/all/samba.yml
 - ansible.builtin.import_playbook: playbooks/all/sshd.yml
 - ansible.builtin.import_playbook: playbooks/all/sssd.yml
-- ansible.builtin.import_playbook: playbooks/all/sudo.yml

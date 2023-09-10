@@ -1,0 +1,10 @@
+---
+
+- name: enable UK console keymap
+  hosts: all
+  become: true
+  tasks:
+  - name: set keymap
+    community.general.sysrc:
+      name: keymap
+      value: uk.capsctrl.kbd
