@@ -1,10 +1,10 @@
 ---
 
-- name: install and configure samba416
+- name: install and configure samba413
   hosts: all
   become: true
   tasks:
-  - name: install samba416
+  - name: install samba413
     pkgng:
       name: samba413
   - name: add samba runsv directory
