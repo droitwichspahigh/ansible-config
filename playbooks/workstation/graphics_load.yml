@@ -1,0 +1,10 @@
+---
+
+- name: set graphics driver
+  hosts: all
+  become: true
+  tasks:
+  - name: enable i915kms
+    community.general.sysrc:
+      name: kld_list
+      value: i915kms
