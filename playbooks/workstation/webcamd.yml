@@ -1,0 +1,12 @@
+---
+
+- name: enable webcamd
+  hosts: workstation
+  vars:
+    srv: webcamd
+  become: true
+  tasks:
+  - name: enable {{ srv }} rc.conf
+    community.general.sysrc:
+      name: '{{ srv }}_enable'
+      value: YES
