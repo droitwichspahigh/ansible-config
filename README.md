@@ -11,11 +11,10 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # install -m 600 /dev/null /etc/periodic.conf
 # cat > /etc/periodic.conf <<EOF
 > daily_ansible_pull_github_enable=yes
-> daily_ansible_pull_github_token=make_a_github_token_or_steal_it_from_periodic.conf_on_dshs-hv06
 > daily_ansible_pull_github_repo=droitwichspahigh/ansible-config
 > EOF
 # . /etc/periodic.conf
-# ansible-pull https://$daily_ansible_pull_github_token@github.com/$daily_ansible_pull_github_repo
+# ansible-pull https://github.com/$daily_ansible_pull_github_repo
 # pkg set -v 1 pam_mkhomedir sssd-smb
 # kinit my_dshs_domain_admin_username
 # net ads join -k

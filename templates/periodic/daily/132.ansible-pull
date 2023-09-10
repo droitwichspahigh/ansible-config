@@ -14,12 +14,12 @@ case "${daily_ansible_pull_github_enable:-no}" in
 [Nn][Oo])
 	;;
 *)
-	if [ -z "$daily_ansible_pull_github_token" -o -z "$daily_ansible_pull_github_repo" ]; then
+	if [ -z "$daily_ansible_pull_github_repo" ]; then
 		echo 'please check the ansible-pull script to check all vars filled in'
 		exit 2
 	fi
 
-	pullcmd="/usr/local/bin/ansible-pull -U https://$daily_ansible_pull_github_token@github.com/$daily_ansible_pull_github_repo"
+	pullcmd="/usr/local/bin/ansible-pull -U https://github.com/$daily_ansible_pull_github_repo"
 
 	if ! $pullcmd >/dev/null 2>&1 ; then
 		echo 'ansible-pull script failed- try running it manually'
