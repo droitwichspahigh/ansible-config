@@ -37,3 +37,5 @@
       - { src: base_pkg_build.sh, dest: /poudriere/data/scripts/base_pkg_build.sh }
       - { src: poudriere.d/make.conf, dest: /usr/local/etc/poudriere.d/make.conf }
       - { src: poudriere.d/pkglist-dshs, dest: /usr/local/etc/poudriere.d/pkglist-dshs }
+      - { src: poudriere.d/pkglist-dshs-workstation, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation }
+      - { src: poudriere.d/pkglist-dshs-workstation-laptop-hp, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation-laptop-hp }

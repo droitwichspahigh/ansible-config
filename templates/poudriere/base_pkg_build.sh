@@ -56,10 +56,16 @@ mkpjail() {
 }
 
 bulkjail() {
-	local _jail
+	local _jail _packagelists
 	_jail=$1
 
-	$poudriere bulk -j $_jail -p default -f /usr/local/etc/poudriere.d/pkglist-dshs
+	_packagelists=""
+
+	for l in /usr/local/etc/poudriere.d/pkglist-dshs*; do
+		_packagelists="${_packagelists} -f $l"
+	done
+
+	$poudriere bulk -j $_jail -p default $_packagelists
 }
 
 buildeverything=yes
