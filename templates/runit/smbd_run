@@ -1,3 +1,8 @@
 #!/bin/sh
 
+samba_server_privatedir=/var/db/samba4/private
+if [ -d "${samba_server_privatedir}" -o ! -e "${samba_server_privatedir}" ]; then
+	install -d -m 0700 "${samba_server_privatedir}"
+fi
+
 exec /usr/local/sbin/smbd -F --configfile=/usr/local/etc/smb4.conf
