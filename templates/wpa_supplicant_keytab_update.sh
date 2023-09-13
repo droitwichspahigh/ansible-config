@@ -2,6 +2,12 @@
 
 conf=/etc/wpa_supplicant.conf
 ssid="DSHS Main"
+keytab=/etc/krb5.keytab
+
+if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 2592000)" ]; then
+	echo "Keytab is not older than 30 days, exiting"
+	exit 0
+fi
 
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
