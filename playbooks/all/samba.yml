@@ -6,7 +6,7 @@
   tasks:
   - name: install samba413
     pkgng:
-      name: samba413 adcli
+      name: samba413
   - name: add samba runsv directory
     ansible.builtin.file:
       path: "/etc/sv/{{ item }}"
@@ -71,17 +71,24 @@
       - nmbd
       - winbindd
     when: local_conf.changed or conf.changed
+  - name: remove old files
+    ansible.builtin.file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /var/db/samba4/adcli_update.sh
+      - /etc/cron.d/adcli_update
   - name: add password reset script
     ansible.builtin.template:
-      src: ../../templates/adcli_update.sh
-      dest: /var/db/samba4/adcli_update.sh
+      src: ../../templates/net_ads_changetrustpw.sh
+      dest: /var/db/samba4/net_ads_changetrustpw.sh
       owner: root
       group: wheel
       mode: '0755'
   - name: add password reset script crontab
     ansible.builtin.template:
-      src: ../../templates/cron.d/adcli_update
-      dest: /etc/cron.d/adcli_update
+      src: ../../templates/cron.d/net_ads_changetrustpw
+      dest: /etc/cron.d/net_ads_changetrustpw
       owner: root
       group: wheel
       mode: '0644'

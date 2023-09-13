@@ -5,7 +5,7 @@ ssid="DSHS Main"
 
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
-/usr/local/sbin/adcli update --add-samba-data
+/usr/local/bin/net ads changetrustpw
 
 machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | \
 	/usr/bin/awk '
