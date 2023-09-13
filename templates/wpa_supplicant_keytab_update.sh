@@ -4,14 +4,14 @@ conf=/etc/wpa_supplicant.conf
 ssid="DSHS Main"
 keytab=/etc/krb5.keytab
 
-if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 2592000)" ]; then
-	echo "Keytab is not older than 30 days, exiting"
-	exit 0
-fi
+#if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 2592000)" ]; then
+#	echo "Keytab is not older than 30 days, exiting"
+#	exit 0
+#fi
 
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
-/usr/local/bin/net ads changetrustpw
+#/usr/local/bin/net ads changetrustpw
 
 machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | \
 	/usr/bin/awk '
