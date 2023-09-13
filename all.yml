@@ -13,3 +13,4 @@
 - ansible.builtin.import_playbook: playbooks/all/samba.yml
 - ansible.builtin.import_playbook: playbooks/all/sshd.yml
 - ansible.builtin.import_playbook: playbooks/all/sssd.yml
+- ansible.builtin.import_playbook: playbooks/all/webfilter_cert.yml
