@@ -9,4 +9,4 @@
   - name: enable {{ srv }} rc.conf
     community.general.sysrc:
       name: '{{ srv }}_enable'
-      value: YES
+      value: "yes"

@@ -10,5 +10,5 @@
       value: '{{ item.val }}'
       path: /boot/loader.conf
     loop:
-      - { v: acpi_video_load, val: yes }
+      - { v: acpi_video_load, val: "yes" }
       - { v: autoboot_delay, val: '-1' }

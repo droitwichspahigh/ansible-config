@@ -10,4 +10,4 @@
       value: '{{ item.val }}'
       path: /boot/loader.conf
     loop:
-      - { v: acpi_hp_load, val: yes }
+      - { v: acpi_hp_load, val: "yes" }

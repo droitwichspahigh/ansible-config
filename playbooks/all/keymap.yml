@@ -7,4 +7,4 @@
   - name: set keymap
     community.general.sysrc:
       name: keymap
-      value: uk.capsctrl.kbd
+      value: "uk.capsctrl.kbd"

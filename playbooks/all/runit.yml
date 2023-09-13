@@ -17,7 +17,7 @@
   - name: enable runit
     community.general.sysrc:
       name: runsvdir_enable
-      value: yes
+      value: "yes"
     register: sysrc
   - name: Start runsvdir
     ansible.builtin.service:
