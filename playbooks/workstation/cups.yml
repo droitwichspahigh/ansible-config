@@ -1,0 +1,41 @@
+---
+
+- name: install and set CUPS to start from runit
+  hosts: workstation
+  vars:
+    srv: cupsd
+  become: true
+  tasks:
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable domain admins for {{ srv }}
+    ansible.builtin.replace:
+      path: /usr/local/etc/cups/cupsd.conf
+      regexp: '@SYSTEM'
+      replace: "'@domain admins'"
+    register: conf
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link
+  - name: disable {{ srv }} rc.conf
+    community.general.sysrc:
+      name: '{{ srv }}_enable'
+      value: "no"
+    register: sysrc
+  - name: restart {{ srv }} runit
+    ansible.builtin.service:
+      name: '{{ srv }}'
+      state: stopped
+    when: sysrc.changed or conf.changed
