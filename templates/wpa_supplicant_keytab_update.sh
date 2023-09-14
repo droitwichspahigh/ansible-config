@@ -11,11 +11,12 @@ keytab=/etc/krb5.keytab
 
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
+oldkeytabcs=$(/sbin/sha256 -q /etc/krb5.keytab)
 /usr/local/sbin/adcli update --add-samba-data --domain=DSHS.LOCAL
+newkeytabcs=$(/sbin/sha256 -q /etc/krb5.keytab)
 
 # Has it been changed?
-
-if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 3600)" ]; then
+if [ "$oldkeytabcs" = "$newkeytabcs" ]; then
 	exit 0
 fi
 
