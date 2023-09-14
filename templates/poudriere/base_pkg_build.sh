@@ -38,7 +38,7 @@ mktarball() {
 		TARGET=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
 	echo "...[DONE]"
 	rm $arch-tarballs/$version/*.txz
-	mv /usr/obj/$src/$arch.$arch/release/*.txz /usr/obj/$src/$arch.$arch/release/ftp/MANIFEST $arch-tarballs/$version/
+	mv $(make -C $src -VMAKEOBJDIR)/release/*.txz $(make -C $src -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
 }
 
 mkpjail() {
@@ -51,7 +51,7 @@ mkpjail() {
 	if $poudriere jail -l | grep -q $_jname; then
 		$poudriere jail -u -j $_jname
 	else
-		$poudriere jail -c -j $_jname -m url=/poudriere/scripts/$_arch-tarballs/$_tarball_dir -v $_version
+		$poudriere jail -c -j $_jname -m url=/poudriere/data/scripts/$_arch-tarballs/$_tarball_dir -v $_version
 	fi
 }
 
