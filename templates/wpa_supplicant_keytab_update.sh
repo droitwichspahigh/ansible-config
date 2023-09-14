@@ -11,7 +11,13 @@ keytab=/etc/krb5.keytab
 
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
-#/usr/local/bin/net ads changetrustpw
+/usr/local/sbin/adcli update --add-samba-data --domain=DSHS.LOCAL
+
+# Has it been changed?
+
+if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 3600)" ]; then
+	exit 0
+fi
 
 machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | \
 	/usr/bin/awk '
