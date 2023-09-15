@@ -1,0 +1,15 @@
+---
+
+- name: add DSHS pkg repos
+  hosts: all
+  become: true
+  tasks:
+  - name: "add pkg repos"
+    ansible.builtin.template:
+      src: "../../templates/pkg/repos/{{ item }}.conf"
+      dest: "/usr/local/etc/pkg/repos/{{ item }}.conf"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - dshs-base
