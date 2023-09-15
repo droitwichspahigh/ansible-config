@@ -2,6 +2,8 @@ devel/ccache
 devel/git
 databases/ldb23
 net/openldap26-client
+net-mgmt/adcli
+security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
 ports-mgmt/poudriere
 sysutils/ansible
