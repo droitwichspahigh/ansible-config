@@ -22,7 +22,7 @@
     ansible.builtin.replace:
       path: /usr/local/etc/cups/cupsd.conf
       regexp: '@SYSTEM'
-      replace: "'@domain admins'"
+      replace: "'@domain admins' root"
     register: conf
   - name: enable {{ srv }} boot
     ansible.builtin.file:
@@ -39,3 +39,37 @@
       name: '{{ srv }}'
       state: stopped
     when: sysrc.changed or conf.changed
+  - name: install ppd file
+    ansible.builtin.copy:
+      src: ../../files/kyocera-taskalfa-500ci.ppd.gz
+      dest: /usr/local/share/cups/model/kyocera-taskalfa-500ci.ppd.gz
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: check printer settings are correct
+    lineinfile:
+      name: /usr/local/etc/cups/printers.conf
+      line: '<Printer DSHS-PRINTERS>'
+      state: present
+    check_mode: yes
+    register: printer_missing
+  - name: add DSHS-PRINTERS and set to monochrome
+    ansible.builtin.command:
+      argv:
+        - /usr/local/sbin/lpadmin
+        - -m
+        - kyocera-taskalfa-500ci.ppd.gz
+        - -o
+        - auth-info-required=username,password
+        - -v
+        - "smb://dshs-print2/dshs-printers"
+        - -o
+        - PageSize=A4
+        - -o
+        - ColorModel=Gray
+        - -o
+        - printer-is-shared=false
+        - -p
+        - DSHS-PRINTERS
+        - -E
+    when: (printer_missing is changed) or (printer_missing is failed)
