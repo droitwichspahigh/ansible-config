@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -f /var/unbound/root.key ] || /usr/sbin/local-unbound-anchor
+
+exec /usr/sbin/local-unbound -dc /var/unbound/unbound.conf

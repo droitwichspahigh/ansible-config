@@ -1,0 +1,43 @@
+---
+
+- name: install and configure local_unbound
+  hosts: all
+  become: true
+  tasks:
+  - name: add local_unbound runsv directory
+    ansible.builtin.file:
+      path: "/etc/sv/local_unbound"
+      state: directory
+      mode: '0755'
+  - name: add local_unbound runsv file
+    ansible.builtin.template:
+      src: "../../templates/runit/local_unbound_run"
+      dest: "/etc/sv/local_unbound/run"
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: configure unbound
+    ansible.builtin.template:
+      src: "../../templates/local_unbound/{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - { src: 'resolv.conf', dest: '/etc/resolv.conf' }
+      - { src: 'resolvconf.conf', dest: '/etc/resolvconf.conf' }
+      - { src: 'var_unbound/control.conf', dest: '/var/unbound/control.conf' }
+      - { src: 'var_unbound/lan-zones.conf', dest: '/var/unbound/lan-zones.conf' }
+      - { src: 'var_unbound/unbound.conf', dest: '/var/unbound/unbound.conf' }
+    register: conf
+  - name: enable local_unbound boot
+    ansible.builtin.file:
+      src: "/etc/sv/local_unbound"
+      dest: "/var/service/local_unbound"
+      state: link
+  - name: reload local_unbound
+    community.general.runit:
+      name: "local_unbound"
+      state: reloaded
+      service_dir: /var/service
+    when: conf.changed
