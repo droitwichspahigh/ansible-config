@@ -1,0 +1,19 @@
+---
+
+- name: install fonts
+  hosts: all
+  become: true
+  tasks:
+  - name: copy fonts over
+    ansible.builtin.copy:
+      src: "../../templates/fonts/{{ item }}"
+      dest: "/usr/local/share/fonts/{{ item }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+    - NeutraText-Bold.otf
+    - NeutraText-BoldItalic.otf
+    - NeutraText-Book.otf
+    - NeutraText-BookItalic.otf
+    - Pacifico.ttf
