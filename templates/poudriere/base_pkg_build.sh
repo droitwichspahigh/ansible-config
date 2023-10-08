@@ -16,7 +16,7 @@ mktarball() {
 
 	echo Updating $src
 
-	(cd $src && git pull --ff-only)
+	(cd $src && /usr/local/bin/git pull --ff-only)
 
 	echo Making tarballs for $arch from $src
 
@@ -40,7 +40,7 @@ mktarball() {
 	rm $arch-tarballs/$version/*.txz
 	mv $(make -C $src -VMAKEOBJDIR)/release/*.txz $(make -C $src -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
 
-	rsync -a $(make -C $src -VREPODIR)/ dshs-hv06@newton.droitwichspahigh.worcs.sch.uk:/var/www/newton.droitwichspahigh.worcs.sch.uk/pkg/base &
+	/usr/local/bin/rsync -a $(make -C $src -VREPODIR)/ dshs-hv06@newton.droitwichspahigh.worcs.sch.uk:/var/www/newton.droitwichspahigh.worcs.sch.uk/pkg/base &
 }
 
 mkpjail() {
@@ -68,7 +68,7 @@ bulkjail() {
 	done
 
 	$poudriere bulk -j $_jail -p default $_packagelists
-	rsync -a /poudriere/data/packages/ dshs-hv06@newton.droitwichspahigh.worcs.sch.uk:/var/www/newton.droitwichspahigh.worcs.sch.uk/pkg/ports &
+	/usr/local/bin/rsync -a /poudriere/data/packages/ dshs-hv06@newton.droitwichspahigh.worcs.sch.uk:/var/www/newton.droitwichspahigh.worcs.sch.uk/pkg/ports &
 }
 
 buildeverything=yes
