@@ -4,6 +4,11 @@
   hosts: all
   become: true
   tasks:
+  - name: check fonts directory exists
+    ansible.builtin.file:
+      path: /usr/local/share/fonts
+      state: directory
+      mode: '0755'
   - name: copy fonts over
     ansible.builtin.copy:
       src: "../../templates/fonts/{{ item }}"
