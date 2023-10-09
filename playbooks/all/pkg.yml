@@ -17,4 +17,5 @@
       group: wheel
       mode: '0644'
     loop:
+      - dshs
       - dshs-base
