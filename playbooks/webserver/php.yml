@@ -21,6 +21,7 @@
         - textproc/php80-xmlwriter
         - databases/phpmyadmin
         - php80-composer
+        - php80-tokenizer
   - name: make ini file
     ansible.builtin.file:
       path: /usr/local/etc/php.ini

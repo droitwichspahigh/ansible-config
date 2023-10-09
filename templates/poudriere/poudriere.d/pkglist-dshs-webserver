@@ -14,3 +14,4 @@ textproc/php80-xmlwriter
 databases/phpmyadmin
 databases/mysql80-server
 php80-composer
+php80-tokenizer
