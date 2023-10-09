@@ -20,6 +20,7 @@
         - databases/php80-sqlite3
         - textproc/php80-xmlwriter
         - databases/phpmyadmin
+        - php80-composer
   - name: make ini file
     ansible.builtin.file:
       path: /usr/local/etc/php.ini
