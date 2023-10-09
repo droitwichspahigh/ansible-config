@@ -4,6 +4,11 @@
   hosts: all
   become: true
   tasks:
+  - name: add pkg repodirs
+    ansible.builtin.file:
+      name: /usr/local/etc/pkg/repos
+      state: directory
+      mode: '0755'
   - name: "add pkg repos"
     ansible.builtin.template:
       src: "../../templates/pkg/repos/{{ item }}.conf"
