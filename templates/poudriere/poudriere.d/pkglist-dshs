@@ -8,6 +8,6 @@ security/pam_mkhomedir
 ports-mgmt/poudriere
 sysutils/ansible
 sysutils/runit
-security/sssd
+security/sssd@smb
 security/sudo
 editors/vim
