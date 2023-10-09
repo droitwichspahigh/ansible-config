@@ -18,6 +18,7 @@
       mode: '0644'
     loop:
       - { src: '../../templates/apache24/modules.d/100_php.conf', dest: '/usr/local/etc/apache24/modules.d/100_php.conf' }
+      - { src: '../../templates/apache24/modules.d/200_phpmyadmin.conf', dest: '/usr/local/etc/apache24/modules.d/200_phpmyadmin.conf' }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'
