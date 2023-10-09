@@ -7,7 +7,7 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # tzsetup Europe/London
 # mkdir -p /usr/local/etc/sudoers.d
 # echo "$(whoami) ALL=(ALL:ALL) NOPASSWD: ALL" > /usr/local/etc/sudoers.d/temp
-# env ASSUME_ALWAYS_YES=yes pkg install sudo py39-ansible
+# env ASSUME_ALWAYS_YES=yes pkg install sudo py39-ansible git
 # install -m 600 /dev/null /etc/periodic.conf
 # cat > /etc/periodic.conf <<EOF
 > daily_ansible_pull_github_enable=yes
