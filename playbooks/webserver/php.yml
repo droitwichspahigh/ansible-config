@@ -7,7 +7,6 @@
   - name: install php
     pkgng:
       name:
-        - www/mod_php80
         - lang/php80
         - textproc/php80-ctype
         - ftp/php80-curl
@@ -21,9 +20,14 @@
         - databases/php80-sqlite3
         - textproc/php80-xmlwriter
         - databases/phpmyadmin
+  - name: make ini file
+    ansible.builtin.file:
+      path: /usr/local/etc/php.ini
+      src: /usr/local/etc/php.ini-production
+      state: link
   - name: configure php
     ansible.builtin.lineinfile:
-      path: /usr/local/etc/php.ini
+      path: /usr/local/etc/php.ini-production
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
     loop:

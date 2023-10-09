@@ -3,7 +3,7 @@
 - name: install and activate apache24
   hosts: all
   vars:
-    srv: apache24
+    srv: apache24 mod_php80
   become: true
   tasks:
   - name: install {{ srv }}
