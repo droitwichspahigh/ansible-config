@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec chpst -u mysql /usr/local/libexec/mysqld --defaults-extra-file=/var/db/mysql/my.cnf --basedir=/usr/local --datadir=/var/db/mysql --plugin-dir=/usr/local/lib/mysql/plugin --log-error=/var/db/mysql/$(hostname).err --pid-file=/var/db/mysql/pidfile

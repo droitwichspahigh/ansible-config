@@ -1,0 +1,15 @@
+www/mod_php80
+lang/php80
+textproc/php80-ctype
+ftp/php80-curl
+textproc/php80-dom
+graphics/php80-exif
+graphics/php80-gd
+net/php80-ldap
+converters/php80-mbstring
+devel/php80-pcntl
+databases/php80-pdo_sqlite
+databases/php80-sqlite3
+textproc/php80-xmlwriter
+databases/phpmyadmin
+databases/mysql80-server

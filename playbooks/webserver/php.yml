@@ -1,0 +1,31 @@
+---
+
+- name: install PHP and supporting packages
+  hosts: all
+  become: true
+  tasks:
+  - name: install php
+    pkgng:
+      name:
+        - www/mod_php80
+        - lang/php80
+        - textproc/php80-ctype
+        - ftp/php80-curl
+        - textproc/php80-dom
+        - graphics/php80-exif
+        - graphics/php80-gd
+        - net/php80-ldap
+        - converters/php80-mbstring
+        - devel/php80-pcntl
+        - databases/php80-pdo_sqlite
+        - databases/php80-sqlite3
+        - textproc/php80-xmlwriter
+        - databases/phpmyadmin
+  - name: configure php
+    ansible.builtin.lineinfile:
+      path: /usr/local/etc/php.ini
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+    loop:
+      - { regexp: '^post_max_size', line: 'post_max_size = 50M' }
+      - { regexp: '^upload_max_filesize', line: 'upload_max_filesize = 100M' }

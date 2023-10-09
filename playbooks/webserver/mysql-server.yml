@@ -1,0 +1,26 @@
+---
+
+- name: install and activate mysql-server
+  hosts: dshs
+  become: true
+  tasks:
+  - name: install mysql-server
+    pkgng:
+      name: mysql80-server
+  - name: add mysql runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/mysql
+      state: directory
+      mode: '0755'
+  - name: add mysql runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/mysql_run
+      dest: /etc/sv/mysql/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable mysql boot
+    ansible.builtin.file:
+      src: /etc/sv/mysql
+      dest: /var/service/mysql
+      state: link

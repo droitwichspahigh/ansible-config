@@ -1,0 +1,37 @@
+---
+
+- name: install and activate apache24
+  hosts: all
+  vars:
+    srv: apache24
+  become: true
+  tasks:
+  - name: install {{ srv }}
+    pkgng:
+      name: '{{ srv }} mod_php80'
+  - name: enable php
+    ansible.builtin.template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - { src: '../../templates/apache24/modules.d/100_php.conf', dest: '/usr/local/etc/apache24/modules.d/100_php.conf' }
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link
