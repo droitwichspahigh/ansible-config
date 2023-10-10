@@ -1,4 +1,3 @@
 ---
 
-- ansible.builtin.import_playbook: all.yml
 - ansible.builtin.import_playbook: playbooks/package_builder/poudriere.yml
