@@ -71,7 +71,7 @@ bulkjail() {
 	/usr/local/bin/rsync -a /poudriere/data/packages/ dshs-hv06@newton.droitwichspahigh.worcs.sch.uk:/var/www/newton.droitwichspahigh.worcs.sch.uk/pkg/ports &
 }
 
-if [ "$(date +%w)" eq "6" ]; then
+if [ "$(date +%w)" -eq "6" ]; then
 	buildeverything=yes
 else
 	buildeverything=no
