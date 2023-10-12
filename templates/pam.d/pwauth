@@ -1,0 +1,14 @@
+# PAM configuration for the "pwauth" service
+#
+
+# auth
+auth		include		system
+
+# account
+account		include		system
+
+# session
+session		required	pam_permit.so
+
+# password
+password	include		system

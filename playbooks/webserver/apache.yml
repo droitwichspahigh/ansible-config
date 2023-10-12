@@ -8,7 +8,7 @@
   tasks:
   - name: install {{ srv }}
     pkgng:
-      name: '{{ srv }} mod_php80'
+      name: '{{ srv }} mod_php80 ap24-mod_authnz_external24 pwauth'
   - name: enable php
     ansible.builtin.template:
       src: "{{ item.src }}"
@@ -18,7 +18,9 @@
       mode: '0644'
     loop:
       - { src: '../../templates/apache24/modules.d/100_php.conf', dest: '/usr/local/etc/apache24/modules.d/100_php.conf' }
+      - { src: '../../templates/apache24/modules.d/150_authnz_external.conf', dest: '/usr/local/etc/apache24/modules.d/150_authnz_externalhp.conf' }
       - { src: '../../templates/apache24/modules.d/200_phpmyadmin.conf', dest: '/usr/local/etc/apache24/modules.d/200_phpmyadmin.conf' }
+      - { src: '../../templates/pam.d/pwauth', dest: '/usr/local/etc/pam.d/pwauth' }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'
