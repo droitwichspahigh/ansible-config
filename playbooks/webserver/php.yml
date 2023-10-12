@@ -35,3 +35,4 @@
     loop:
       - { regexp: '^post_max_size', line: 'post_max_size = 50M' }
       - { regexp: '^upload_max_filesize', line: 'upload_max_filesize = 100M' }
+      - { regexp: '^max_input_vars', line: 'max_input_vars = 100000' }
