@@ -1,0 +1,19 @@
+---
+
+- name: secure apache24
+  hosts: all
+  become: true
+  tasks:
+  - name: install mod_authnz_external
+    pkgng:
+      name: ap24-mod_authnz_external24 pwauth
+  - name: enable php
+    ansible.builtin.template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - { src: '../../templates/apache24/modules.d/150_authnz_external.conf', dest: '/usr/local/etc/apache24/modules.d/150_authnz_externalhp.conf' }
+      - { src: '../../templates/pam.d/pwauth', dest: '/usr/local/etc/pam.d/pwauth' }
