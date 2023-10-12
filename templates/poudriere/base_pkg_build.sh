@@ -70,8 +70,6 @@ bulkjail() {
 
 if [ "$(date +%w)" -eq "6" ]; then
 	buildeverything=yes
-else
-	buildeverything=no
 fi
 buildports=yes
 
