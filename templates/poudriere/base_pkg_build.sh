@@ -61,6 +61,8 @@ bulkjail() {
 
 	_packagelists=""
 
+	(cd /usr/ports && git pull --ff-only)
+
 	for l in /usr/local/etc/poudriere.d/pkglist-dshs*; do
 		_packagelists="${_packagelists} -f $l"
 	done
