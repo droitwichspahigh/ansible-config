@@ -22,6 +22,7 @@
         - databases/phpmyadmin
         - php80-composer
         - php80-tokenizer
+        - php80-simplexml
   - name: make ini file
     ansible.builtin.file:
       path: /usr/local/etc/php.ini

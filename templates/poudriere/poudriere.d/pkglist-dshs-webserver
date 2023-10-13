@@ -15,3 +15,4 @@ databases/phpmyadmin
 databases/mysql80-server
 devel/php-composer
 devel/php80-tokenizer
+textproc/php80-simplexml
