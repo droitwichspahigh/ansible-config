@@ -79,8 +79,12 @@ for v in ${srcvers}; do
     for a in ${archs}; do
 	vdir=${v%:*}
 	vver=${v#*:}
-	[ -z "$buildeverything" ] || mktarball $a $srcdir/$vdir
 	pjail=$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\.\([0-9]*\).*$,\1\2,')$a
+	if pgrep -f $pjail; then
+		echo Jail $pjail already running, we will not update it now
+		continue
+	fi
+	[ -z "$buildeverything" ] || mktarball $a $srcdir/$vdir
 	[ -z "$buildeverything" ] || mkpjail $pjail $vver $a $vdir
 	[ -z "$buildports" ] || bulkjail $pjail
     done
