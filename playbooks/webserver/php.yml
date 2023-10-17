@@ -7,22 +7,22 @@
   - name: install php
     pkgng:
       name:
-        - lang/php80
-        - textproc/php80-ctype
-        - ftp/php80-curl
-        - textproc/php80-dom
-        - graphics/php80-exif
-        - graphics/php80-gd
-        - net/php80-ldap
-        - converters/php80-mbstring
-        - devel/php80-pcntl
-        - databases/php80-pdo_sqlite
-        - databases/php80-sqlite3
-        - textproc/php80-xmlwriter
+        - lang/php81
+        - textproc/php81-ctype
+        - ftp/php81-curl
+        - textproc/php81-dom
+        - graphics/php81-exif
+        - graphics/php81-gd
+        - net/php81-ldap
+        - converters/php81-mbstring
+        - devel/php81-pcntl
+        - databases/php81-pdo_sqlite
+        - databases/php81-sqlite3
+        - textproc/php81-xmlwriter
         - databases/phpmyadmin
-        - php80-composer
-        - php80-tokenizer
-        - php80-simplexml
+        - php81-composer
+        - php81-tokenizer
+        - php81-simplexml
   - name: make ini file
     ansible.builtin.file:
       path: /usr/local/etc/php.ini
