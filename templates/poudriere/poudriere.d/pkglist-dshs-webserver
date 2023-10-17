@@ -9,6 +9,7 @@ devel/php-composer
 devel/php81-pcntl
 devel/php81-tokenizer
 ftp/php81-curl
+graphics/pecl-imagick
 graphics/php81-exif
 graphics/php81-gd
 lang/php81

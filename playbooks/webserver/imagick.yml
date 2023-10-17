@@ -1,0 +1,9 @@
+---
+
+- name: install imagick
+  hosts: dshs
+  become: true
+  tasks:
+  - name: install imagick
+    pkgng:
+      name: php81-pecl-imagick
