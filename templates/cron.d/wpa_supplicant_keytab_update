@@ -4,4 +4,4 @@ SHELL=/bin/sh
 PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin
 
 #minute hour    mday    month   wday    who     command
-@reboot					root	/bin/sh /var/db/samba4/wpa_supplicant_keytab_update.sh
+@hourly					root	/bin/sh /var/db/samba4/wpa_supplicant_keytab_update.sh
