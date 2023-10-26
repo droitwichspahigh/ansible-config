@@ -4,15 +4,10 @@ conf=/etc/wpa_supplicant.conf
 ssid="DSHS Main"
 keytab=/etc/krb5.keytab
 
-#if [ "$(stat -f %a $keytab)" -gt "$(expr $(date +%s) - 2592000)" ]; then
-#	echo "Keytab is not older than 30 days, exiting"
-#	exit 0
-#fi
-
 chmod 600 $conf || install -o root -g wheel -m 600 /dev/null $conf
 
 oldkeytabcs=$(/sbin/sha256 -q /etc/krb5.keytab)
-/usr/local/sbin/adcli update --add-samba-data --domain=DSHS.LOCAL --samba-data-tool=/usr/local/bin/net
+machine_password=$(/usr/local/sbin/adcli update --add-samba-data --domain=DSHS.LOCAL --samba-data-tool=/usr/local/bin/net --show-password | sed -ne 's,^computer-password = ,,p' | iconv -t utf16le | openssl md4 | cut -d ' ' -f 2)
 newkeytabcs=$(/sbin/sha256 -q /etc/krb5.keytab)
 
 # Has it been changed?
@@ -20,21 +15,21 @@ if [ "$oldkeytabcs" = "$newkeytabcs" ]; then
 	exit 0
 fi
 
-machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | \
-	/usr/bin/awk '
-BEGIN {
-	RS="\\";
-}
-/[0-9A-F][0-9A-F]/ {
-	if ($0 == "00") {
-		next;
-	}
-	printf ("%c", 0 + ("0x"$0));
-}' | \
-	/usr/bin/iconv -f utf-8 -t utf-16le | \
-	/usr/bin/openssl md4 | cut -d ' ' -f 2)
+#machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | \
+#	/usr/bin/awk '
+#BEGIN {
+#	RS="\\";
+#}
+#/[0-9A-F][0-9A-F]/ {
+#	if ($0 == "00") {
+#		next;
+#	}
+#	printf ("%c", 0 + ("0x"$0));
+#}' | \
+#	/usr/bin/iconv -f utf-8 -t utf-16le | \
+#	/usr/bin/openssl md4 | cut -d ' ' -f 2)
 
-machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | sed 's,\\00$,,' | iconv -f utf-8 -t utf-16le | openssl md4 | cut -d ' ' -f 2)
+#machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | sed 's,\\00$,,;s,\\5[Cc],\\,g' | iconv -f utf-8 -t utf-16le | openssl md4 | cut -d ' ' -f 2)
 
 oldpw=$(/usr/bin/sed -ne 's/^[[:space:]]password=hash://p' $conf)
 
