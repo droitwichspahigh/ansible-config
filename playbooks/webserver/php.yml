@@ -7,6 +7,7 @@
   - name: install php
     pkgng:
       name:
+        - php81
         - php81-zlib
         - php81-mbstring
         - php81-mysqli
@@ -19,7 +20,6 @@
         - php81-curl
         - php81-exif
         - php81-gd
-        - php81
         - php81-ldap
         - php81-ctype
         - php81-dom
@@ -37,6 +37,7 @@
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
     loop:
-      - { regexp: '^post_max_size', line: 'post_max_size = 50M' }
-      - { regexp: '^upload_max_filesize', line: 'upload_max_filesize = 100M' }
+      - { regexp: '^post_max_size', line: 'post_max_size = 500M' }
+      - { regexp: '^upload_max_filesize', line: 'upload_max_filesize = 500M' }
       - { regexp: '^max_input_vars', line: 'max_input_vars = 100000' }
+      - { regexp: '^memory_limit', line: 'memory_limit = 512M' }
