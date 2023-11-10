@@ -61,7 +61,7 @@ bulkjail() {
 
 	_packagelists=""
 
-	(cd /usr/ports && git pull --ff-only)
+	(cd /usr/ports && /usr/local/bin/git pull --ff-only)
 
 	for l in /usr/local/etc/poudriere.d/pkglist-dshs*; do
 		_packagelists="${_packagelists} -f $l"
