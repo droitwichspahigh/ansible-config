@@ -1,6 +1,6 @@
 archivers/php81-zlib
 converters/php81-mbstring
-databases/mysql81-server
+databases/mysql80-server
 databases/php81-mysqli
 databases/php81-pdo_sqlite
 databases/php81-sqlite3
