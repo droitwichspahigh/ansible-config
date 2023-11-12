@@ -28,7 +28,7 @@ mktarball() {
 	echo "...[DONE]"
 
 	echo -n Building world and kernel...
-	make -C $src buildworld buildkernel packages TARGET=$arch \
+	make -C $src -j 16 buildworld buildkernel packages TARGET=$arch \
 		>$arch-tarballs/$version/buildlog 2>&1 || \
 			tail -n 50 $arch-tarballs/$version/buildlog
 	echo "...[DONE]"
