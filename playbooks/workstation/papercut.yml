@@ -1,0 +1,30 @@
+---
+
+- name: install Papercut client
+  hosts: workstation
+  vars:
+    version: 21.2.12.66701
+  become: true
+  tasks:
+  - name: install Java
+    community.general.pkgng:
+      name: openjdk17-jre
+  - name: add papercut directory
+    ansible.builtin.file:
+      path: /usr/local/share/java/classes/pc_client
+      mode: 0755
+      state: directory
+  - name: check if installed
+    ansible.builtin.stat:
+      path: '/usr/local/share/java/classes/pc_client/lib/papercut-client-{{ version }}.jar'
+    register: installed
+  - name: install
+    ansible.builtin.command:
+      chdir: /usr/local/share/java/classes/pc_client
+      argv:
+        - /usr/local/bin/smbclient
+        - -P
+        - //dshs-print2/PCClient
+        - -c
+        - prompt off; recurse; cd linux; mget *
+    when: not installed.stat.exists

@@ -8,3 +8,4 @@
 - ansible.builtin.import_playbook: playbooks/workstation/graphics_load.yml
 - ansible.builtin.import_playbook: playbooks/workstation/sddm.yml
 - ansible.builtin.import_playbook: playbooks/workstation/webcamd.yml
+- ansible.builtin.import_playbook: playbooks/workstation/papercut.yml
