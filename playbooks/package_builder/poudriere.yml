@@ -20,12 +20,13 @@
       creates: /poudriere
   - name: create directories
     ansible.builtin.file:
-      path: "/poudriere/data/{{ item }}"
+      path: "{{ item }}"
       state: directory
       mode: 0755
     loop:
-      - scripts
-      - src
+      - /poudriere/data/scripts
+      - /poudriere/data/src
+      - /var/cache/ccache
   - name: copy script for periodic running
     ansible.builtin.template:
       src: "../../templates/poudriere/{{ item.src }}"
