@@ -41,3 +41,4 @@
       - { regexp: '^upload_max_filesize', line: 'upload_max_filesize = 500M' }
       - { regexp: '^max_input_vars', line: 'max_input_vars = 100000' }
       - { regexp: '^memory_limit', line: 'memory_limit = 512M' }
+      - { regexp: '^max_execution_time', line: 'max_execution_time = 500' }
