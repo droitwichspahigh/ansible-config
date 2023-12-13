@@ -33,3 +33,14 @@
       name: '{{ srv }}'
       state: stopped
     when: sysrc.changed
+  - name: check host-specific cronjobs file exists for {{ ansible_fqdn }}
+    local_action: "stat path=../../hostfiles/cronjobs.local/{{ ansible_fqdn }}"
+    register: cronjobs_local
+  - name: add host-specific cronjobs if exists
+    ansible.builtin.template:
+      src: "../../hostfiles/cronjobs.local/{{ ansible_fqdn }}"
+      dest: /etc/cron.d/cronjobs.local
+      owner: root
+      group: wheel
+      mode: '0644'
+    when: cronjobs_local.stat.exists
