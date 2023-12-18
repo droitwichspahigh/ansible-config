@@ -22,14 +22,17 @@ mktarball() {
 
 	mkdir -p $arch-tarballs/$version
 
-	echo -n Cleaning before...
-	make -C $src/release clean >/dev/null 2>&1
-	make -C $src cleandir cleandir >/dev/null 2>&1
-	echo "...[DONE]"
+	#echo -n Cleaning before...
+	#make -C $src/release clean >/dev/null 2>&1
+	#make -C $src cleandir cleandir >/dev/null 2>&1
+	#echo "...[DONE]"
 
 	echo -n Building world and kernel...
-	make -C $src -j 16 buildworld buildkernel packages TARGET=$arch \
+	make -C $src -j 16 buildworld buildkernel TARGET=$arch \
 		>$arch-tarballs/$version/buildlog 2>&1 || \
+			tail -n 50 $arch-tarballs/$version/buildlog
+	make -C $src -j 16 packages TARGET=$arch \
+		>>$arch-tarballs/$version/buildlog 2>&1 || \
 			tail -n 50 $arch-tarballs/$version/buildlog
 	echo "...[DONE]"
 
