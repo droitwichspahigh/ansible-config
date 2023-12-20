@@ -5,9 +5,9 @@
   become: true
   tasks:
   - name: force text mode in console
-    community.general.sysrc:
-      name: '{{ item.v }}'
-      value: '{{ item.val }}'
+    ansible.builtin.lineinfile:
       path: /boot/loader.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
     loop:
-      - { v: "hw.vga.textmode", val: "1" }
+      - { regexp: '^hw.vga.textmode', line: 'hw.vga.textmode=1' }
