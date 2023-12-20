@@ -4,9 +4,9 @@ all:
       children:
         servers:
           hosts:
-            dshs-backup2.dshs.local
-            dshs-hv06.dshs.local
-            dshs-leibniz.dshs.local
+            dshs-backup2.dshs.local:
+            dshs-hv06.dshs.local:
+            dshs-leibniz.dshs.local:
         workstations:
           hosts:
-            laptop-f1.dshs.local
+            laptop-f1.dshs.local:
