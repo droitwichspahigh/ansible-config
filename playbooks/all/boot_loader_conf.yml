@@ -10,4 +10,4 @@
       value: '{{ item.val }}'
       path: /boot/loader.conf
     loop:
-      - { v: hw.vga.textmode, val: "1" }
+      - { v: "hw.vga.textmode", val: "1" }
