@@ -19,7 +19,7 @@ case "${daily_ansible_pull_github_enable:-no}" in
 		exit 2
 	fi
 
-	pullcmd="/usr/local/bin/ansible-pull -U https://github.com/$daily_ansible_pull_github_repo"
+	pullcmd="/usr/local/bin/ansible-pull -U https://github.com/$daily_ansible_pull_github_repo -i hosts"
 
 	if ! $pullcmd >/dev/null 2>&1 ; then
 		echo 'ansible-pull script failed- try running it manually'
