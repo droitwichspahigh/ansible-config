@@ -22,7 +22,7 @@ account		required	pam_unix.so
 #session	optional	pam_ssh.so		want_agent
 session		required	pam_lastlog.so		no_fail
 session		required	pam_mkhomedir.so	mode=0700
-session		required	pam_sss.so
+session		required	pam_sss.so		ignore_unknown_user
 
 # password
 #password	sufficient	pam_krb5.so		no_warn try_first_pass
