@@ -1,0 +1,13 @@
+---
+
+- name: add items to loader.conf
+  hosts: all
+  become: true
+  tasks:
+  - name: force text mode in console
+    community.general.sysrc:
+      name: '{{ item.v }}'
+      value: '{{ item.val }}'
+      path: /boot/loader.conf
+    loop:
+      - { v: hw.vga.textmode, val: "1" }

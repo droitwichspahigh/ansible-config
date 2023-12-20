@@ -1,5 +1,6 @@
 ---
 
+- ansible.builtin.import_playbook: playbooks/all/boot_loader_conf.yml
 - ansible.builtin.import_playbook: playbooks/all/sudo.yml
 
 - ansible.builtin.import_playbook: playbooks/all/keymap.yml
