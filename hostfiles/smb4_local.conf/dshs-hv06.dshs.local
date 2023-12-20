@@ -4,3 +4,7 @@
 	vfs objects = zfsacl
 	path = /dumpster/backups
 	writeable = Yes
+[inventry_backup]
+        vfs objects = zfsacl
+        path = /dumpster/inventry_backup
+        writeable = Yes
