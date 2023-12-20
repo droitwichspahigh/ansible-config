@@ -4,6 +4,10 @@
   hosts: dshs
   become: true
   tasks:
+  - name: ensure certificates dir exists
+    ansible.builtin.file:
+      path: /usr/local/share/certs
+      state: directory
   - name: install Netsweeper certificate
     ansible.builtin.template:
       src: ../../files/schoolsbroadband_cert/Talk_Straight.pem
