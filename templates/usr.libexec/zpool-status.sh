@@ -35,6 +35,9 @@ output() {
 	tag h2 filesystems:
 	zfs list | preformat
 
+	tag h2 snapshots:
+	zfs list -t snapshot | preformat
+
 	echo "</body></html>"
 }
 
