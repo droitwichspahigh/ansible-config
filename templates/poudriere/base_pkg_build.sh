@@ -41,7 +41,7 @@ mktarball() {
 		TARGET=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
 	echo "...[DONE]"
 	rm $arch-tarballs/$version/*.txz
-	mv $(make -C $src -VMAKEOBJDIR)/release/*.txz $(make -C $src -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
+	mv $(make -C $src TARGET=$arch -VMAKEOBJDIR)/release/*.txz $(make -C $src TARGET=$arch -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
 }
 
 mkpjail() {
