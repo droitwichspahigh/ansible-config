@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec chpst -u rundeck \
+	/usr/local/openjdk8/bin/java		\
+	-Drundeck.jaaslogin=true		\
+	-Dloginmodule.name=pam			\
+	-Dloginmodule.conf.name=jaas-pam.conf	\
+	-jar /usr/local/share/rundeck/rundeck.war -b /usr/local/rundeck start
