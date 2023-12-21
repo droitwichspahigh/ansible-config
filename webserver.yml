@@ -4,3 +4,4 @@
 - ansible.builtin.import_playbook: playbooks/webserver/php.yml
 - ansible.builtin.import_playbook: playbooks/webserver/mysql-server.yml
 - ansible.builtin.import_playbook: playbooks/webserver/imagick.yml
+- ansible.builtin.import_playbook: playbooks/webserver/zpool-status.yml

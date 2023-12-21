@@ -1,0 +1,31 @@
+---
+
+- name: enable zpool-status reporting
+  hosts: all
+  become: true
+  tasks:
+  - name: add zpool-status runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/zpool-status
+      state: directory
+      mode: '0755'
+    register: conf
+  - name: add zpool-status script
+    ansible.builtin.template:
+      src: ../../templates/usr.libexec/zpool-status.sh
+      dest: /usr/libexec/zpool-status.sh
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: add zpool-status runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/zpool-status_run
+      dest: /etc/sv/zpool-status/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable sshd boot
+    ansible.builtin.file:
+      src: /etc/sv/zpool-status
+      dest: /var/service/zpool-status
+      state: link
