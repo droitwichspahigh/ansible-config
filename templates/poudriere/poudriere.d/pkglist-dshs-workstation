@@ -8,6 +8,9 @@ graphics/intel-backlight
 java/eclipse
 java/openjdk17-jre
 mail/thunderbird
+multimedia/v4l-utils
+multimedia/v4l_compat
+multimedia/vlc
 net/syncthing
 net/tigervnc-viewer
 net/xrdp
