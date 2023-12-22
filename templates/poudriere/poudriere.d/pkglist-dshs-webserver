@@ -14,6 +14,7 @@ graphics/php81-exif
 graphics/php81-gd
 lang/php81
 net/php81-ldap
+sysutils/rundeck
 textproc/php81-ctype
 textproc/php81-dom
 textproc/php81-simplexml
