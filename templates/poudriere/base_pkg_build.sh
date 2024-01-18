@@ -37,7 +37,7 @@ mktarball() {
 	echo "...[DONE]"
 
 	echo -n Building tarballs...
-	make -C $src/release -DNOPORTS -DNODOC -DNOPKG \
+	make -C $src/release -DNOPORTS -DNODOC -DNOPKG -DNOSRC \
 		TARGET=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
 	echo "...[DONE]"
 	rm $arch-tarballs/$version/*.txz
