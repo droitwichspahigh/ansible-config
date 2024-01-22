@@ -29,7 +29,8 @@ fi
 #	/usr/bin/iconv -f utf-8 -t utf-16le | \
 #	/usr/bin/openssl md4 | cut -d ' ' -f 2)
 
-#machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | sed 's,\\00$,,;s,\\5[Cc],\\,g' | iconv -f utf-8 -t utf-16le | openssl md4 | cut -d ' ' -f 2)
+# This seems to be the most reliable method!
+machine_password=$(/usr/local/bin/tdbdump -k SECRETS/MACHINE_PASSWORD/CSE2K /var/db/samba4/private/secrets.tdb | sed 's,\\00$,,;s,\\5[Cc],\\,g' | iconv -f utf-8 -t utf-16le | openssl md4 | cut -d ' ' -f 2)
 
 oldpw=$(/usr/bin/sed -ne 's/^[[:space:]]password=hash://p' $conf)
 
