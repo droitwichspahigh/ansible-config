@@ -33,6 +33,17 @@
       name: '{{ srv }}'
       state: stopped
     when: sysrc.changed
+  - name: create root cronjob repo
+    ansible.builtin.file:
+      path: /root/cronjobs
+      state: directory
+  - name: add cronjob scripts
+    ansible.builtin.template:
+      src: "../../templates/root/cronjobs/{{ item }}"
+      dest: "/root/cronjobs/{{ item }}"
+      mode: 0644
+    loop:
+      - snapshots.sh
   - name: check host-specific cronjobs file exists for {{ ansible_fqdn }}
     local_action: "stat path=../../hostfiles/cronjobs.local/{{ ansible_fqdn }}"
     register: cronjobs_local
