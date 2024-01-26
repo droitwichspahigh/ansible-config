@@ -1,0 +1,5 @@
+@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dumpster
+@daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dumpster
+@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dumpster
+@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dumpster
+@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dumpster
