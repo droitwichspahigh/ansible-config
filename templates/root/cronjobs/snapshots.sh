@@ -3,6 +3,24 @@
 # $BayOfRum: snapshots.sh,v 1.2 2012/06/24 15:13:57 root Exp $
 #
 
+usage () {
+        cat <<EOF
+usage: /bin/sh $0 schedule [filesystem [filesystem ...]]
+
+Takes recursive snapshots of specified ZFS filesystems on a specified basis.
+
+Cleans them up according to builtin retention policy, shown below, for example
+each hourly snapshot is limited to 26 snapshots.
+
+Yearly is likely excessive.
+
+schedule: hourly (26), daily (9), weekly (4), monthly (3), yearly (1)
+
+filesystem: defaults to all ZFS filesystems available from 'zpool list'
+EOF
+	exit 1
+}
+
 # check pool is ready
 check_ready()
 {
@@ -71,6 +89,9 @@ for fs in $filesystems; do
 	yearly)
 		takesnap $fs AutoY-`date +"%Y"` && \
 		    cleansnap $fs AutoY- 1
+		;;
+	*)
+		usage
 		;;
 	esac
 done
