@@ -75,7 +75,7 @@ for fs in $filesystems; do
 		    cleansnap $fs AutoD- 9
 		;;
 	hourly)
-		takesnap $fs AutoH-`date +"%FT%H:%M"` && \
+		takesnap $fs AutoH-`date +"%FT%H%M"` && \
 		    cleansnap $fs AutoH- 26
 		;;
 	weekly)
