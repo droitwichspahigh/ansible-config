@@ -1,6 +1,7 @@
 devel/ccache
 devel/git
 databases/ldb23
+net/freeradius3
 net/openldap26-client
 net-mgmt/adcli
 security/cyrus-sasl2-gssapi
