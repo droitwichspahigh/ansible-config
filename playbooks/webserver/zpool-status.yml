@@ -1,7 +1,7 @@
 ---
 
 - name: enable zpool-status reporting
-  hosts: all
+  hosts: webserver
   become: true
   tasks:
   - name: add zpool-status runsv directory

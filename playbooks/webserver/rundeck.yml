@@ -1,7 +1,7 @@
 ---
 
 - name: install and activate rundeck
-  hosts: dshs
+  hosts: webserver
   become: true
   tasks:
   - name: install rundeck

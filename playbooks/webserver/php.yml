@@ -1,7 +1,7 @@
 ---
 
 - name: install PHP and supporting packages
-  hosts: all
+  hosts: webserver
   become: true
   tasks:
   - name: install php

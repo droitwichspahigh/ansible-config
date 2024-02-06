@@ -1,7 +1,7 @@
 ---
 
 - name: install imagick
-  hosts: dshs
+  hosts: webserver
   become: true
   tasks:
   - name: install imagick

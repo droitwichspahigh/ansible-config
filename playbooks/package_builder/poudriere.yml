@@ -1,7 +1,7 @@
 ---
 
 - name: install and activate poudriere
-  hosts: dshs-hv06.dshs.local
+  hosts: package_builder
   become: true
   tasks:
   - name: install poudriere

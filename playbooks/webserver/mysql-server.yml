@@ -1,7 +1,7 @@
 ---
 
 - name: install and activate mysql-server
-  hosts: dshs
+  hosts: webserver
   become: true
   tasks:
   - name: install mysql-server

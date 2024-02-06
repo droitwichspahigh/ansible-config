@@ -1,7 +1,7 @@
 ---
 
 - name: secure apache24
-  hosts: all
+  hosts: secure_webserver
   become: true
   tasks:
   - name: install mod_authnz_external

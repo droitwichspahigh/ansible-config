@@ -1,7 +1,7 @@
 ---
 
 - name: install and activate apache24
-  hosts: all
+  hosts: webserver
   vars:
     srv: apache24
   become: true

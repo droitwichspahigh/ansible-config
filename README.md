@@ -6,14 +6,14 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # sysrc hostname=my_new_hostname.dshs.local
 # tzsetup Europe/London
 # mkdir -p /usr/local/etc/sudoers.d
-# echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /usr/local/etc/sudoers.d/temp
+# echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /usr/local/etc/sudoers.d/domain_admins_nopasswd
 # env ASSUME_ALWAYS_YES=yes pkg install sudo py39-ansible git
 # cat > /etc/periodic.conf <<EOF
 > daily_ansible_pull_github_enable=yes
 > daily_ansible_pull_github_repo=droitwichspahigh/ansible-config
 > EOF
 # . /etc/periodic.conf
-# ansible-pull -vU https://github.com/$daily_ansible_pull_github_repo -i hosts $(hostname).yml
+# ansible-pull -vU https://github.com/$daily_ansible_pull_github_repo -i hosts all.yml
 # pkg set -v 1 pam_mkhomedir sssd-smb
 # kinit my_dshs_domain_admin_username
 # net ads join -k

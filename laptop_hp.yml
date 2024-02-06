@@ -1,5 +1,4 @@
 ---
 
-- ansible.builtin.import_playbook: laptop.yml
 - ansible.builtin.import_playbook: playbooks/laptop_hp/boot_loader_conf.yml
 - ansible.builtin.import_playbook: playbooks/laptop_hp/pkgs.yml
