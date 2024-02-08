@@ -55,3 +55,9 @@
       group: wheel
       mode: '0644'
     when: cronjobs_local.stat.exists
+    register: local_template
+  - name: restart {{ srv }} for new crontabs
+    community.general.runit:
+      name: '{{ srv }}'
+      state: reloaded
+    when: local_template.changed
