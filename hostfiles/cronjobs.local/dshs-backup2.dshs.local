@@ -1,5 +1,5 @@
-#@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-backup02/backups
-#@daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dshs-backup02/backups
-#@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dshs-backup02/backups
-#@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dshs-backup02/backups
-#@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dshs-backup02/backups
+@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-backup2/backups
+@daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dshs-backup2/backups
+@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dshs-backup2/backups
+@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dshs-backup2/backups
+@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dshs-backup2/backups
