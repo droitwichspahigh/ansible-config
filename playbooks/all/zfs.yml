@@ -1,0 +1,10 @@
+---
+
+- name: mount all zfs by default
+  hosts: all
+  become: true
+  tasks:
+  - name: enable zfs
+    community.general.sysrc:
+      name: zfs_enable
+      value: "yes"
