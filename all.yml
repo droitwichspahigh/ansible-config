@@ -23,3 +23,5 @@
 - ansible.builtin.import_playbook: secure_webserver.yml
 - ansible.builtin.import_playbook: workstation.yml
 - ansible.builtin.import_playbook: laptop_hp.yml
+
+- ansible.builtin.import_playbook: playbooks/uptime_kuma/uptime_kuma.yml

@@ -1,0 +1,58 @@
+---
+
+- name: install and configure uptime_kuma
+  hosts: uptime_kuma
+  become: true
+  vars:
+    n: uptime_kuma
+    srv: uptime_kuma
+    homedir: /var/db/uptime_kuma
+    location: /var/db/uptime_kuma/uptime-kuma
+    repo: https://github.com/louislam/uptime-kuma
+  tasks:
+  - name: install npm
+    community.general.pkgng:
+      name: www/npm
+  - name: 'check {{ n }} exists'
+    ansible.builtin.stat:
+      path: '{{ location }}'
+    register: dest_exists
+  - name: 'make sure {{ n }} user exists'
+    ansible.builtin.user:
+      name: '{{ n }}'
+      comment: '& user'
+      group: daemon
+      password: '*'
+      shell: /sbin/nologin
+      home: '{{ homedir }}'
+  - name: clone repo
+    ansible.builtin.git:
+      repo: '{{ repo }}'
+      dest: '{{ location }}'
+    when: dest_exists.stat.isdir is not defined or not dest_exists.stat.isdir
+  - name: npm run setup
+    ansible.builtin.command:
+      cmd: npm run setup
+      chdir: "{{ location }}"
+    when: dest_exists.stat.isdir is not defined or not dest_exists.stat.isdir
+  - name: 'make sure {{ n }} owns all'
+    ansible.builtin.command:
+      cmd: 'chown -R {{ n }}:daemon {{ location }}'
+    when: dest_exists.stat.isdir is not defined or not dest_exists.stat.isdir
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link

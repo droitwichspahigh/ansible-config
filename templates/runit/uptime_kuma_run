@@ -1,0 +1,6 @@
+#!/bin/sh
+
+user=uptime_kuma
+
+cd ~$user/uptime-kuma
+exec /usr/local/sbin/chpst -u $user /usr/local/bin/node server/server.js

@@ -20,4 +20,5 @@ textproc/php81-dom
 textproc/php81-simplexml
 textproc/php81-xmlwriter
 www/mod_php81
+www/npm
 www/php81-session
