@@ -1,21 +1,19 @@
-all:
+dshs:
   children:
-    dshs:
+    servers:
       children:
-        servers:
+        webserver:
+          hosts:
+            dshs-backup2.dshs.local:
           children:
-            webserver:
+            package_builder:
               hosts:
-                dshs-backup2.dshs.local:
-              children:
-                package_builder:
-                  hosts:
-                    dshs-hv06.dshs.local:
-                secure_webserver:
-                  hosts:
-                    dshs-leibniz.dshs.local:
-        workstation:
-          children:
-            laptop_hp:
+                dshs-hv06.dshs.local:
+            secure_webserver:
               hosts:
-                laptop-f1.dshs.local:
+                dshs-leibniz.dshs.local:
+    workstation:
+      children:
+        laptop_hp:
+          hosts:
+            laptop-f1.dshs.local:
