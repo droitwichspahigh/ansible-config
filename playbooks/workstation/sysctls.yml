@@ -1,0 +1,14 @@
+---
+
+- name: disable console beep and set lid switch state
+  hosts: workstation
+  become: true
+  tasks:
+  - name: check printer settings are correct
+    ansible.builtin.lineinfile:
+      path: /etc/sysctl.conf
+      regexp: '^{{ item.variable }}='
+      line: '{{ item.variable }}={{ item.value }}'
+    loop:
+      - { variable: 'kern.vt.enable_bell', value: '0' }
+      - { variable: 'hw.acpi.lid_switch_state', value: 'S3' }
