@@ -32,8 +32,12 @@
       owner: root
       group: wheel
       mode: '0755'
-  - name: enable rundeck boot
+#  - name: enable rundeck boot
+#    ansible.builtin.file:
+#      src: /etc/sv/rundeck
+#      dest: /var/service/rundeck
+#      state: link
+  - name: disable rundeck boot
     ansible.builtin.file:
-      src: /etc/sv/rundeck
-      dest: /var/service/rundeck
-      state: link
+      path: /var/service/rundeck
+      state: absent
