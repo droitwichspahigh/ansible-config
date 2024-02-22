@@ -57,7 +57,7 @@ cleansnap()
 	_retention_number=$3
 
 	/sbin/zfs list -t snapshot -o name | \
-	    /usr/bin/grep $_fs@$_snapprefix | \
+	    /usr/bin/grep ^$_fs@$_snapprefix | \
 	    /usr/bin/sort -r | \
 	    /usr/bin/tail -n +$_retention_number | \
 	    /usr/bin/xargs -n 1 /sbin/zfs destroy -r
