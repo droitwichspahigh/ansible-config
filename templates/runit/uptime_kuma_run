@@ -2,5 +2,5 @@
 
 user=uptime_kuma
 
-cd ~$user/uptime-kuma
+cd /var/db/$user/uptime-kuma
 exec /usr/local/sbin/chpst -u $user /usr/local/bin/node server/server.js
