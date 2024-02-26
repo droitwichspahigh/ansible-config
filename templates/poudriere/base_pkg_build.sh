@@ -82,7 +82,9 @@ for v in ${srcvers}; do
     for a in ${archs}; do
 	vdir=${v%:*}
 	vver=${v#*:}
-	pjail=$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\.\([0-9]*\).*$,\1\2,')$a
+	#pjail=$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\.\([0-9]*\).*$,\1\2,')$a
+	#pjail=FreeBSD:$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\..*,\1,'):$a
+	pjail=FreeBSD:${vdir%%.*}:$a
 	if pgrep -f $pjail; then
 		echo Jail $pjail already running, we will not update it now
 		continue
