@@ -21,19 +21,6 @@ EOF
 	exit 1
 }
 
-# check pool is ready
-check_ready()
-{
-	local _fs _pool
-
-	_fs=$1
-
-	_pool=${fs%%/*}
-
-	/sbin/zpool status $_pool | \
-	    /usr/bin/egrep -q "resilvered|completed|none requested|repaired|canceled"
-}
-
 # takesnap snapshot_name
 takesnap()
 {
@@ -42,9 +29,7 @@ takesnap()
 	_fs=$1
 	_snapname=$2
 
-	if check_ready $_fs; then
-	    /sbin/zfs snapshot -r $_fs@$_snapname
-	fi
+	/sbin/zfs snapshot -r $_fs@$_snapname
 }
 
 # cleansnap snap_prefix number_to_keep
