@@ -84,7 +84,7 @@ for v in ${srcvers}; do
 	vver=${v#*:}
 	#pjail=$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\.\([0-9]*\).*$,\1\2,')$a
 	#pjail=FreeBSD:$(echo $vdir | sed 's,^[^0-9]*\([0-9]*\)\..*,\1,'):$a
-	pjail=FreeBSD:${vdir%%.*}:$a
+	pjail=FreeBSD:${vver%%.*}:$a
 	if pgrep -f $pjail; then
 		echo Jail $pjail already running, we will not update it now
 		continue
