@@ -7,7 +7,8 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 ```console
 # sysrc hostname=my_new_hostname.dshs.local
 # tzsetup Europe/London
-# mkdir -p /usr/local/etc/sudoers.d
+# mkdir -p /usr/local/etc/sudoers.d /home
+# service sshd onekeygen
 # echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /usr/local/etc/sudoers.d/domain_admins_nopasswd
 # env ASSUME_ALWAYS_YES=yes pkg install sudo py39-ansible git
 # cat > /etc/periodic.conf <<EOF
