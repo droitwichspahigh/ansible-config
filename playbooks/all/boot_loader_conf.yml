@@ -9,5 +9,6 @@
       path: /boot/loader.conf
       regexp: "{{ item.regexp }}"
       line: "{{ item.line }}"
+      create: true
     loop:
       - { regexp: '^hw.vga.textmode', line: 'hw.vga.textmode=1' }
