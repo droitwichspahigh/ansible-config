@@ -9,9 +9,15 @@ dshs:
             package_builder:
               hosts:
                 dshs-hv06.dshs.local:
+            jailer:
+              hosts:
+                dshs-hv06.dshs.local:
             secure_webserver:
               hosts:
                 dshs-leibniz.dshs.local:
+        radius:
+          hosts:
+            dshs-radius4.dshs.local:
     workstation:
       children:
         laptop_hp:
