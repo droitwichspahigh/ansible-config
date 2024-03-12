@@ -3,7 +3,7 @@
 srcdir=/poudriere/data/src
 # Need the suffix or Poudriere uses builtin manifests
 # and refuses to use our tarballs
-srcvers="releng-13.2:13.2-RELEASE-dshs"
+srcvers="releng-13.3:13.3-RELEASE-dshs"
 archs=${1:-amd64 i386}
 
 poudriere=/usr/local/bin/poudriere
@@ -22,26 +22,26 @@ mktarball() {
 
 	mkdir -p $arch-tarballs/$version
 
-	#echo -n Cleaning before...
-	#make -C $src/release clean >/dev/null 2>&1
-	#make -C $src cleandir cleandir >/dev/null 2>&1
-	#echo "...[DONE]"
+	echo -n Cleaning before...
+	make -C $src/release clean >/dev/null 2>&1
+	make -C $src cleandir cleandir >/dev/null 2>&1
+	echo "...[DONE]"
 
 	echo -n Building world and kernel...
-	make -C $src -j 16 buildworld buildkernel TARGET=$arch \
+	make -C $src -j 16 buildworld buildkernel TARGET=$arch TARGET_ARCH=$arch \
 		>$arch-tarballs/$version/buildlog 2>&1 || \
 			tail -n 50 $arch-tarballs/$version/buildlog
-	make -C $src -j 16 packages TARGET=$arch \
+	make -C $src -j 16 packages TARGET=$arch TARGET_ARCH=$arch \
 		>>$arch-tarballs/$version/buildlog 2>&1 || \
 			tail -n 50 $arch-tarballs/$version/buildlog
 	echo "...[DONE]"
 
 	echo -n Building tarballs...
-	make -C $src/release -DNOPORTS -DNODOC -DNOPKG -DNOSRC \
-		TARGET=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
+	make -C $src/release -DNOPORTS -DNODOC -DNOPKG \
+		TARGET=$arch TARGET_ARCH=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
 	echo "...[DONE]"
 	rm $arch-tarballs/$version/*.txz
-	mv $(make -C $src TARGET_ARCH=$arch -VMAKEOBJDIR)/release/*.txz $(make -C $src TARGET_ARCH=$arch -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
+	mv $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/*.txz $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
 }
 
 mkpjail() {
@@ -54,7 +54,7 @@ mkpjail() {
 	if $poudriere jail -l | grep -q $_jname; then
 		$poudriere jail -u -j $_jname
 	else
-		$poudriere jail -c -j $_jname -m url=/poudriere/data/scripts/$_arch-tarballs/$_tarball_dir -v $_version
+		$poudriere jail -c -j $_jname -m url=/poudriere/data/scripts/$_arch-tarballs/$_tarball_dir -v $_version -a $_arch
 	fi
 }
 
