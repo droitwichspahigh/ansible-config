@@ -59,3 +59,38 @@ Then, add the FreeBSD partitions for it- try to match the existing ones on the o
 ```
 
 Leave it to resilver and you should be good.  Uptime-Kuma will show green for the server once the resilver is finished.
+
+## Adding further file shares
+
+Create a ZFS volume for the file share.  You may need to create a mountpoint if it doesn't
+appear under the existing ones.
+
+```console
+# zfs create backups/archive
+# zfs set aclmode=restricted backups/archive
+# zfs set aclinherit=passthrough backups/archive
+# zfs set mountpoint=/archive backups/archive
+```
+
+In this Ansible tree, edit or create a `smb4_local.conf` for the host and put the details in.
+
+```console
+% vim hostfiles/smb4_local.conf/dshs-backup2.dshs.local
+```
+
+    [archive]
+            vfs objects = zfsacl
+            path = /archive
+            writeable = Yes
+
+```console
+% git commit hostfiles/smb4_local.conf/dshs-backup2.dshs.local
+% git push
+```
+
+On the host, pull the latest Ansible through:
+
+```console
+# sh /usr/local/etc/periodic/daily/132.ansible-pull
+# pkill -HUP smbd
+```
