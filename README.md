@@ -70,6 +70,8 @@ appear under the existing ones.
 # zfs set aclmode=restricted backups/archive
 # zfs set aclinherit=passthrough backups/archive
 # zfs set mountpoint=/archive backups/archive
+# chown 'administrator:domain admins' /archive
+# chmod g+ws /archive
 ```
 
 In this Ansible tree, edit or create a `smb4_local.conf` for the host and put the details in.
