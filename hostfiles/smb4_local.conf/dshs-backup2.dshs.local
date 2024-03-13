@@ -4,3 +4,7 @@
 	vfs objects = zfsacl
 	path = /backups
 	writeable = Yes
+[archive]
+	vfs objects = zfsacl
+	path = /archive
+	writeable = Yes
