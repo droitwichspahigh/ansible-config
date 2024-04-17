@@ -74,6 +74,14 @@ appear under the existing ones.
 # chmod g+ws /archive
 ```
 
+Optionally set the snapshots to be visible
+
+```console
+# zfs set snapdir=visible backups/archive
+# cd /archive
+# ln -s .zfs/snapshot snapshots
+``
+
 In this Ansible tree, edit or create a `smb4_local.conf` for the host and put the details in.
 
 ```console
