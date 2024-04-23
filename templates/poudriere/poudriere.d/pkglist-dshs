@@ -5,7 +5,6 @@ net/freeradius3
 net/openldap26-client
 net-mgmt/adcli
 ports-mgmt/poudriere
-print/cups-smb-backend
 security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
 sysutils/ansible
