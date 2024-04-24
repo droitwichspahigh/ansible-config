@@ -15,6 +15,7 @@ dshs:
             secure_webserver:
               hosts:
                 dshs-leibniz.dshs.local:
+                dshs-netbox.dshs.local:
         radius:
           hosts:
             dshs-radius4.dshs.local:
