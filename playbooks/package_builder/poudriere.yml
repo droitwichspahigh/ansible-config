@@ -39,6 +39,7 @@
       - { src: poudriere.d/make.conf, dest: /usr/local/etc/poudriere.d/make.conf }
       - { src: poudriere_cron, dest: /etc/cron.d/poudriere }
       - { src: poudriere.d/pkglist-dshs, dest: /usr/local/etc/poudriere.d/pkglist-dshs }
+      - { src: poudriere.d/pkglist-dshs-netbox, dest: /usr/local/etc/poudriere.d/pkglist-dshs-netbox }
       - { src: poudriere.d/pkglist-dshs-webserver, dest: /usr/local/etc/poudriere.d/pkglist-dshs-webserver }
       - { src: poudriere.d/pkglist-dshs-workstation, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation }
       - { src: poudriere.d/pkglist-dshs-workstation-laptop-hp, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation-laptop-hp }
