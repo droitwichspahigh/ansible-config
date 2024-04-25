@@ -26,4 +26,4 @@ dshs:
             laptop-f1.dshs.local:
     uptime_kuma:
       hosts:
-        dshs-hv06.dshs.local:
+        status.dshs.local:
