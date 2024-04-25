@@ -6,4 +6,4 @@
   tasks:
   - name: install imagick
     pkgng:
-      name: php81-pecl-imagick
+      name: php82-pecl-imagick

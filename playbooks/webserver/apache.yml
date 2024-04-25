@@ -8,7 +8,7 @@
   tasks:
   - name: install {{ srv }}
     pkgng:
-      name: '{{ srv }} mod_php81'
+      name: '{{ srv }} mod_php82'
   - name: enable php
     ansible.builtin.template:
       src: "{{ item.src }}"
