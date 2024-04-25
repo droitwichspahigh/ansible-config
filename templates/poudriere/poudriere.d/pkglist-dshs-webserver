@@ -8,7 +8,7 @@ databases/phpmyadmin
 devel/php-composer
 devel/php82-pcntl
 devel/php82-tokenizer
-ftp/php81-curl
+ftp/php82-curl
 graphics/pecl-imagick
 graphics/php82-exif
 graphics/php82-gd
