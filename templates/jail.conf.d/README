@@ -1,0 +1,9 @@
+Create a directory in /jail with the machine name
+
+pkg -r /jail/$jname install -g FreeBSD-*
+
+Follow README instructions once jail started to get it all working
+
+jls to find the jail id, then jexec $jid /bin/sh to get into it
+
+Don't forget to set a root password...

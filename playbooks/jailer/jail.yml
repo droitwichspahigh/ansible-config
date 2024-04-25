@@ -1,0 +1,35 @@
+---
+
+- name: Configure jails
+  hosts: jailer
+  become: true
+  tasks:
+  - name: add jail.conf.d
+    ansible.builtin.file:
+      path: '/etc/jail.conf.d'
+      state: directory
+      mode: '0755'
+  - name: add jail config files
+    ansible.builtin.template:
+      src: "../../templates/jail.conf.d/{{ item }}"
+      dest: "/etc/jail.conf.d/{{ item }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - 'dshs-radius4.conf'
+  - name: enable jail rc.conf
+    community.general.sysrc:
+      name: 'jail_enable'
+      value: "yes"
+# Need to do this by hand as it doesn't work currently
+#  - name: enable jails
+#    community.general.sysrc:
+#      name: 'jail_list'
+#      value_present: '{{ item }}'
+#    loop:
+#      - nc
+  - name: start jail
+    ansible.builtin.service:
+      name: jail
+      state: started
