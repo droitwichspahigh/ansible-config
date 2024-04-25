@@ -17,5 +17,6 @@
       group: wheel
       mode: '0644'
     loop:
+      - FreeBSD
       - dshs
       - dshs-base
