@@ -4,6 +4,6 @@
   hosts: all
   become: true
   tasks:
-  - name: install vim
+  - name: install vim and ydiff
     pkgng:
-      name: vim
+      name: vim ydiff

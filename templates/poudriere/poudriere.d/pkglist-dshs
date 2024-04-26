@@ -1,5 +1,6 @@
 devel/ccache
 devel/git
+editors/vim
 misc/compat13x
 net/freeradius3
 net/openldap26-client
@@ -7,9 +8,9 @@ net-mgmt/adcli
 ports-mgmt/poudriere
 security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
+security/sssd2
+security/sudo
 sysutils/ansible
 sysutils/runit
 sysutils/screen
-security/sssd2
-security/sudo
-editors/vim
+textproc/ydiff
