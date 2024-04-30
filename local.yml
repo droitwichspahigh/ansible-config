@@ -26,3 +26,4 @@
 - ansible.builtin.import_playbook: laptop_hp.yml
 
 - ansible.builtin.import_playbook: playbooks/uptime_kuma/uptime_kuma.yml
+- ansible.builtin.import_playbook: playbooks/uptime_kuma/msmtp.yml
