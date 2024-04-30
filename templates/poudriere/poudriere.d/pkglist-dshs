@@ -1,6 +1,7 @@
 devel/ccache
 devel/git
 editors/vim
+mail/msmtp
 misc/compat13x
 net/freeradius3
 net/openldap26-client
