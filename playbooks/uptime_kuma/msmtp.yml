@@ -6,9 +6,9 @@
   vars:
     srv: msmtp
   tasks:
-  - name: install {{ srv }}
+  - name: "install {{ srv }}"
     pkgng:
-      name: {{ srv }}
+      name: "{{ srv }}"
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: "/etc/sv/{{ srv }}"
