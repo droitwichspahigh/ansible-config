@@ -1,0 +1,31 @@
+---
+
+- name: enable dmarcts_analyser
+  hosts: dshs-leibniz
+  become: true
+  tasks:
+  - name: install dmarcts analyser
+    community.general.pkgng:
+      name:
+        - dmarcts-report-parser
+        - p5-DBD-mysql
+    register: installed
+  - name: configure dmarcts_analyser
+    ansible.builtin.lineinfile:
+      path: /usr/local/etc/dmarcts-report-parser.conf
+      regexp: '^\$imapreadfolder   = '
+      line: "$imapreadfolder   = 'Inbox';"
+  - name: make dmarcts_analyser conf file unreadable
+    ansible.builtin.file:
+      path: /usr/local/etc/dmarcts-report-parser.conf
+      mode: '0600'
+  - name: get report analyser
+    ansible.builtin.git:
+      repo: 'https://github.com/techsneeze/dmarcts-report-viewer'
+      dest: /usr/local/www/apache24/data/dmarc
+    when: installed.changed is true
+  - name: enable periodic job
+    community.general.sysrc:
+      path: /etc/periodic.conf
+      name: daily_dmarcts_report_parser_enable
+      value: yes
