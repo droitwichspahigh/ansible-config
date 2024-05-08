@@ -15,7 +15,7 @@ dshs:
                 dshs-hv06.dshs.local:
             secure_webserver:
               hosts:
-                #dshs-leibniz.dshs.local:
+                dshs-leibniz.dshs.local:
         radius:
           hosts:
             #dshs-radius4.dshs.local:
