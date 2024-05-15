@@ -1,0 +1,5 @@
+#!/bin/sh
+
+samba_server_piddir=/var/run/samba4
+umount $samba_server_piddir/fd
+rmdir $samba_server_piddir/fd

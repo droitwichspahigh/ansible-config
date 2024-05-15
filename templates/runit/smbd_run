@@ -5,4 +5,10 @@ if [ -d "${samba_server_privatedir}" -o ! -e "${samba_server_privatedir}" ]; the
 	install -d -m 0700 "${samba_server_privatedir}"
 fi
 
+samba_server_piddir=/var/run/samba4
+if ! df -t fdescfs -T "${samba_server_piddir}/fd" >/dev/null 2>&1; then
+	install -d -m 0555 "${samba_server_piddir}/fd"
+	mount -t fdescfs -o nodup none "${samba_server_piddir}/fd"
+fi
+
 exec /usr/local/sbin/smbd -F --configfile=/usr/local/etc/smb4.conf

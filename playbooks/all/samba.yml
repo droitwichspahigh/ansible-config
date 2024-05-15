@@ -27,6 +27,15 @@
       - smbd
       - nmbd
       - winbindd
+  - name: add samba runsv finish file
+    ansible.builtin.template:
+      src: "../../templates/runit/{{ item }}_finish"
+      dest: "/etc/sv/{{ item }}/finish"
+      owner: root
+      group: wheel
+      mode: '0755'
+    loop:
+      - smbd
   - name: configure samba
     ansible.builtin.template:
       src: ../../templates/smb4.conf
