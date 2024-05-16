@@ -1,0 +1,25 @@
+#!/bin/sh -
+
+if [ -r /etc/defaults/periodic.conf ]; then
+	. /etc/defaults/periodic.conf
+	source_periodic_confs
+fi
+
+rc=0
+
+case "${daily_dmarcts_report_parser_dshs_enable:-no}" in
+[Nn][Oo])
+	;;
+*)
+	if ! /usr/local/bin/dmarcts-report-parser.pl -m /var/mail/dmarc >/dev/null 2>&1 ; then
+		echo 'dmarcts-report-parser failed- try running it manually'
+		echo '# dmarcts-report-parser.pl -m /var/mail/dmarc'
+		rc=2
+	else
+		truncate -s 0 /var/mail/dmarc
+	fi
+
+	;;
+esac
+
+exit $rc

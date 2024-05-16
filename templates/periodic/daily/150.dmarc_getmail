@@ -1,0 +1,34 @@
+#!/bin/sh -
+#
+
+if [ -r /etc/defaults/periodic.conf ]; then
+	. /etc/defaults/periodic.conf
+	source_periodic_confs
+fi
+
+daily_dmarc_getmail_enable=yes
+
+rc=0
+
+case "${daily_dmarc_getmail_enable:-no}" in
+[Nn][Oo])
+	;;
+*)
+	_dmarc_home=/var/db/dmarc
+	_provider_json=$_dmarc_home/.config/getmail/provider.json
+
+	# Check if token needs renewing
+	if [ -n "$(find $_provider_json -mtime +30)" ]; then
+		echo 'dmarc_getmail script might well need its token renewing-- check!'
+		rc=2
+	fi
+	getmailcmd="su dmarc -c /usr/local/bin/getmail"
+
+	if ! $getmailcmd >/dev/null 2>&1 ; then
+		echo 'dmarc_getmail script failed- try running it manually'
+		rc=2
+	fi
+	;;
+esac
+
+exit $rc
