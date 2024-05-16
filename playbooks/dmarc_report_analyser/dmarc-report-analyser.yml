@@ -1,7 +1,7 @@
 ---
 
 - name: enable dmarcts_analyser
-  hosts: dshs-leibniz
+  hosts: dshs-leibniz.dshs.local
   become: true
   vars:
     n: dmarc
