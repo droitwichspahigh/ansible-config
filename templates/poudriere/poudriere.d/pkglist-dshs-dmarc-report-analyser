@@ -1,2 +1,4 @@
-mail/dmarcts-report-parser
 databases/p5-DBD-mysql
+databases/php82-pdo_mysql
+mail/dmarcts-report-parser
+mail/getmail6
