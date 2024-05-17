@@ -25,7 +25,7 @@
       comment: '& user'
       group: daemon
       password: '*'
-      shell: /sbin/nologin
+      shell: /bin/sh
       home: '{{ homedir }}'
   - name: get report analyser
     ansible.builtin.git:
