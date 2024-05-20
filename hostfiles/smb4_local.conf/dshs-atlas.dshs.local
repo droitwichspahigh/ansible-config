@@ -1,0 +1,14 @@
+# Need to set aclmode=restricted and aclinherit=passthrough on
+# the ZFS volume as well
+[backups]
+	vfs objects = zfsacl
+	path = /kahuna/backups
+	writeable = Yes
+[archive]
+	vfs objects = zfsacl
+	path = /kahuna/archive
+	writeable = Yes
+[videos]
+	vfs objects = zfsacl
+	path = /kahuna/videos
+	writeable = Yes
