@@ -4,6 +4,7 @@ dshs:
       children:
         webserver:
           hosts:
+            dshs-atlas.dshs.local:
             dshs-backup2.dshs.local:
             dshs-netbox.dshs.local:
           children:
