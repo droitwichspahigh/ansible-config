@@ -20,6 +20,9 @@ dshs:
         radius:
           hosts:
             #dshs-radius4.dshs.local:
+        bhyve:
+          hosts:
+            dshs-hv06.dshs.local
     workstation:
       children:
         laptop_hp:

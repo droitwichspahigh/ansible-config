@@ -29,3 +29,4 @@
 - ansible.builtin.import_playbook: playbooks/uptime_kuma/msmtp.yml
 
 - ansible.builtin.import_playbook: playbooks/dmarc_report_analyser/dmarc-report-analyser.yml
+- ansible.builtin.import_playbook: playbooks/bhyve/bhyve.yml

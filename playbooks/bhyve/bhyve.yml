@@ -1,7 +1,7 @@
 ---
 
 - name: Configure hypervisors
-  hosts: dshs-hv06.dshs.local
+  hosts: bhyve
   become: true
   tasks:
   - name: install package
