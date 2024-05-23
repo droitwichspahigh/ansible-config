@@ -1,3 +1,4 @@
+#minute	hour	mday	month	wday	who	command
 @hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dumpster/backups dumpster/inventry_backup
 @daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dumpster/backups dumpster/inventry_backup
 @weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dumpster/backups dumpster/inventry_backup

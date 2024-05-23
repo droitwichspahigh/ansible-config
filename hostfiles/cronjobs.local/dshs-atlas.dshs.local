@@ -1,4 +1,4 @@
 #minute	hour	mday	month	wday	who	command
-0	21	*	*	*	root	/bin/sh /root/cronjobs/snapshots.sh daily dshs-atlas kahuna
-@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-atlas kahuna
+#0	21	*	*	*	root	/bin/sh /root/cronjobs/snapshots.sh daily dshs-atlas kahuna
+@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly kahuna #dshs-atlas
 @weekly		root	/sbin/zpool scrub dshs-atlas kahuna

@@ -1,4 +1,4 @@
 #minute	hour	mday	month	wday	who	command
-0	21	*	*	*	root	/bin/sh /root/cronjobs/snapshots.sh daily dshs-backup2 backups
-@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-backup2 backups
+#0	21	*	*	*	root	/bin/sh /root/cronjobs/snapshots.sh daily dshs-backup2 backups
+#@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-backup2 backups
 @weekly		root	/sbin/zpool scrub dshs-backup2 backups

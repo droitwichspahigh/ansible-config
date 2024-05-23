@@ -1,5 +1,6 @@
-@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-leibniz
-@daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dshs-leibniz
-@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dshs-leibniz
-@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dshs-leibniz
-@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dshs-leibniz
+#minute	hour	mday	month	wday	who	command
+#@hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly dshs-leibniz
+#@daily          root    /bin/sh /root/cronjobs/snapshots.sh daily dshs-leibniz
+#@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dshs-leibniz
+#@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dshs-leibniz
+#@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dshs-leibniz
