@@ -6,7 +6,7 @@
   tasks:
   - name: install mod_authnz_external
     pkgng:
-      name: ap24-mod_authnz_external24 pwauth
+      name: ap24-mod_authnz_external24 ap24-mod_authz_unixgroup24 pwauth
   - name: enable php
     ansible.builtin.template:
       src: "{{ item.src }}"

@@ -19,6 +19,8 @@ textproc/php82-ctype
 textproc/php82-dom
 textproc/php82-simplexml
 textproc/php82-xmlwriter
+www/mod_authnz_external24
+www/mod_authz_unixgroup24
 www/mod_php82
 www/npm
 www/php82-session
