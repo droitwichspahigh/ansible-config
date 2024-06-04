@@ -1,0 +1,9 @@
+#
+#
+# PAM configuration for the "cron" service
+#
+
+# account
+account		required	pam_nologin.so
+account		sufficient	pam_sss.so		ignore_unknown_user ignore_authinfo_unavail
+account		required	pam_unix.so

@@ -51,6 +51,7 @@
       group: wheel
       mode: '0644'
     loop:
+      - cron
       - system
       - sshd
   - name: reload sssd
