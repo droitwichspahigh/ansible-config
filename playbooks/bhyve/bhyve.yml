@@ -15,5 +15,5 @@
     loop:
       - { var: 'enable', val: 'yes' }
       - { var: 'dir', val: 'zfs:dumpster/bhyve' }
-      - { var: 'list', val: 'status' }
       - { var: 'delay', val: '10' }
+#      - { var: 'list', val: 'status' }
