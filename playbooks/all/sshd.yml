@@ -9,6 +9,14 @@
       path: /etc/ssh/sshd_config
       regexp: '^# ?(GSSAPI[^ ]+) .*'
       replace: '\1 yes'
+  - name: configure ssh
+    ansible.builtin.replace:
+      path: /etc/ssh/ssh_config
+      regexp: '{{ item.regexp }}'
+      replace: '{{ item.replace }}'
+    loop:
+      - { regexp: '^# ?(GSSAPI[^ ]+) .*', replace: '\1 yes' }
+      - { regexp: '^(Host \*)$', replace: '\1.dshs.local' }
   - name: add sshd runsv directory
     ansible.builtin.file:
       path: /etc/sv/sshd
