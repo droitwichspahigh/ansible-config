@@ -22,6 +22,8 @@ dshs:
             #dshs-radius4.dshs.local:
         bhyve:
           hosts:
+            dshs-atlas.dshs.local:
+            dshs-backup2.dshs.local:
             dshs-hv06.dshs.local
     workstation:
       children:
