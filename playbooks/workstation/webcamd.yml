@@ -2,11 +2,12 @@
 
 - name: enable webcamd
   hosts: workstation
-  vars:
-    srv: webcamd
   become: true
   tasks:
-  - name: enable {{ srv }} rc.conf
+  - name: enable webcamd rc.conf
     community.general.sysrc:
-      name: '{{ srv }}_enable'
-      value: "yes"
+      name: 'webcamd_{{ item.option }}'
+      value: "{{ item.value }}"
+    loop:
+      - { option: 'enable', value: 'yes' }
+      - { option: 'group', value: 'everybody' }
