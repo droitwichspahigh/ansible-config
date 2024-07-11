@@ -4,3 +4,4 @@
 #@weekly         root    /bin/sh /root/cronjobs/snapshots.sh weekly dshs-leibniz
 #@monthly        root    /bin/sh /root/cronjobs/snapshots.sh monthly dshs-leibniz
 #@yearly         root    /bin/sh /root/cronjobs/snapshots.sh yearly dshs-leibniz
+@daily		crees	while ! /usr/local/bin/php /home/reescm_DSHS.LOCAL/dshs-arbor-custom/sync_custom_thumbprint.php; do echo yes; done
