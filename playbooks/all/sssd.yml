@@ -43,6 +43,11 @@
       path: /etc/nsswitch.conf
       regexp: '^(group|passwd): compat$'
       replace: '\1: files sss'
+  - name: remove compat from nsswitch
+    ansible.builtin.lineinfile:
+      path: /etc/nsswitch.conf
+      regexp: '^(group|passwd)_compat:'
+      state: absent
   - name: configure pam for sssd
     ansible.builtin.template:
       src: "../../templates/pam.d/{{item}}"
