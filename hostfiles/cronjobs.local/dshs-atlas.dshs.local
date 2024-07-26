@@ -1,5 +1,5 @@
 #minute	hour	mday	month	wday	who	command
-#0	21	*	*	*	root	/bin/sh /root/cronjobs/snapshots.sh daily dshs-atlas kahuna
 30	2	*	*	*	dshs-atlas-backup	/bin/sh /home/dshs-atlas-backup_DSHS.LOCAL/zfs-autobackup.sh
 @hourly         root    /bin/sh /root/cronjobs/snapshots.sh hourly kahuna/backups kahuna/archive
+@daily		root	/bin/sh /root/cronjobs/snapshots.sh daily kahuna/backups kahuna/archive
 @weekly		root	/sbin/zpool scrub dshs-atlas kahuna
