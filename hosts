@@ -9,7 +9,7 @@ dshs:
           children:
             package_builder:
               hosts:
-                dshs-hv06.dshs.local:
+                dshs-atlas.dshs.local:
             jailer:
               hosts:
                 dshs-hv06.dshs.local:
