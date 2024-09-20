@@ -24,8 +24,10 @@
       state: directory
       mode: 0755
     loop:
+      - /poudriere/data/packages
       - /poudriere/data/scripts
       - /poudriere/data/src
+      - /poudriere/pkgbase_repo
       - /var/cache/ccache
   - name: copy script for periodic running
     ansible.builtin.template:
