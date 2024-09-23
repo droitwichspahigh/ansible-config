@@ -4,7 +4,6 @@ emulators/libc6-shim
 emulators/wine
 graphics/drm-kmod
 graphics/gimp
-graphics/intel-backlight
 java/eclipse
 java/openjdk17-jre
 mail/thunderbird
