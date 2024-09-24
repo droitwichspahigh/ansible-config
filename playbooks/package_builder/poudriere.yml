@@ -54,3 +54,4 @@
     loop:
       - { src: /poudriere/data/packages, dest: /usr/local/www/apache24/data/pkg }
       - { src: /poudriere/pkgbase_repo, dest: /usr/local/www/apache24/data/pkgbase }
+      - { src: /poudriere/data/logs/bulk, dest: /usr/local/www/apache24/data/poudriere }
