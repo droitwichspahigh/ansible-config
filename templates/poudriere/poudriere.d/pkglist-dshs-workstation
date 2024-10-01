@@ -2,6 +2,7 @@ editors/libreoffice
 editors/vim
 emulators/libc6-shim
 emulators/wine
+emulators/wine-mono
 graphics/drm-kmod
 graphics/gimp
 java/eclipse
