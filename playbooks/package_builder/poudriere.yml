@@ -44,6 +44,7 @@
       - { src: poudriere.d/pkglist-dshs-netbox, dest: /usr/local/etc/poudriere.d/pkglist-dshs-netbox }
       - { src: poudriere.d/pkglist-dshs-webserver, dest: /usr/local/etc/poudriere.d/pkglist-dshs-webserver }
       - { src: poudriere.d/pkglist-dshs-workstation, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation }
+      - { src: poudriere.d/pkglist-dshs-workstation-extras, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation-extras }
       - { src: poudriere.d/pkglist-dshs-workstation-laptop-hp, dest: /usr/local/etc/poudriere.d/pkglist-dshs-workstation-laptop-hp }
       - { src: poudriere.d/pkglist-dshs-dmarc-report-analyser, dest: /usr/local/etc/poudriere.d/pkglist-dshs-dmarc-report-analyser }
   - name: add links for packages for webserver
