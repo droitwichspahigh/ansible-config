@@ -7,31 +7,32 @@
   - name: install rundeck
     pkgng:
       name: rundeck
-  - name: create dirs
-    ansible.builtin.file:
-      path: /usr/local/rundeck/etc
-      state: directory
-      owner: rundeck
-  - name: add rundeck config files
-    ansible.builtin.template:
-      src: "../../templates/rundeck/{{ item.src }}"
-      dest: "/usr/local/rundeck/{{ item.dest }}"
-      owner: rundeck
-    loop:
-      - { src: 'server_config_jaas-pam.conf', dest: 'server/config/jaas-pam.conf' }
-      - { src: 'etc_admin.aclpolicy', dest: 'etc/admin.aclpolicy' }
-  - name: add rundeck runsv directory
-    ansible.builtin.file:
-      path: /etc/sv/rundeck
-      state: directory
-      mode: '0755'
-  - name: add rundeck runsv file
-    ansible.builtin.template:
-      src: ../../templates/runit/rundeck_run
-      dest: /etc/sv/rundeck/run
-      owner: root
-      group: wheel
-      mode: '0755'
+      state: absent
+#  - name: create dirs
+#    ansible.builtin.file:
+#      path: /usr/local/rundeck/etc
+#      state: directory
+#      owner: rundeck
+#  - name: add rundeck config files
+#    ansible.builtin.template:
+#      src: "../../templates/rundeck/{{ item.src }}"
+#      dest: "/usr/local/rundeck/{{ item.dest }}"
+#      owner: rundeck
+#    loop:
+#      - { src: 'server_config_jaas-pam.conf', dest: 'server/config/jaas-pam.conf' }
+#      - { src: 'etc_admin.aclpolicy', dest: 'etc/admin.aclpolicy' }
+#  - name: add rundeck runsv directory
+#    ansible.builtin.file:
+#      path: /etc/sv/rundeck
+#      state: directory
+#      mode: '0755'
+#  - name: add rundeck runsv file
+#    ansible.builtin.template:
+#      src: ../../templates/runit/rundeck_run
+#      dest: /etc/sv/rundeck/run
+#      owner: root
+#      group: wheel
+#      mode: '0755'
 #  - name: enable rundeck boot
 #    ansible.builtin.file:
 #      src: /etc/sv/rundeck

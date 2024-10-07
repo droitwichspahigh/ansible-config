@@ -15,7 +15,6 @@ graphics/php82-gd
 lang/php82
 net/php82-ldap
 security/pwauth
-sysutils/rundeck
 textproc/php82-ctype
 textproc/php82-dom
 textproc/php82-simplexml
