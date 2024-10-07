@@ -4,7 +4,7 @@ databases/mysql80-server
 databases/php82-mysqli
 databases/php82-pdo_sqlite
 databases/php82-sqlite3
-databases/phpmyadmin
+databases/phpmyadmin5
 devel/php-composer
 devel/php82-pcntl
 devel/php82-tokenizer

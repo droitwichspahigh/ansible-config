@@ -13,7 +13,7 @@
         - php82-mysqli
         - php82-pdo_sqlite
         - php82-sqlite3
-        - phpMyAdmin-php82
+        - phpMyAdmin5-php82
         - php82-composer
         - php82-pcntl
         - php82-tokenizer
