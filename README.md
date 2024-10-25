@@ -17,7 +17,7 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 > EOF
 # . /etc/periodic.conf
 # ansible-pull -vU https://github.com/$daily_ansible_pull_github_repo -i hosts all.yml
-# pkg set -v 1 pam_mkhomedir sssd-smb
+# pkg set -v 1 pam_mkhomedir sssd2
 # kinit my_dshs_domain_admin_username
 # net ads join -k
 # 
@@ -25,11 +25,8 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 
 Notes:
 
-- Sadly right now ldb needs building from ports with version 2.3 [1]
 - openldap26-client needs rebuilding with GSSAPI option
 - If authentication with SSSD doesn't work after net ads join, sv down sssd && net ads leave -k && rm -r /var/db/sss /etc/krb5.keytab && net ads join -k && sv restart sssd
-
-[1] https://bugs.freebsd.org/bugzilla/attachment.cgi?id=241305
 
 ## Replacing a failed hard drive
 
