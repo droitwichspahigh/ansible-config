@@ -12,3 +12,7 @@
 	vfs objects = zfsacl
 	path = /kahuna/videos
 	writeable = Yes
+[isos]
+	vfs objects = zfsacl
+	path = /kahuna/isos
+	writeable = Yes

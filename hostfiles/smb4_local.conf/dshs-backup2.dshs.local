@@ -16,3 +16,7 @@
 	vfs objects = zfsacl
 	path = /hyper_v
 	writeable = Yes
+[isos]
+	vfs objects = zfsacl
+	path = /isos
+	writeable = Yes
