@@ -15,4 +15,5 @@ security/sudo
 sysutils/ansible
 sysutils/runit
 sysutils/screen
+sysutils/vm-bhyve
 textproc/ydiff
