@@ -1,0 +1,39 @@
+---
+
+- name: install and activate postfix
+  hosts: mailserver
+  vars:
+    srv: postfix
+  become: true
+  tasks:
+  - name: install {{ srv }}
+    pkgng:
+      name: '{{ srv }}-sasl'
+  - name: configure for relaying
+    ansible.builtin.lineinfile:
+      path: '/usr/local/etc/postfix/main.cf'
+      regexp: '^#?relay_domains'
+      line: 'relay_domains = droitwichspahigh.worcs.sch.uk'
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link
+  - name: set {{ srv }} as mailer
+    ansible.builtin.file:
+      src: /usr/local/share/postfix/mailer.conf.postfix
+      dest: /etc/mail/mailer.conf
+      state: link
+      force: true
