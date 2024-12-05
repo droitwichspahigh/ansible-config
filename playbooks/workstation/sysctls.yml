@@ -1,6 +1,6 @@
 ---
 
-- name: disable console beep and set lid switch state
+- name: disable console beep
   hosts: workstation
   become: true
   tasks:
@@ -11,4 +11,5 @@
       line: '{{ item.variable }}={{ item.value }}'
     loop:
       - { variable: 'kern.vt.enable_bell', value: '0' }
-      - { variable: 'hw.acpi.lid_switch_state', value: 'S3' }
+      # No need for this, KDE does it for us
+      #- { variable: 'hw.acpi.lid_switch_state', value: 'S3' }
