@@ -3,7 +3,7 @@
 srcdir=/poudriere/data/src
 # Need the suffix or Poudriere uses builtin manifests
 # and refuses to use our tarballs
-srcvers="releng-14.1:14.1-RELEASE-dshs"
+srcvers="releng-14.2:14.2-RELEASE-dshs"
 archs=${1:-amd64 i386}
 
 poudriere=/usr/local/bin/poudriere
