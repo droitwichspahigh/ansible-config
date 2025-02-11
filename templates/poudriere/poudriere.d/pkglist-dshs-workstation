@@ -3,6 +3,9 @@ editors/vim
 emulators/libc6-shim
 emulators/wine
 emulators/wine-mono
+filesystems/ext2
+filesystems/ntfs-compression
+filesystems/sshfs
 graphics/drm-kmod
 graphics/gimp
 java/eclipse
@@ -16,9 +19,6 @@ net/tigervnc-viewer
 net/xrdp
 print/cups-smb-backend
 print/gutenprint
-sysutils/fusefs-ext2
-sysutils/fusefs-ntfs-compression
-sysutils/fusefs-sshfs
 www/chromium
 www/firefox
 x11-drivers/xf86-video-intel
