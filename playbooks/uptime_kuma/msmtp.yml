@@ -1,7 +1,8 @@
 ---
 
 - name: install and configure msmtp
-  hosts: uptime_kuma
+  # Now uses central mail server
+  hosts: none
   become: true
   vars:
     srv: msmtp
