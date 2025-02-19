@@ -25,5 +25,6 @@ x11-drivers/xf86-video-intel
 x11-fonts/freefont-ttf
 x11-servers/xorg-server
 x11/kde5
+x11/kde6
 x11/sddm
 x11/xinit
