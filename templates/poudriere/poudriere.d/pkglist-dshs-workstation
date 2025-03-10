@@ -19,6 +19,7 @@ net/tigervnc-viewer
 net/xrdp
 print/cups-smb-backend
 print/gutenprint
+print/pdftk
 www/chromium
 www/firefox
 x11-drivers/xf86-video-intel
