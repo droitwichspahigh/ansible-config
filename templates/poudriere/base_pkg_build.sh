@@ -70,7 +70,7 @@ bulkjail() {
 		_packagelists="${_packagelists} -f $l"
 	done
 
-	$poudriere bulk -j $_jail -p default $_packagelists
+	$poudriere bulk -j $_jail -p default -b quarterly $_packagelists
 }
 
 if [ "$(date +%w)" -eq "6" ]; then
