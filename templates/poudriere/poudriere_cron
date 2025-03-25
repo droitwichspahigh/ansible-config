@@ -4,4 +4,4 @@ SHELL=/bin/sh
 PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin
 
 #m	h	mday	month	wday	who	cmd
-0	2	*	*	Sat	root	cd /poudriere/data/scripts && ./base_pkg_build.sh
+0	2	*	*	*	root	cd /poudriere/data/scripts && ./base_pkg_build.sh
