@@ -1,5 +1,11 @@
 ---
 
+# DO NOT USE THIS!
+#
+# For some reason on FreeBSD-14.2+ it causes a panic on boot.
+#
+# It's not really very important to do this so I haven't investigated it.
+
 - name: run devd from runit
   hosts: all
   vars:
