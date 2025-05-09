@@ -1,0 +1,6 @@
+#!/bin/sh
+
+listen_address=0.0.0.0
+listen_port=1812
+
+exec /usr/local/sbin/radiusd -fXi $listen_address -p $listen_port

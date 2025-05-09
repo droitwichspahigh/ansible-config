@@ -22,7 +22,7 @@ dshs:
                 dshs-netbox.dshs.local:
         radius:
           hosts:
-            #dshs-radius4.dshs.local:
+            dshs-radius4.dshs.local:
         bhyve:
           hosts:
             dshs-backup2.dshs.local:

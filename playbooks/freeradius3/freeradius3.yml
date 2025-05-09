@@ -1,0 +1,28 @@
+---
+
+- name: run freeradius3 from runit
+  hosts: radius
+  vars:
+    srv: freeradius3
+  become: true
+  tasks:
+  - name: install freeradius3
+    community.general.pkgng:
+      name: 'net/{{ srv }}'
+  - name: add {{ srv }} runsv directory
+    ansible.builtin.file:
+      path: '/etc/sv/{{ srv }}'
+      state: directory
+      mode: '0755'
+  - name: add {{ srv }} runsv file
+    ansible.builtin.template:
+      src: '../../templates/runit/{{ srv }}_run'
+      dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable {{ srv }} boot
+    ansible.builtin.file:
+      src: '/etc/sv/{{ srv }}'
+      dest: '/var/service/{{ srv }}'
+      state: link
