@@ -1,7 +1,7 @@
 ---
 
 - name: enable runit for ntpd
-  hosts: all
+  hosts: !jail
   become: true
   tasks:
   - name: add ntpd runsv directory
