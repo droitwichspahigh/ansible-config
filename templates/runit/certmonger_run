@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sv start dbus || exit 1
+
+exec /usr/local/sbin/certmonger -n -p /var/run/certmonger.pid

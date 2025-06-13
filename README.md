@@ -20,6 +20,8 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # pkg set -v 1 pam_mkhomedir sssd2
 # kinit my_dshs_domain_admin_username
 # net ads join -k
+# getcert add-ca -c DSHS.LOCAL -e /usr/local/libexec/certmonger/cepces-submit
+# getcert request -c DSHS.LOCAL -T Machine -I MachineCertificate -k /etc/ssl/private/certmonger.key -f /etc/ssl/certs/certmonger.crt
 # 
 ```
 

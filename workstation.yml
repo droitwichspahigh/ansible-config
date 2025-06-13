@@ -5,7 +5,6 @@
 - ansible.builtin.import_playbook: playbooks/workstation/boot_loader_conf.yml
 - ansible.builtin.import_playbook: playbooks/workstation/sysctls.yml
 - ansible.builtin.import_playbook: playbooks/workstation/cups.yml
-- ansible.builtin.import_playbook: playbooks/workstation/dbus.yml
 - ansible.builtin.import_playbook: playbooks/workstation/graphics_load.yml
 - ansible.builtin.import_playbook: playbooks/workstation/sddm.yml
 - ansible.builtin.import_playbook: playbooks/workstation/webcamd.yml

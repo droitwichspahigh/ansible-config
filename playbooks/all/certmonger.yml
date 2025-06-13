@@ -1,0 +1,43 @@
+---
+
+- name: install and enable certmonger
+  hosts: all
+  become: true
+  tasks:
+  - name: install certmonger
+    community.general.pkgng:
+      name: security/certmonger security/py-cepces
+  - name: add certmonger runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/certmonger
+      state: directory
+      mode: '0755'
+  - name: add certmonger runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/certmonger_run
+      dest: /etc/sv/certmonger/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable certmonger boot
+    ansible.builtin.file:
+      src: /etc/sv/certmonger
+      dest: /var/service/certmonger
+      state: link
+  - name: add cepces configuration file
+    ansible.builtin.template:
+      src: ../../templates/cepces.conf
+      dest: /usr/local/etc/cepces/cepces.conf
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: ensure ssl private dir exists
+    ansible.builtin.file:
+      path: /etc/ssl/private
+      state: directory
+      mode: '0700'
+  - name: install CA1 certificate
+    ansible.builtin.template:
+      src: ../../templates/dshs-chain.pem
+      dest: /usr/local/share/certs/dshs-chain.pem
+      mode: '0755'

@@ -10,6 +10,7 @@ net-mgmt/adcli
 ports-mgmt/poudriere
 security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
+security/py-cepces
 security/sssd2
 security/sudo
 sysutils/ansible
