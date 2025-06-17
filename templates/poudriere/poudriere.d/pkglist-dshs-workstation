@@ -14,9 +14,9 @@ mail/thunderbird
 multimedia/v4l-utils
 multimedia/v4l_compat
 multimedia/vlc
+net/freerdp3
 net/syncthing
 net/tigervnc-viewer
-net/xrdp
 print/cups-smb-backend
 print/gutenprint
 print/pdftk
