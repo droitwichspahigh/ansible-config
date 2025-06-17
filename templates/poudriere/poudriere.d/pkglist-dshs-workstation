@@ -6,7 +6,6 @@ emulators/wine-mono
 filesystems/ext2
 filesystems/ntfs-compression
 filesystems/sshfs
-graphics/drm-kmod
 graphics/gimp
 java/eclipse
 java/openjdk17-jre

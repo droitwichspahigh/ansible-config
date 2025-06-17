@@ -4,6 +4,9 @@
   hosts: workstation
   become: true
   tasks:
+  - name: install drm kmod
+    community.general.pkgng:
+      name: drm-61-kmod
   - name: enable i915kms
     community.general.sysrc:
       name: kld_list
