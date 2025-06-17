@@ -38,6 +38,10 @@
       mode: '0700'
   - name: install CA1 certificate
     ansible.builtin.template:
-      src: ../../templates/dshs-chain.pem
-      dest: /usr/local/share/certs/dshs-chain.pem
+      src: ../../templates/dshs-ca1.pem
+      dest: /usr/local/share/certs/dshs-ca1.pem
       mode: '0755'
+  - name: remove old chain file
+    ansible.builtin.file:
+      path: /usr/local/share/certs/dshs-chain.pem
+      state: absent
