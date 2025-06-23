@@ -1,6 +1,8 @@
 dshs:
   children:
     servers:
+      hosts:
+        dshs-anp-ref1.dshs.local:
       children:
         mailserver:
           hosts:
