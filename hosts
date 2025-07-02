@@ -3,6 +3,7 @@ dshs:
     servers:
       hosts:
         dshs-anp-ref1.dshs.local:
+        dshs-snipeit.dshs.local:
       children:
         mailserver:
           hosts:
