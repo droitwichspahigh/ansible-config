@@ -10,7 +10,7 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # mkdir -p /usr/local/etc/sudoers.d /home
 # service sshd onekeygen
 # echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /usr/local/etc/sudoers.d/domain_admins_nopasswd
-# env ASSUME_ALWAYS_YES=yes pkg install sudo py39-ansible git
+# env ASSUME_ALWAYS_YES=yes pkg install sudo py311-ansible git
 # cat > /etc/periodic.conf <<EOF
 > daily_ansible_pull_github_enable=yes
 > daily_ansible_pull_github_repo=droitwichspahigh/ansible-config
