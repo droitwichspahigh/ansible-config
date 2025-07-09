@@ -1,0 +1,11 @@
+---
+
+- name: place the full CA chain into the SSL directory
+  hosts: servers
+  become: true
+  tasks:
+  - name: install DSHS CA certificate chain
+    ansible.builtin.template:
+      src: ../../templates/dshs-ca2-chain.pem
+      dest: /usr/local/share/certs/dshs-ca2-chain.pem
+      mode: '0755'
