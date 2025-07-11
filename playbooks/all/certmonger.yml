@@ -41,7 +41,12 @@
       src: ../../templates/dshs-ca1.pem
       dest: /usr/local/share/certs/dshs-ca1.pem
       mode: '0755'
+    register: ca1-cert
   - name: remove old chain file
     ansible.builtin.file:
       path: /usr/local/share/certs/dshs-chain.pem
       state: absent
+  - name: rehash certificate store
+    ansible.builtin.command:
+      cmd: /usr/sbin/certctl rehash
+    when: ca1-cert.changed
