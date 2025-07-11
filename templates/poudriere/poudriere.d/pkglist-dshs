@@ -11,6 +11,7 @@ ports-mgmt/poudriere
 security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
 security/py-cepces
+security/py-certbot
 security/sssd2
 security/sudo
 sysutils/ansible
