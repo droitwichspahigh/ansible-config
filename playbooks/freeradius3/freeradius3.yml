@@ -9,17 +9,6 @@
   - name: install freeradius3
     community.general.pkgng:
       name: 'net/{{ srv }}'
-  - name: gain access to certs directory and winbindd
-    ansible.builtin.file:
-      name: "{{ item.path }}"
-      mode: "{{ item.mode }}"
-      group: freeradius
-    loop:
-      - { path: '/etc/ssl/private', mode: '0750' }
-      - { path: '/etc/ssl/private/certmonger.key', mode: '0640' }
-      - { path: '/etc/ssl/certs/certmonger.crt', mode: '0644' }
-      - { path: '/var/db/samba4/winbindd_privileged', mode: '0750' }
-      - { path: '/var/db/samba4/winbindd_privileged/pipe', mode: '0777' }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'

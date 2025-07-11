@@ -1,6 +1,14 @@
 #!/bin/sh
 
-listen_address=0.0.0.0
-listen_port=1812
+for l in /etc/ssl/private                       \
+         /etc/ssl/private/certmonger.key        \
+         /usr/local/etc/letsencrypt/live        \
+         /etc/ssl/certs/certmonger.crt          \
+         /var/db/samba4/winbindd_privileged     \
+         /usr/local/etc/letsencrypt/live        \
+         ; do
+        chgrp freeradius $l
+        chmod g+rX $l
+done
 
-exec /usr/local/sbin/radiusd -fXi $listen_address -p $listen_port
+exec /usr/local/sbin/radiusd -fX
