@@ -23,6 +23,7 @@ dshs:
               hosts:
                 dshs-leibniz.dshs.local:
                 dshs-netbox.dshs.local:
+                dshs-newton.dshs.local:
         radius:
           hosts:
             dshs-radius4.dshs.local:
