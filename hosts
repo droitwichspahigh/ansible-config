@@ -12,6 +12,7 @@ dshs:
           hosts:
             dshs-atlas.dshs.local:
             dshs-backup2.dshs.local:
+            dshs-newton.dshs.local:
           children:
             package_builder:
               hosts:
@@ -23,7 +24,6 @@ dshs:
               hosts:
                 dshs-leibniz.dshs.local:
                 dshs-netbox.dshs.local:
-                dshs-newton.dshs.local:
         radius:
           hosts:
             dshs-radius4.dshs.local:
