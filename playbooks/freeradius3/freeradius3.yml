@@ -9,6 +9,33 @@
   - name: install freeradius3
     community.general.pkgng:
       name: 'net/{{ srv }}'
+  - name: configure {{ srv }}
+    ansible.builtin.template:
+      src: '../../templates/raddb/{{ item }}'
+      dest: '/usr/local/etc/raddb/{{ item }}'
+      owner: freeradius
+      group: freeradius
+      mode: '0640'
+    loop:
+      - clients.conf.template
+      - radiusd.conf
+      - sites-available/dshs-main
+      - sites-available/dshs-byod
+      - policy.d/dshs
+      - mods-available/mschap
+      - mods-available/eap-dshs
+      - mods-available/exec
+  - name: activate configuration for mods
+    ansible.builtin.file:
+      src: '/usr/local/etc/raddb/{{ item.class }}s-available/{{ item.name }}'
+      dest: '/usr/local/etc/raddb/{{ item.class }}s-enabled/{{ item.name }}'
+      state: link
+    loop:
+      - { class: site, name: dshs-main }
+      - { class: site, name: dshs-byod }
+      - { class: mod, name: mschap }
+      - { class: mod, name: eap-dshs }
+      - { class: mod, name: exec }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'

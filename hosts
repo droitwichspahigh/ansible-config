@@ -26,6 +26,7 @@ dshs:
                 dshs-netbox.dshs.local:
         radius:
           hosts:
+            dshs-radius3.dshs.local:
             dshs-radius4.dshs.local:
         bhyve:
           hosts:

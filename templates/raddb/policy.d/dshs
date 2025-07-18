@@ -1,0 +1,43 @@
+dshs_group_main {	
+	if ("%{User-Name}" =~ /^host\/|\$$/) {
+		update reply {
+			Reply-Message = "Skipping group check because this is a computer account (%{User-Name})"
+		}
+	} else {
+		if ("%{exec:/usr/bin/id %{User-Name}}" =~ /(\(wireless devices\)|\(wifi_open_access\))/) {
+			update reply {
+				Reply-Message = "[MAIN] %{User-Name} in %{1}"
+			}
+		} else {
+			update reply {
+				Reply-Message = "[MAIN] %{User-Name} not in wireless devices"
+			}
+			reject
+		}
+	}
+}
+
+dshs_group_byod {
+	if ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(students-year1[23]\)/) {
+		# Put sixth formers into 6F VLAN (102); 10.16.66.0/23
+		update reply {
+			Reply-Message = "[BYOD] [STUDENT] %{User-Name} in %{0}"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 102
+		}
+	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(staff\)/) {
+		# For now, drop staff into BYOD VLAN (205); 10.16.84.0/23
+		update reply {
+			Reply-Message = "[BYOD] [STAFF] %{User-Name} in %{0}"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 102
+		}
+	} else {
+		update reply {
+			Reply-Message = "[BYOD] %{User-Name} not in staff or sixth form"
+		}
+		reject
+	}
+}
