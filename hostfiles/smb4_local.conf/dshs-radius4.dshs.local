@@ -1,0 +1,5 @@
+# Need to set aclmode=restricted and aclinherit=passthrough on
+# the ZFS volume as well
+[radius_logs]
+	vfs objects = zfsacl
+	path = /var/log/freeradius3
