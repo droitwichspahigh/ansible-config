@@ -33,6 +33,8 @@ dshs:
             dshs-backup2.dshs.local:
             dshs-hv06.dshs.local:
     workstation:
+      hosts:
+        dshs-cmr01.dshs.local:
       children:
         laptop_hp:
           hosts:
