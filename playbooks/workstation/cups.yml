@@ -51,6 +51,7 @@
       name: /usr/local/etc/cups/printers.conf
       line: '<Printer DSHS-PRINTERS>'
       state: present
+      create: true
     check_mode: yes
     register: printer_missing
   - name: add DSHS-PRINTERS and set to monochrome
