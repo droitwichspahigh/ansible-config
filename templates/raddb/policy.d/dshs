@@ -1,23 +1,44 @@
 dshs_group_main {	
 	if ("%{User-Name}" =~ /^host\/|\$$/) {
 		update reply {
-			Reply-Message = "Skipping group check because this is a computer account (%{User-Name})"
+			Reply-Message = "[MAIN] Skipping group check because this is a computer account (%{User-Name}), assigning to WiFi VLAN"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
+		}
+	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(students-year1[23]\)/) {
+		# Put sixth formers into 6F VLAN (102); 10.16.66.0/23
+		update reply {
+			Reply-Message = "[BYOD] [STUDENT] %{User-Name} in %{0}"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 102
+		}
+	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(staff\)/) {
+		# For now, drop staff into BYOD VLAN (205); 10.16.84.0/23
+		update reply {
+			Reply-Message = "[BYOD] [STAFF] %{User-Name} in %{0}"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 205
+		}
+	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /(\(wireless devices\)|\(wifi_open_access\))/) {
+		update reply {
+			Reply-Message = "[MAIN] %{User-Name} in %{1}"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
 		}
 	} else {
-		if ("%{exec:/usr/bin/id %{User-Name}}" =~ /(\(wireless devices\)|\(wifi_open_access\))/) {
-			update reply {
-				Reply-Message = "[MAIN] %{User-Name} in %{1}"
-			}
-		} else {
-			update reply {
-				Reply-Message = "[MAIN] %{User-Name} not in wireless devices"
-			}
-			reject
+		update reply {
+			Reply-Message = "[MAIN] %{User-Name} not in wireless devices"
 		}
+		reject
 	}
 }
 
 dshs_group_byod {
+	#&User-Group-From-Id := "%{exec:/usr/bin/id %{User-Name}}"
 	if ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(students-year1[23]\)/) {
 		# Put sixth formers into 6F VLAN (102); 10.16.66.0/23
 		update reply {
@@ -32,7 +53,7 @@ dshs_group_byod {
 			Reply-Message = "[BYOD] [STAFF] %{User-Name} in %{0}"
 			Tunnel-Type = VLAN
 			Tunnel-Medium-Type = 6
-			Tunnel-Private-Group-Id = 102
+			Tunnel-Private-Group-Id = 205
 		}
 	} else {
 		update reply {
