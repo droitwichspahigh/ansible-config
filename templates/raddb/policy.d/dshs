@@ -6,6 +6,13 @@ dshs_group_main {
 			Tunnel-Medium-Type = 6
 			Tunnel-Private-Group-Id = 200
 		}
+	} elsif ("%{User-Name}" =~ /[Pp]ope[Aa][Nn]/) {
+		update reply {
+			Reply-Message = "Andy, special treatment here"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
+		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(students-year1[23]\)/) {
 		# Put sixth formers into 6F VLAN (102); 10.16.66.0/23
 		update reply {
