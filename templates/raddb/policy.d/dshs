@@ -1,5 +1,37 @@
 dshs_group_main {	
-	if ("%{User-Name}" =~ /^host\/|\$$/) {
+	rewrite_called_station_id
+
+	# First, we handle logins from DSHS Backup for speed
+	if ("%{Called-Station-SSID}" == "DSHS Backup") {
+		if ("%{User-Name}" =~ /^host\/([^.]*)\.dshs\.local/) {
+			# Ahhh, we have a host!  Check this one instead
+			if ("%{exec:/usr/bin/id %{1}$}" =~ /\(wireless-backup-permitted\)/) {
+				update reply {
+					Reply-Message = "[BACKUP] %{User-Name} is machine and in %{0}"
+					Tunnel-Type = VLAN
+					Tunnel-Medium-Type = 6
+					Tunnel-Private-Group-Id = 260
+				}
+			} else {
+				update reply {
+					Reply-Message = "[BACKUP] %{User-Name} is machine and not in wireless-backup-permitted group"
+				}
+				reject
+			}
+		} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(wireless-backup-permitted\)/) {
+			update reply {
+				Reply-Message = "[BACKUP] %{User-Name} in %{0}"
+				Tunnel-Type = VLAN
+				Tunnel-Medium-Type = 6
+				Tunnel-Private-Group-Id = 260
+			}
+		} else {
+			update reply {
+				Reply-Message = "[BACKUP] %{User-Name} not in wireless-backup-permitted group"
+			}
+			reject
+		}
+	} elsif ("%{User-Name}" =~ /^host\/|\$$/) {
 		update reply {
 			Reply-Message = "[MAIN] Skipping group check because this is a computer account (%{User-Name}), assigning to WiFi VLAN"
 			Tunnel-Type = VLAN
@@ -22,14 +54,15 @@ dshs_group_main {
 			Tunnel-Private-Group-Id = 102
 		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(staff\)/) {
-		# For now, drop staff into BYOD VLAN (205); 10.16.84.0/23
+		# Drop staff into BYOD VLAN (205); 10.16.84.0/23
 		update reply {
-			Reply-Message = "[MAIN] [STAFF] %{User-Name} in %{0}"
+			Reply-Message = "[MAIN] [STAFF] %{User-Name} connecting to %{Called-Station-SSID} in %{0}"
 			Tunnel-Type = VLAN
 			Tunnel-Medium-Type = 6
 			Tunnel-Private-Group-Id = 205
 		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /(\(wireless devices\)|\(wifi_open_access\))/) {
+		# Wifi VLAN for wireless devices
 		update reply {
 			Reply-Message = "[MAIN] %{User-Name} in %{1}"
 			Tunnel-Type = VLAN
