@@ -16,6 +16,7 @@ multimedia/vlc
 net/freerdp3
 net/syncthing
 net/tigervnc-viewer
+net/wireshark
 print/cups-smb-backend
 print/gutenprint
 print/pdftk
@@ -27,4 +28,5 @@ x11-fonts/freefont-ttf
 x11-servers/xorg-server
 x11/kde
 x11/sddm
+x11/setxkbmap
 x11/xinit
