@@ -87,17 +87,19 @@
     loop:
       - /var/db/samba4/adcli_update.sh
       - /etc/cron.d/adcli_update
-  - name: add password reset script
-    ansible.builtin.template:
-      src: ../../templates/wpa_supplicant_keytab_update.sh
-      dest: /var/db/samba4/wpa_supplicant_keytab_update.sh
-      owner: root
-      group: wheel
-      mode: '0755'
-  - name: add password reset script crontab
-    ansible.builtin.template:
-      src: ../../templates/cron.d/wpa_supplicant_keytab_update
-      dest: /etc/cron.d/wpa_supplicant_update_keytab_update
-      owner: root
-      group: wheel
-      mode: '0644'
+      - /etc/cron.d/wpa_supplicant_update_keytab_update
+      - /var/db/samba4/wpa_supplicant_keytab_update.sh
+#  - name: add password reset script
+#    ansible.builtin.template:
+#      src: ../../templates/wpa_supplicant_keytab_update.sh
+#      dest: /var/db/samba4/wpa_supplicant_keytab_update.sh
+#      owner: root
+#      group: wheel
+#      mode: '0755'
+#  - name: add password reset script crontab
+#    ansible.builtin.template:
+#      src: ../../templates/cron.d/wpa_supplicant_keytab_update
+#      dest: /etc/cron.d/wpa_supplicant_update_keytab_update
+#      owner: root
+#      group: wheel
+#      mode: '0644'
