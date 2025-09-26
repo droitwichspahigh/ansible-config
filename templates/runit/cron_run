@@ -1,2 +1,5 @@
 #!/bin/sh
+
+sv start sssd || exit 2
+
 exec cron -sn
