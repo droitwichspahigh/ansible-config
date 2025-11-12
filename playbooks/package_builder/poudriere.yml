@@ -28,6 +28,8 @@
       - /poudriere/data/scripts
       - /poudriere/data/src
       - /poudriere/pkgbase_repo
+      - /usr/ports
+      - /usr/ports/distfiles
       - /var/cache/ccache
   - name: copy script for periodic running
     ansible.builtin.template:
@@ -40,6 +42,7 @@
       - { src: base_pkg_build.sh, dest: /poudriere/data/scripts/base_pkg_build.sh }
       - { src: poudriere.d/make.conf, dest: /usr/local/etc/poudriere.d/make.conf }
       - { src: poudriere_cron, dest: /etc/cron.d/poudriere }
+      - { src: src-env.conf, dest: /etc/src-env.conf }
       - { src: poudriere.d/pkglist-dshs, dest: /usr/local/etc/poudriere.d/pkglist-dshs }
       - { src: poudriere.d/pkglist-dshs-mailserver, dest: /usr/local/etc/poudriere.d/pkglist-dshs-mailserver }
       - { src: poudriere.d/pkglist-dshs-netbox, dest: /usr/local/etc/poudriere.d/pkglist-dshs-netbox }
