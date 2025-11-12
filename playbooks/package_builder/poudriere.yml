@@ -56,6 +56,7 @@
       src: '{{ item.src }}'
       dest: '{{ item.dest }}'
       state: link
+      force: yes
     loop:
       - { src: /poudriere/data/packages, dest: /usr/local/www/apache24/data/pkg }
       - { src: /poudriere/pkgbase_repo, dest: /usr/local/www/apache24/data/pkgbase }
