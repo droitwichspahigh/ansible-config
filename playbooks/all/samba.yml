@@ -1,6 +1,6 @@
 ---
 
-- name: install and configure samba416
+- name: install and configure samba420
   hosts: all
   become: true
   tasks:
