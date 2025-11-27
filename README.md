@@ -21,7 +21,7 @@ This is currently a set for FreeBSD machines.  To set up one from scratch (clean
 # kinit my_dshs_domain_admin_username
 # net ads join -k
 # getcert add-ca -c DSHS.LOCAL -e /usr/local/libexec/certmonger/cepces-submit
-# getcert request -c DSHS.LOCAL -T DSHSComputer -I MachineCertificate -k /etc/ssl/private/certmonger.key -f /etc/ssl/certs/certmonger.crt
+# getcert request -c DSHS.LOCAL -T DSHSComputer -I MachineCertificate -k /etc/ssl/private/certmonger.key -f /etc/ssl/certs/certmonger.crt -F /etc/ssl/dshs-intermediate.crt
 # 
 ```
 
