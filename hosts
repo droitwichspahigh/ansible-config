@@ -8,10 +8,12 @@ dshs:
         mailserver:
           hosts:
             dshs-mail.dshs.local:
+        backup_storage:
+          hosts:
+            dshs-backup2.dshs.local:
         webserver:
           hosts:
             dshs-atlas.dshs.local:
-            dshs-backup2.dshs.local:
             dshs-newton.dshs.local:
           children:
             package_builder:
@@ -19,18 +21,23 @@ dshs:
                 dshs-builder.dshs.local:
             jailer:
               hosts:
+                dshs-hv03.dshs.local:
                 dshs-hv06.dshs.local:
             secure_webserver:
               hosts:
                 dshs-leibniz.dshs.local:
                 dshs-netbox.dshs.local:
+              children:
+                backup_controller:
+                  hosts:
+                    dshs-bareos.dshs.local:
         radius:
           hosts:
             dshs-radius3.dshs.local:
             dshs-radius4.dshs.local:
         bhyve:
           hosts:
-            dshs-backup2.dshs.local:
+            dshs-hv03.dshs.local:
             dshs-hv06.dshs.local:
     workstation:
       hosts:
