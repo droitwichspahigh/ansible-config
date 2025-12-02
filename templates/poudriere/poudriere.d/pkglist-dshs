@@ -17,6 +17,7 @@ security/py-cepces
 security/py-certbot
 security/sssd2
 security/sudo
+shells/zsh
 sysutils/ansible
 sysutils/runit
 sysutils/screen
