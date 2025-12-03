@@ -17,6 +17,7 @@
       group: wheel
       mode: '0644'
     loop:
+      - 'dshs-radius3.conf'
       - 'dshs-radius4.conf'
   - name: enable jail rc.conf
     community.general.sysrc:
