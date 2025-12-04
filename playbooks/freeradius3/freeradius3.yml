@@ -10,7 +10,7 @@
     community.general.pkgng:
       name: 'net/{{ srv }}'
   - name: configure {{ srv }}
-    ansible.builtin.template:
+    ansible.builtin.copy:
       src: '../../templates/raddb/{{ item }}'
       dest: '/usr/local/etc/raddb/{{ item }}'
       owner: freeradius
