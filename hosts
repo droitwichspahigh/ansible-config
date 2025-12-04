@@ -37,7 +37,7 @@ dshs:
             dshs-radius4.dshs.local:
         bhyve:
           hosts:
-            dshs-hv03.dshs.local:
+            dshs-backup2.dshs.local:
             dshs-hv06.dshs.local:
     workstation:
       hosts:
