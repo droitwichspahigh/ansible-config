@@ -22,6 +22,7 @@
 - ansible.builtin.import_playbook: playbooks/all/periodic_reset_machine_password.yml
 
 - ansible.builtin.import_playbook: playbooks/freeradius3/freeradius3.yml
+- ansible.builtin.import_playbook: playbooks/jailer/jail.yml
 - ansible.builtin.import_playbook: playbooks/servers/full-ca-chain.yml
 - ansible.builtin.import_playbook: webserver.yml
 - ansible.builtin.import_playbook: secure_webserver.yml
