@@ -20,7 +20,7 @@
 	vfs objects = zfsacl
 	path = /isos
 	writeable = Yes
-[StudentAppData$]
-	vfs objects = zfsacl
-	path = /appdata
-	writeable = Yes
+#[StudentAppData$]
+#	vfs objects = zfsacl
+#	path = /appdata
+#	writeable = Yes
