@@ -57,6 +57,7 @@
       mode: '0644'
     loop:
       - cron
+      - kde
       - system
       - sshd
   - name: reload sssd
