@@ -36,6 +36,12 @@
       - { class: mod, name: mschap }
       - { class: mod, name: eap-dshs }
       - { class: mod, name: exec }
+  - name: remove other config file
+    ansible.builtin.file:
+      path: '/usr/local/etc/raddb/{{ item.class }}s-enabled/{{ item.name }}'
+      state: absent
+    loop:
+      - { class: site, name: default }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'

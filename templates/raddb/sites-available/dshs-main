@@ -120,7 +120,7 @@ listen {
 	#
 	# ipv4addr = *
 	# ipv6addr = *
-	ipaddr = dshs-radius4.dshs.local
+	ipaddr = *
 
 	#  Port on which to listen.
 	#  Allowed values are:
@@ -223,7 +223,7 @@ listen {
 #  port, too.
 #
 listen {
-	ipaddr = dshs-radius4.dshs.local
+	ipaddr = *
 #	ipv6addr = ::
 	port = 1813
 	type = acct
