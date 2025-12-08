@@ -1,0 +1,15 @@
+---
+
+- name: install and activate bareos-storage
+  hosts: backup_storage
+  become: true
+  tasks:
+  - name: install bareos
+    pkgng:
+      name: bareos-server
+  - name: enable bareos-storage
+    community.general.sysrc:
+      name: '{{ item }}'
+      value: 'yes'
+    loop:
+      - bareos_sd_enable

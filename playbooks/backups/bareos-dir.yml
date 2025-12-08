@@ -1,0 +1,26 @@
+---
+
+- name: install and activate bareos-server
+  hosts: backup_controller
+  become: true
+  tasks:
+  - name: install bareos
+    pkgng:
+      name: bareos-server postgresql17-server bareos-webui
+  - name: enable postgresql and bareos-server
+    community.general.sysrc:
+      name: '{{ item }}'
+      value: 'yes'
+    loop:
+      - bareos_dir_enable
+      - bareos_sd_enable
+      - postgresql_enable
+  - name: enable bareos webui
+    ansible.builtin.template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - { src: '../../templates/apache24/modules.d/250_bareos.conf', dest: '/usr/local/etc/apache24/modules.d/250_bareos.conf' }
