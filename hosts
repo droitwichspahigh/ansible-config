@@ -30,7 +30,7 @@ dshs:
               children:
                 backup_controller:
                   hosts:
-                    dshs-bareos.dshs.local:
+                    dshs-nucleus.dshs.local:
         radius:
           hosts:
             dshs-radius3.dshs.local:
