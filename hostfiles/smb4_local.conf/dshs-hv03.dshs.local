@@ -1,0 +1,6 @@
+# Need to set aclmode=restricted and aclinherit=passthrough on
+# the ZFS volume as well
+[StudentAppData$]
+	vfs objects = zfsacl
+	path = /appdata
+	writeable = Yes
