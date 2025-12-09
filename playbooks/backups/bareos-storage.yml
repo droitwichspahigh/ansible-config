@@ -1,15 +1,39 @@
 ---
 
-- name: install and activate bareos-storage
+- name: install and configure bareos-sd
   hosts: backup_storage
   become: true
   tasks:
   - name: install bareos
     pkgng:
       name: bareos-server
-  - name: enable bareos-storage
-    community.general.sysrc:
-      name: '{{ item }}'
-      value: 'yes'
+  - name: configure bareos-sd
+    ansible.builtin.template:
+      src: "../../templates/bareos/bareos-sd.d/{{ item }}"
+      dest: "/usr/local/etc/bareos/bareos-sd.d/{{ item }}"
+      owner: bareos
+      group: bareos
+      mode: '0640'
     loop:
-      - bareos_sd_enable
+      - 'device/FileStorage.conf'
+      - 'director/bareos-dir.conf'
+      - 'director/bareos-mon.conf'
+      - 'messages/Standard.conf'
+      - 'storage/bareos-sd.conf'
+  - name: add bareos runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/bareos_sd
+      state: directory
+      mode: '0755'
+  - name: add bareos runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/bareos_sd_run
+      dest: /etc/sv/bareos_sd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable bareos boot
+    ansible.builtin.file:
+      src: /etc/sv/bareos_sd
+      dest: /var/service/bareos_sd
+      state: link
