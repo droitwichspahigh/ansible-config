@@ -35,3 +35,7 @@
 
 - ansible.builtin.import_playbook: playbooks/dmarc_report_analyser/dmarc-report-analyser.yml
 - ansible.builtin.import_playbook: playbooks/bhyve/bhyve.yml
+
+- ansible.builtin.import_playbook: playbooks/backups/bareos-dir.yml
+- ansible.builtin.import_playbook: playbooks/backups/bareos-storage.yml
+- ansible.builtin.import_playbook: playbooks/backups/bareos-client.yml
