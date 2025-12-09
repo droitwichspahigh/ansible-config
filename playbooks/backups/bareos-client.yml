@@ -13,7 +13,7 @@
       dest: "{{ item.dest }}"
       owner: root
       group: bareos
-      mode: '0644'
+      mode: '0640'
     loop:
       - { src: '../../templates/bareos/bareos-fd.d/director/bareos-dir.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf' }
       - { src: '../../templates/bareos/bareos-fd.d/director/bareos-mon.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-mon.conf' }

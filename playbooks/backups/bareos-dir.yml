@@ -21,6 +21,6 @@
       dest: "{{ item.dest }}"
       owner: root
       group: wheel
-      mode: '0644'
+      mode: '0640'
     loop:
       - { src: '../../templates/apache24/modules.d/250_bareos.conf', dest: '/usr/local/etc/apache24/modules.d/250_bareos.conf' }
