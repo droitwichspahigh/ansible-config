@@ -1,0 +1,36 @@
+---
+
+- name: install and configure bareos-fd
+  hosts: all
+  become: true
+  tasks:
+  - name: install bareos
+    pkgng:
+      name: bareos-client
+  - name: configure bareos-fd
+    ansible.builtin.template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: bareos
+      mode: '0644'
+    loop:
+      - { src: '../../templates/bareos/bareos-fd.d/director/bareos-dir.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf' }
+      - { src: '../../templates/bareos/bareos-fd.d/director/bareos-mon.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-mon.conf' }
+  - name: add bareos runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/bareos_fd
+      state: directory
+      mode: '0755'
+  - name: add bareos runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/bareos_fd_run
+      dest: /etc/sv/bareos_fd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable bareos boot
+    ansible.builtin.file:
+      src: /etc/sv/bareos_fd
+      dest: /var/service/bareos_fd
+      state: link
