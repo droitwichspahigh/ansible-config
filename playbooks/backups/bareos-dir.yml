@@ -15,6 +15,17 @@
       - bareos_dir_enable
       - bareos_sd_enable
       - postgresql_enable
+  - name: configure bareos-sd
+    ansible.builtin.template:
+      src: "../../templates/bareos/bareos-dir.d/{{ item }}"
+      dest: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
+      owner: bareos
+      group: bareos
+      mode: '0640'
+    loop:
+      - 'pool/Differential.conf'
+      - 'pool/Full.conf'
+      - 'pool/Incremental.conf'
   - name: enable bareos webui
     ansible.builtin.template:
       src: "{{ item.src }}"
