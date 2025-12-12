@@ -23,6 +23,9 @@
       group: bareos
       mode: '0640'
     loop:
+      - 'job/BackupCatalog.conf'
+      - 'messages/Standard.conf'
+      - 'messages/Daemon.conf'
       - 'pool/Differential.conf'
       - 'pool/Full.conf'
       - 'pool/Incremental.conf'
