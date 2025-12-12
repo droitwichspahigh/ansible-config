@@ -14,13 +14,11 @@
   - name: install bareos
     pkgng:
       name: bareos.com-director bareos.com-bconsole bareos.com-tools postgresql17-server
-  - name: enable postgresql and bareos-server
+  - name: enable postgresql
     community.general.sysrc:
       name: '{{ item }}'
       value: 'yes'
     loop:
-      - bareos_dir_enable
-      - bareos_sd_enable
       - postgresql_enable
   - name: configure bareos-sd
     ansible.builtin.template:
@@ -45,3 +43,20 @@
       mode: '0640'
     loop:
       - { src: '../../templates/apache24/modules.d/250_bareos.conf', dest: '/usr/local/etc/apache24/modules.d/250_bareos.conf' }
+  - name: add bareos runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/bareos_dir
+      state: directory
+      mode: '0755'
+  - name: add bareos runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/bareos_dir_run
+      dest: /etc/sv/bareos_dir/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable bareos boot
+    ansible.builtin.file:
+      src: /etc/sv/bareos_dir
+      dest: /var/service/bareos_dir
+      state: link
