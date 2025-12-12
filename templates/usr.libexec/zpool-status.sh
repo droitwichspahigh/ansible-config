@@ -43,5 +43,5 @@ output() {
 
 while :; do
 	output > /usr/local/www/apache24/data/zpool-status.html
-	sleep 10
+	sleep 300
 done
