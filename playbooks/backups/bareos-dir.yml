@@ -4,9 +4,16 @@
   hosts: backup_controller
   become: true
   tasks:
+  - name: add Bareos pkg repo
+    ansible.builtin.template:
+      src: "../../templates/pkg/repos/Bareos.conf"
+      dest: "/usr/local/etc/pkg/repos/Bareos.conf"
+      owner: root
+      group: wheel
+      mode: '0644'
   - name: install bareos
     pkgng:
-      name: bareos-server postgresql17-server bareos-webui
+      name: bareos.com-director bareos.com-bconsole bareos.com-tools postgresql17-server
   - name: enable postgresql and bareos-server
     community.general.sysrc:
       name: '{{ item }}'
