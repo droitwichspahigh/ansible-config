@@ -103,3 +103,25 @@ On the host, pull the latest Ansible through:
 # sh /usr/local/etc/periodic/daily/132.ansible-pull
 # pkill -HUP smbd
 ```
+
+## Adding to zfs-autobackup destination
+
+dshs-atlas has ZFS clones of all of the machines that are set up on it.
+
+In order to include a new machine in this backup, perform these steps
+on the machine to backup first
+
+```console
+# backup_user=dshs-atlas-backup
+# filesystem=put_your_zpool_root_here_find_out_with_zfs_list
+# zfs allow -u $backup_user mount,send,snapshot,destroy,release $filesystem
+# zfs set autobackup:$(hostname)=true $filesystem
+```
+
+Then ssh to dshs-atlas.dshs.local
+```console
+# su dshs-atlas-backup
+# cd
+# zfs create kahuna/zfs_autobackup/the_full_hostname_of_the_host_to_backup
+# sh zfs-autobackup.sh -v the_full_hostname_of_the_host_to_backup # only if urgent
+```
