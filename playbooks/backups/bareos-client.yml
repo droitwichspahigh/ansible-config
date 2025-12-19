@@ -4,9 +4,26 @@
   hosts: all
   become: true
   tasks:
-  - name: install bareos
+  - name: remove bareos-old-style
     pkgng:
       name: bareos-client
+      state: absent
+    register: old_pkg
+  - name: remove all old configs
+    ansible.builtin.file:
+      path: /usr/local/etc/bareos
+      state: absent
+    when: old_pkg.changed
+  - name: add Bareos pkg repo
+    ansible.builtin.template:
+      src: "../../templates/pkg/repos/Bareos.conf"
+      dest: "/usr/local/etc/pkg/repos/Bareos.conf"
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: install bareos
+    pkgng:
+      name: bareos.com-filedaemon
   - name: configure bareos-fd
     ansible.builtin.template:
       src: "{{ item.src }}"
@@ -34,3 +51,8 @@
       src: /etc/sv/bareos_fd
       dest: /var/service/bareos_fd
       state: link
+  - name: restart if necessary
+    community.general.runit:
+      name: bareos_fd
+      state: restarted
+    when: old_pkg.changed
