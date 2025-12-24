@@ -8,8 +8,21 @@
   tasks:
   - name: install {{ srv }}
     pkgng:
-      name: '{{ srv }} mod_php83'
-  - name: enable php
+      name: '{{ srv }}'
+  - name: remove mod_php
+    ansible.builtin.file:
+      state: absent
+      path: '/usr/local/etc/apache24/modules.d/100_php.conf'
+  - name: enable mpm_event and disable mpm_prefork
+    ansible.builtin.lineinfile:
+      path: /usr/local/etc/apache24/httpd.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+    loop:
+      - { regexp: '^LoadModule mpm_prefork', line: '#LoadModule mpm_prefork_module libexec/apache24/mod_mpm_prefork.so' }
+      - { regexp: '^#LoadModule mpm_event', line: 'LoadModule mpm_event_module libexec/apache24/mod_mpm_event.so' }
+    register: mpm
+  - name: enable php_fpm and phpmyadmin
     ansible.builtin.template:
       src: "{{ item.src }}"
       dest: "{{ item.dest }}"
@@ -17,22 +30,36 @@
       group: wheel
       mode: '0644'
     loop:
-      - { src: '../../templates/apache24/modules.d/100_php.conf', dest: '/usr/local/etc/apache24/modules.d/100_php.conf' }
+      - { src: '../../templates/apache24/modules.d/001_php-fpm.conf', dest: '/usr/local/etc/apache24/modules.d/001_php-fpm.conf' }
       - { src: '../../templates/apache24/modules.d/200_phpmyadmin.conf', dest: '/usr/local/etc/apache24/modules.d/200_phpmyadmin.conf' }
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
-      path: '/etc/sv/{{ srv }}'
+      path: '/etc/sv/{{ item }}'
       state: directory
       mode: '0755'
+    loop:
+      - apache24
+      - php_fpm
   - name: add {{ srv }} runsv file
     ansible.builtin.template:
-      src: '../../templates/runit/{{ srv }}_run'
-      dest: '/etc/sv/{{ srv }}/run'
+      src: '../../templates/runit/{{ item }}_run'
+      dest: '/etc/sv/{{ item }}/run'
       owner: root
       group: wheel
       mode: '0755'
+    loop:
+      - apache24
+      - php_fpm
   - name: enable {{ srv }} boot
     ansible.builtin.file:
-      src: '/etc/sv/{{ srv }}'
-      dest: '/var/service/{{ srv }}'
+      src: '/etc/sv/{{ item }}'
+      dest: '/var/service/{{ item }}'
       state: link
+    loop:
+      - apache24
+      - php_fpm
+  - name: restart Apache if necessary
+    community.general.runit:
+      name: '{{ srv }}'
+      state: restarted
+    when: mpm.changed
