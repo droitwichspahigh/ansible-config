@@ -9,10 +9,14 @@
   - name: install {{ srv }}
     pkgng:
       name: '{{ srv }}'
-  - name: remove mod_php
+  - name: remove mod_php config
     ansible.builtin.file:
       state: absent
       path: '/usr/local/etc/apache24/modules.d/100_php.conf'
+  - name: remove mod_php
+    pkgng:
+      name: mod_php83
+      state: absent
   - name: enable mpm_event and disable mpm_prefork
     ansible.builtin.lineinfile:
       path: /usr/local/etc/apache24/httpd.conf
