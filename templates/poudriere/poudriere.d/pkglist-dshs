@@ -8,9 +8,6 @@ net/openldap26-client
 net/rsync
 net-mgmt/adcli
 ports-mgmt/poudriere
-sysutils/bareos-client
-sysutils/bareos-server
-sysutils/bareos-traymonitor
 security/cyrus-sasl2-gssapi
 security/pam_mkhomedir
 security/py-cepces
@@ -23,4 +20,3 @@ sysutils/runit
 sysutils/screen
 sysutils/vm-bhyve
 textproc/ydiff
-www/bareos-webui
