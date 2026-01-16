@@ -8,3 +8,21 @@
     community.general.sysrc:
       name: zfs_enable
       value: "yes"
+  - name: add zfsd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/zfsd
+      state: directory
+      mode: '0755'
+    register: conf
+  - name: add zfsd runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/zfsd_run
+      dest: /etc/sv/zfsd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable zfsd boot
+    ansible.builtin.file:
+      src: /etc/sv/zfsd
+      dest: /var/service/zfsd
+      state: link
