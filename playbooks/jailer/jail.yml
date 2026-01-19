@@ -35,3 +35,11 @@
     ansible.builtin.service:
       name: jail
       state: started
+  - name: enable fusefs
+    ansible.builtin.lineinfile:
+      path: /boot/loader.conf
+      regexp: "{{ item.regexp }}"
+      line: "{{ item.line }}"
+      create: true
+    loop:
+      - { regexp: '^fusefs_load', line: 'fusefs_load=yes' }
