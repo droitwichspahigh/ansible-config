@@ -6,4 +6,4 @@ for i in db/sss/db db/sss/gpo_cache db/sss/keytabs db/sss/mc db/sss/pubconf/krb5
 	fi
 done
 
-exec /usr/local/sbin/sssd -i
+exec /usr/local/sbin/sssd -i 2>&1
