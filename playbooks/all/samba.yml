@@ -4,9 +4,9 @@
   hosts: all
   become: true
   tasks:
-  - name: install samba420
+  - name: install samba423
     pkgng:
-      name: samba420 adcli
+      name: samba423 adcli
   - name: add samba runsv directory
     ansible.builtin.file:
       path: "/etc/sv/{{ item }}"
