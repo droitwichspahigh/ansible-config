@@ -5,6 +5,7 @@ mail/msmtp
 misc/compat13x
 net/freeradius3
 net/openldap26-client
+net/rclone
 net/rsync
 net-mgmt/adcli
 ports-mgmt/poudriere
