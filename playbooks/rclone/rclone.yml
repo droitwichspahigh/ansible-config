@@ -1,0 +1,9 @@
+---
+
+- name: install and activate rclone
+  hosts: rclone
+  become: true
+  tasks:
+  - name: install rclone
+    pkgng:
+      name: rclone
