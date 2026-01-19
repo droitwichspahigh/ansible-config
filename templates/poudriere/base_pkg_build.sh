@@ -67,10 +67,11 @@ bulkjail() {
 	(cd /usr/ports && /usr/local/bin/git pull --ff-only)
 
 	for l in /usr/local/etc/poudriere.d/pkglist-dshs*; do
-		_packagelists="${_packagelists} -f $l"
+		$poudriere bulk -j $_jail -p default -b quarterly -f $l
+		#_packagelists="${_packagelists} -f $l"
 	done
 
-	$poudriere bulk -j $_jail -p default -b latest $_packagelists
+	#$poudriere bulk -j $_jail -p default -b quarterly $_packagelists
 }
 
 if [ "$(date +%w)" -eq "6" ]; then
