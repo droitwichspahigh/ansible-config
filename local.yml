@@ -3,13 +3,13 @@
 - ansible.builtin.import_playbook: playbooks/all/pkg.yml
 - ansible.builtin.import_playbook: playbooks/all/boot_loader_conf.yml
 - ansible.builtin.import_playbook: playbooks/all/essential_pkgs.yml
+- ansible.builtin.import_playbook: playbooks/all/runit.yml
 - ansible.builtin.import_playbook: playbooks/all/zfs.yml
 - ansible.builtin.import_playbook: playbooks/all/sudo.yml
 
 - ansible.builtin.import_playbook: playbooks/all/keymap.yml
 - ansible.builtin.import_playbook: playbooks/all/periodic_ansible_pull.yml
 
-- ansible.builtin.import_playbook: playbooks/all/runit.yml
 - ansible.builtin.import_playbook: playbooks/all/cron.yml
 - ansible.builtin.import_playbook: playbooks/all/fonts.yml
 - ansible.builtin.import_playbook: playbooks/all/ntpd.yml
