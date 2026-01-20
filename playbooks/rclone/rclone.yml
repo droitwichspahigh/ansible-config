@@ -6,4 +6,4 @@
   tasks:
   - name: install rclone
     pkgng:
-      name: rclone
+      name: rclone jq
