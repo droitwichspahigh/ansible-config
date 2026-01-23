@@ -7,4 +7,5 @@ install -d -o dshs-rclone-rclone -g "Domain users" -m 0700 ~dshs-rclone-rclone/s
 
 kldload -n fusefs
 
-exec chpst -u dshs-rclone-rclone rclone --config ~dshs-rclone-rclone/.config/rclone/rclone.conf mount --read-only all: ~dshs-rclone-rclone/sharepoint_all
+# Not running as dshs-rclone-rclone because then even root can't see inside!
+exec rclone --config ~dshs-rclone-rclone/.config/rclone/rclone.conf mount --read-only --allow-other all: ~dshs-rclone-rclone/sharepoint_all

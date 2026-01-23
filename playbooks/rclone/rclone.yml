@@ -7,12 +7,6 @@
   - name: install rclone
     pkgng:
       name: rclone jq
-  - name: enable user mount
-    ansible.posix.sysctl:
-      name: vfs.usermount
-      value: 1
-      state: present
-      reload: true
   - name: add rclone runsv directory
     ansible.builtin.file:
       path: /etc/sv/rclone
