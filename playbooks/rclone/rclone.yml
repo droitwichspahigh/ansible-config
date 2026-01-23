@@ -7,3 +7,33 @@
   - name: install rclone
     pkgng:
       name: rclone jq
+  - name: enable user mount
+    ansible.posix.sysctl:
+      name: vfs.usermount
+      value: 1
+      state: present
+      reload: true
+  - name: add rclone runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/rclone
+      state: directory
+      mode: '0755'
+  - name: add rclone runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/rclone_run
+      dest: /etc/sv/rclone/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable rclone boot
+    ansible.builtin.file:
+      src: /etc/sv/rclone
+      dest: /var/service/rclone
+      state: link
+  - name: add rclone config build script
+    ansible.builtin.template:
+      src: ../../templates/rclone/get_site_libraries.sh
+      dest: /home/dshs-rclone-rclone_DSHS.LOCAL/get_site_libraries.sh
+      owner: dshs-rclone-rclone
+      group: "Domain users"
+      mode: '0755'
