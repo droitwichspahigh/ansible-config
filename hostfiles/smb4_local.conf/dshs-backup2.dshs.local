@@ -20,3 +20,6 @@
 	vfs objects = zfsacl
 	path = /appdata
 	writeable = Yes
+[SharepointBackup]
+	vfs objects = zfsacl
+	path = /sharepoint_backup
