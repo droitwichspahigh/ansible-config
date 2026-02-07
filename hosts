@@ -13,7 +13,7 @@ dshs:
             dshs-backup2.dshs.local:
         rclone:
           hosts:
-            dshs-rclone.dshs.local:
+            dshs-backup2.dshs.local:
         webserver:
           hosts:
             dshs-atlas.dshs.local:
