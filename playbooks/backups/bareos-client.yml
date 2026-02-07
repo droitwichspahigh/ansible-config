@@ -51,6 +51,20 @@
       src: /etc/sv/bareos_fd
       dest: /var/service/bareos_fd
       state: link
+  - name: ensure scripts dir exists
+    ansible.builtin.file:
+      path: /root/scripts
+      state: directory
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: add snapshotting script
+    ansible.builtin.template:
+      src: ../../templates/root/scripts/zfs_vss.sh
+      dest: /root/scripts/zfs_vss.sh
+      owner: root
+      group: wheel
+      mode: '0755'
   - name: restart if necessary
     community.general.runit:
       name: bareos_fd
