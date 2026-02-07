@@ -7,7 +7,7 @@
   - name: install samba423
     pkgng:
       name: samba423 adcli
-  - name: add samba runsv directory
+  - name: add samba runsv directories
     ansible.builtin.file:
       path: "/etc/sv/{{ item }}"
       state: directory
@@ -16,6 +16,7 @@
       - smbd
       - nmbd
       - winbindd
+      - nmbd/log
   - name: add samba runsv file
     ansible.builtin.template:
       src: "../../templates/runit/{{ item }}_run"
@@ -27,6 +28,18 @@
       - smbd
       - nmbd
       - winbindd
+  - name: add nmbd log runsv file
+    ansible.builtin.template:
+      src: "../../templates/runit/nmbd_log_run"
+      dest: "/etc/sv/nmbd/log/run"
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: add nmbd log directory
+    ansible.builtin.file:
+      path: "/var/log/nmbd"
+      state: directory
+      mode: '0755'
   - name: add samba runsv finish file
     ansible.builtin.template:
       src: "../../templates/runit/{{ item }}_finish"
