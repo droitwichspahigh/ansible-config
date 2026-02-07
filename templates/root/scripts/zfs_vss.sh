@@ -54,11 +54,6 @@ if zfs list -t snapshot -o name | grep -q $snapname; then
 	exit 1
 fi
 
-if ! mkdir /zfs_vss_copy; then
-	echo "Destination dir /zfs_vss_copy already exists, bailing"
-	exit 1
-fi
-
 # Get the zpools and snapshot
 
 for pool in $(zpool list -Ho name); do
@@ -68,6 +63,11 @@ for pool in $(zpool list -Ho name); do
 done
 
 # Remount the snapshots in temporary area
+
+if ! mkdir /zfs_vss_copy; then
+	echo "Destination dir /zfs_vss_copy already exists, bailing"
+	exit 1
+fi
 
 mount -t zfs | while read fs _junk mountpoint options; do
 	mount -t zfs $fs@$snapname /zfs_vss_copy$mountpoint
