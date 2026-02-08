@@ -4,10 +4,6 @@
 	vfs objects = zfsacl
 	path = /backups
 	writeable = Yes
-[backups2]
-	vfs objects = zfsacl
-	path = /backups2
-	writeable = Yes
 [hyper_v]
 	vfs objects = zfsacl
 	path = /hyper_v
