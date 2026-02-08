@@ -1,0 +1,13 @@
+---
+
+- name: install configure bareos repo
+  hosts: all
+  become: true
+  tasks:
+  - name: add Bareos pkg repo
+    ansible.builtin.template:
+      src: "../../templates/pkg/repos/Bareos.conf"
+      dest: "/usr/local/etc/pkg/repos/Bareos.conf"
+      owner: root
+      group: wheel
+      mode: '0644'
