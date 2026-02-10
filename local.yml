@@ -10,6 +10,7 @@
 
 - ansible.builtin.import_playbook: playbooks/all/keymap.yml
 - ansible.builtin.import_playbook: playbooks/all/periodic_ansible_pull.yml
+- ansible.builtin.import_playbook: playbooks/all/periodic_housekeeping.yml
 
 - ansible.builtin.import_playbook: playbooks/all/cron.yml
 - ansible.builtin.import_playbook: playbooks/all/fonts.yml

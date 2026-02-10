@@ -1,0 +1,12 @@
+---
+
+- name: enable cleaning periodic values
+  hosts: all
+  become: true
+  tasks:
+  - name: enable periodic script
+    ansible.builtin.lineinfile:
+      path: /etc/periodic.conf
+      regexp: ^daily_clean_disks_enable
+      line: daily_clean_disks_enable=yes
+      create: true
