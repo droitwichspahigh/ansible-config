@@ -34,10 +34,10 @@ if [ -n "$ropt" ]; then
 		exit 1
 	fi
 
-	snapname=$(mount |grep /zfs_vss_copy\  | tr @ \  | cut -d \  -f 2)
-
-	for pool in $(zpool list -Ho name); do
-		zfs release -r zfs_vss $pool@$snapname
+	for snapname in $(zfs list -t snapshot -o name |grep @zfs_vss | cut -d '@' -f 2 |sort -u); do
+		for pool in $(zpool list -Ho name); do
+			zfs release -r zfs_vss $pool@$snapname
+		done
 	done
 
 	rmdir /zfs_vss_copy
