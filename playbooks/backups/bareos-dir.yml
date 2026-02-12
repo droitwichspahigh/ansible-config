@@ -21,7 +21,14 @@
       group: bareos
       mode: '0640'
     loop:
+      - 'fileset/UNIX.conf'
+      - 'fileset/UNIX-zfs-vss.conf'
+      - 'fileset/Windows All Drives.conf'
       - 'job/BackupCatalog.conf'
+      - 'jobdefs/Hyper-V.conf'
+      - 'jobdefs/UNIX.conf'
+      - 'jobdefs/UNIX-zfs-vss.conf'
+      - 'jobdefs/Windows.conf'
       - 'messages/Standard.conf'
       - 'messages/Daemon.conf'
       - 'pool/Differential.conf'
