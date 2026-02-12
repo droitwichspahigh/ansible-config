@@ -13,7 +13,7 @@
         - dmarcts-report-parser
         - p5-DBD-mysql
         - mail/getmail6
-        - databases/php83-pdo_mysql
+        - databases/php84-pdo_mysql
     register: installed
   - name: make dmarcts_analyser conf file unreadable
     ansible.builtin.file:
