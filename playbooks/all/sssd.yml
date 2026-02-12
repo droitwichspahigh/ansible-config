@@ -1,7 +1,7 @@
 ---
 
 - name: install and activate sssd
-  hosts: dshs
+  hosts: dshs:!dshs-netbox.dshs.local
   become: true
   tasks:
   - name: install sssd
