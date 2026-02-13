@@ -8,5 +8,5 @@
     ansible.builtin.lineinfile:
       path: /etc/periodic.conf
       regexp: ^daily_clean_disks_enable
-      line: daily_clean_disks_enable=yes
+      line: daily_clean_disks_enable=no
       create: true
