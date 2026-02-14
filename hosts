@@ -11,6 +11,7 @@ dshs:
         backup_storage:
           hosts:
             dshs-backup2.dshs.local:
+            dshs-backup-j1.dshs.local:
         rclone:
           hosts:
             dshs-backup2.dshs.local:
