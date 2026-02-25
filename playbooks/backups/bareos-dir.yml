@@ -34,6 +34,15 @@
       - 'messages/Daemon.conf'
       - 'pool/Full.conf'
       - 'pool/Sneakermail.conf'
+  - name: remove irrelevant files
+    ansible.builtin.file:
+      path: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
+      state: absent
+    loop:
+      - 'pool/Differential.conf'
+      - 'pool/Incremental.conf'
+      - 'pool/Scratch.conf'
+      - 'storage/File.conf'
   - name: enable bareos webui
     ansible.builtin.template:
       src: "{{ item.src }}"
