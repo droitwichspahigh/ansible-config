@@ -46,6 +46,13 @@ dshs_group_main {
 			Tunnel-Medium-Type = 6
 			Tunnel-Private-Group-Id = 200
 		}
+	} elsif ("%{User-Name}" =~ /[Bb]rown[Dd][Gg]/) {
+		update reply {
+			Reply-Message = "Put DGB in the WiFi VLAN so he can use his iPad with AirServer"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
+		}
 	} elsif ("%{User-Name}" =~ /^IPAD-/) {
 		update reply {
 			Reply-Message = "[MAIN] [IPAD] Jamf-managed iPad (%{User-Name}), assigning to WiFi VLAN"
