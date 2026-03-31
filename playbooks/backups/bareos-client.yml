@@ -27,6 +27,11 @@
     loop:
       - { src: '../../templates/bareos/bareos-fd.d/director/bareos-dir.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf' }
       - { src: '../../templates/bareos/bareos-fd.d/director/bareos-mon.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-mon.conf' }
+  - name: enable fd plugins
+    ansible.builtin.lineinfile:
+      path: /usr/local/etc/bareos/bareos-fd.d/client/myself.conf
+      regexp: '^  #? ?Plugin Directory'
+      line: 'Plugin Directory = "/usr/local/lib/bareos/plugins"'
   - name: add bareos runsv directory
     ansible.builtin.file:
       path: /etc/sv/bareos_fd
