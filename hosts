@@ -10,6 +10,7 @@ dshs:
             dshs-mail.dshs.local:
         backup_storage:
           hosts:
+            dshs-atlas.dshs.local:
             dshs-backup2.dshs.local:
             dshs-backup-j1.dshs.local:
         rclone:
