@@ -70,11 +70,12 @@ dshs_group_main {
 		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(staff\)/) {
 		# For now, drop staff into BYOD VLAN (205); 10.16.84.0/23
+		# XXX Actually use the Wifi VLAN to enable printing temporarily
 		update reply {
 			Reply-Message = "[MAIN] [STAFF] %{User-Name} connecting to %{Called-Station-SSID} in %{0}"
 			Tunnel-Type = VLAN
 			Tunnel-Medium-Type = 6
-			Tunnel-Private-Group-Id = 205
+			Tunnel-Private-Group-Id = 200
 		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /(\(wireless devices\)|\(wifi_open_access\))/) {
 		update reply {
