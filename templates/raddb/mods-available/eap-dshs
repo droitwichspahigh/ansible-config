@@ -197,7 +197,7 @@ eap eap-dshs {
 	#  authenticate via EAP-TLS!  This is likely not what you want.
 	#
 	tls-config tls-common {
-		private_key_file = /etc/ssl/private/certmonger.key
+		private_key_file = /etc/ssl/private/certmonger2.key
 
 		#  If Private key & Certificate are located in
 		#  the same file, then private_key_file &
@@ -233,7 +233,7 @@ eap eap-dshs {
 		#  give advice which will work everywhere.  Instead,
 		#  we give general guidelines.
 		#
-		certificate_file = /etc/ssl/certs/certmonger.crt
+		certificate_file = /etc/ssl/certmonger-fullchain.crt
 
 		#  Trusted Root CA list
 		#
