@@ -422,6 +422,7 @@ alias_maps = hash:/etc/mail/aliases
 #alias_database = dbm:/etc/aliases
 #alias_database = hash:/etc/aliases
 #alias_database = hash:/etc/aliases, hash:/opt/majordomo/aliases
+alias_database = hash:/etc/mail/aliases
 
 # ADDRESS EXTENSIONS (e.g., user+foo)
 #
