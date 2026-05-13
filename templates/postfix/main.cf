@@ -317,7 +317,7 @@ mynetworks_style = host
 # list this system as their primary or backup MX host. See the
 # permit_mx_backup restriction description in postconf(5).
 #
-#relay_domains = 
+relay_domains = droitwichspahigh.worcs.sch.uk
 
 # INTERNET OR INTRANET
 
@@ -339,6 +339,7 @@ mynetworks_style = host
 #relayhost = [mailserver.isp.tld]
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
+relayhost = [smtp.office365.com]:587
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -410,6 +411,7 @@ mynetworks_style = host
 #alias_maps = hash:/etc/aliases
 #alias_maps = hash:/etc/aliases, nis:mail.aliases
 #alias_maps = netinfo:/aliases
+alias_maps = hash:/etc/mail/aliases
 
 # The alias_database parameter specifies the alias database(s) that
 # are built with "newaliases" or "sendmail -bi".  This is a separate
@@ -685,5 +687,11 @@ inet_protocols = all
 
 # smtp CA path (default to system-wide location)
 smtp_tls_CApath = /etc/ssl/certs
+smtp_tls_security_level = encrypt
 shlib_directory = /usr/local/lib/postfix
 meta_directory = /usr/local/libexec/postfix
+
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/usr/local/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+sender_canonical_maps = static:dshs-mail@droitwichspahigh.worcs.sch.uk
