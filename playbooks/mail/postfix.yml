@@ -9,11 +9,13 @@
   - name: install {{ srv }}
     pkgng:
       name: '{{ srv }}-sasl' cyrus-sasl-saslauthd
-  - name: configure for relaying
-    ansible.builtin.lineinfile:
-      path: '/usr/local/etc/postfix/main.cf'
-      regexp: '^#?relay_domains'
-      line: 'relay_domains = droitwichspahigh.worcs.sch.uk'
+  - name: configure Postfix
+    ansible.builtin.template:
+      src: '../../templates/postfix/main.cf'
+      dest: /usr/local/etc/postfix/main.cf
+      owner: root
+      group: wheel
+      mode: '0644'
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'
