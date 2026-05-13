@@ -1,2 +1,2 @@
 #minute	hour	mday	month	wday	who	command
-0	9	*	*	1-5	root	sh /root/scripts/release_mails.sh
+*/3	9-15	*	*	1-5	root	sh /root/scripts/release_mails.sh
