@@ -8,7 +8,7 @@
   tasks:
   - name: install {{ srv }}
     pkgng:
-      name: '{{ srv }}-sasl'
+      name: '{{ srv }}-sasl' cyrus-sasl-saslauthd
   - name: configure for relaying
     ansible.builtin.lineinfile:
       path: '/usr/local/etc/postfix/main.cf'
@@ -31,6 +31,13 @@
       src: '/etc/sv/{{ srv }}'
       dest: '/var/service/{{ srv }}'
       state: link
+  - name: enable saslauthd jobs
+    community.general.sysrc:
+      name: '{{ item.name }}'
+      value: '{{ item.val }}'
+    loop:
+      - { name: 'saslauthd_enable', val: 'yes' }
+      - { name: 'saslauthd_flags', val: '-a kerberos5' }
   - name: set {{ srv }} as mailer
     ansible.builtin.file:
       src: /usr/local/share/postfix/mailer.conf.postfix
