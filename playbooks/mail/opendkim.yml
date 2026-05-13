@@ -37,14 +37,6 @@
     loop:
       - opendkim-sign.conf
       - opendkim-verify.conf
-  - name: configure opendkim
-    ansible.builtin.lineinfile:
-      dest: /usr/local/etc/mail/opendkim-sign.conf
-      regexp: "{{ item.regexp }}"
-      line: "{{ item.line }}"
-    loop:
-      - { regexp: '^#? ?KeyFile\s', line: 'KeyFile	/var/db/dkim/{{ dkim_key }}.private' }
-      - { regexp: '^#? ?Selector\s', line: 'Selector	{{ dkim_key }}' }
   - name: create domain keys dir
     ansible.builtin.file:
       path: /var/db/dkim
