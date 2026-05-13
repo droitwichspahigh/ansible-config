@@ -8,7 +8,7 @@
   tasks:
   - name: install {{ srv }}
     pkgng:
-      name: '{{ srv }}-sasl' cyrus-sasl-saslauthd
+      name: '{{ srv }}-sasl cyrus-sasl-saslauthd'
   - name: configure Postfix
     ansible.builtin.template:
       src: '../../templates/postfix/main.cf'
@@ -25,6 +25,13 @@
     ansible.builtin.template:
       src: '../../templates/runit/{{ srv }}_run'
       dest: '/etc/sv/{{ srv }}/run'
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: add mail release dequeue script
+    ansible.builtin.template:
+      src: '../../templates/root/scripts/release_mails.sh'
+      dest: '/root/scripts/release_mails.sh'
       owner: root
       group: wheel
       mode: '0755'

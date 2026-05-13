@@ -1,0 +1,33 @@
+---
+
+- name: install and activate postsrsd
+  hosts: mailserver
+  become: true
+  tasks:
+  - name: install postsrsd
+    pkgng:
+      name: postsrsd
+  - name: add postsrsd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/postsrsd
+      state: directory
+      mode: '0755'
+  - name: add postsrsd runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/postsrsd_run
+      dest: /etc/sv/postsrsd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: configure postsrsd
+    ansible.builtin.template:
+      src: ../../templates/postsrsd.conf
+      dest: /usr/local/etc/postsrsd.conf
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable postsrsd boot
+    ansible.builtin.file:
+      src: /etc/sv/postsrsd
+      dest: /var/service/postsrsd
+      state: link

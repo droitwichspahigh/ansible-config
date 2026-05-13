@@ -1,0 +1,9 @@
+#!/bin/sh
+
+: ${postsrsd_secret="/usr/local/etc/postsrsd.secret"}
+
+if [ ! -f "${postsrsd_secret}" ] ; then
+    env -i tr -cd "[:alnum:]" < /dev/urandom | head -c 24 > "${postsrsd_secret}"
+fi
+
+exec /usr/local/sbin/postsrsd -u mailnull
