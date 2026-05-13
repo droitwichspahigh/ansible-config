@@ -120,6 +120,7 @@ mail_owner = postfix
 #
 #myorigin = $myhostname
 #myorigin = $mydomain
+myorigin = dshs.network
 
 # RECEIVING MAIL
 
@@ -184,6 +185,7 @@ mail_owner = postfix
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
+mydestination = dshs.network
 
 # REJECTING MAIL FOR UNKNOWN LOCAL USERS
 #
@@ -270,7 +272,7 @@ unknown_local_recipient_reject_code = 550
 # 
 #mynetworks_style = class
 #mynetworks_style = subnet
-mynetworks_style = host
+mynetworks_style = subnet
 
 # Alternatively, you can specify the mynetworks list by hand, in
 # which case Postfix ignores the mynetworks_style setting.
@@ -339,7 +341,6 @@ relay_domains = droitwichspahigh.worcs.sch.uk
 #relayhost = [mailserver.isp.tld]
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
-relayhost = [smtp.office365.com]:587
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -691,7 +692,14 @@ smtp_tls_security_level = encrypt
 shlib_directory = /usr/local/lib/postfix
 meta_directory = /usr/local/libexec/postfix
 
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/usr/local/etc/postfix/sasl_passwd
-smtp_sasl_security_options = noanonymous
-sender_canonical_maps = static:dshs-mail@droitwichspahigh.worcs.sch.uk
+smtpd_milters = unix:private/dkim-sign
+non_smtpd_milters = unix:private/dkim-sign
+
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_type = cyrus
+smtpd_sasl_path = Sendmail
+smtpd_sasl_security_options = noanonymous
+smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+
+smtp_helo_name = mail.droitwichspahigh.worcs.sch.uk
