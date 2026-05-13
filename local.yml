@@ -41,4 +41,6 @@
 - ansible.builtin.import_playbook: playbooks/backups/bareos-dir.yml
 - ansible.builtin.import_playbook: playbooks/backups/bareos-storage.yml
 - ansible.builtin.import_playbook: playbooks/backups/bareos-client.yml
+- ansible.builtin.import_playbook: playbooks/mail/postfix.yml
+- ansible.builtin.import_playbook: playbooks/mail/opendkim.yml
 - ansible.builtin.import_playbook: playbooks/rclone/rclone.yml
