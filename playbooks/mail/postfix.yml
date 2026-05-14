@@ -16,6 +16,25 @@
       owner: root
       group: wheel
       mode: '0644'
+  - name: add sasl2 dir
+    ansible.builtin.file:
+      path: /usr/local/etc/sasl2
+      state: directory
+      mode: '0755'
+  - name: configure saslauthd
+    ansible.builtin.template:
+      src: ../../templates/sasl2/smtpd.conf
+      dest: /usr/local/etc/sasl2/smtpd.conf
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: configure saslauthd pam
+    ansible.builtin.template:
+      src: ../../templates/pam.d/smtpd
+      dest: /usr/local/etc/pam.d/smtpd
+      owner: root
+      group: wheel
+      mode: '0644'
   - name: add {{ srv }} runsv directory
     ansible.builtin.file:
       path: '/etc/sv/{{ srv }}'
@@ -46,7 +65,7 @@
       value: '{{ item.val }}'
     loop:
       - { name: 'saslauthd_enable', val: 'yes' }
-      - { name: 'saslauthd_flags', val: '-a kerberos5' }
+      - { name: 'saslauthd_flags', val: '-a pam' }
   - name: set {{ srv }} as mailer
     ansible.builtin.file:
       src: /usr/local/share/postfix/mailer.conf.postfix

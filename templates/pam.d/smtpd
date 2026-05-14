@@ -1,0 +1,8 @@
+# auth
+auth		required	pam_sss.so		forward_pass
+#auth		required	pam_unix.so		no_warn try_first_pass nullok
+
+# account
+account		required	pam_login_access.so
+#account		required	pam_sss.so
+account		required	pam_unix.so
