@@ -30,8 +30,8 @@
       mode: '0644'
   - name: configure saslauthd pam
     ansible.builtin.template:
-      src: ../../templates/pam.d/smtpd
-      dest: /usr/local/etc/pam.d/smtpd
+      src: ../../templates/pam.d/smtp
+      dest: /usr/local/etc/pam.d/smtp
       owner: root
       group: wheel
       mode: '0644'
