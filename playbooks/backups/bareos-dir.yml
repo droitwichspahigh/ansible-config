@@ -13,7 +13,7 @@
       value: 'yes'
     loop:
       - postgresql_enable
-  - name: configure bareos-sd
+  - name: configure bareos-dir
     ansible.builtin.template:
       src: "../../templates/bareos/bareos-dir.d/{{ item }}"
       dest: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
@@ -36,6 +36,15 @@
       - 'pool/Atlas.conf'
       - 'pool/Full.conf'
       - 'pool/Sneakermail.conf'
+  - name: configure bareos-dir
+    ansible.builtin.template:
+      src: "../../templates/bareos/bareos-dir.d/{{ item }}"
+      dest: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
+      owner: bareos
+      group: bareos
+      mode: '0750'
+    loop:
+      - '../copy_nucleus_etc_bareos.sh'
   - name: remove irrelevant files
     ansible.builtin.file:
       path: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
