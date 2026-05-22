@@ -1,0 +1,27 @@
+---
+
+- name: Configure Sylve for hypervisors
+  hosts: bhyve
+  become: true
+  tasks:
+  - name: install package
+    pkgng:
+      name: sysutils/sylve
+      state: present
+  - name: add sylve runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/sylve
+      state: directory
+      mode: '0755'
+  - name: add sylve runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/sylve_run
+      dest: /etc/sv/sylve/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable sylve boot
+    ansible.builtin.file:
+      src: /etc/sv/sylve
+      dest: /var/service/sylve
+      state: link
