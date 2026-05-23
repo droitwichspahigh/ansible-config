@@ -44,6 +44,7 @@ dshs:
           hosts:
             dshs-hv03.dshs.local:
             dshs-hv06.dshs.local:
+            dshs-sylve.dshs.local:
     workstation:
       hosts:
         dshs-cmr01.dshs.local:
