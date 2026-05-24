@@ -1,7 +1,7 @@
 ---
 
 - name: enable runit for ntpd
-  hosts: all:!dshs-radius4.dshs.local
+  hosts: all:!dshs-radius[0-9].dshs.local
   become: true
   tasks:
   - name: add ntpd runsv directory
