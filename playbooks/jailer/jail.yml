@@ -9,20 +9,21 @@
       path: '/etc/jail.conf.d'
       state: directory
       mode: '0755'
-  - name: add jail config files
-    ansible.builtin.template:
-      src: "../../templates/jail.conf.d/{{ item }}"
-      dest: "/etc/jail.conf.d/{{ item }}"
-      owner: root
-      group: wheel
-      mode: '0644'
-    loop:
-      - 'dshs-radius3.conf'
-      - 'dshs-radius4.conf'
-  - name: enable jail rc.conf
-    community.general.sysrc:
-      name: 'jail_enable'
-      value: "yes"
+# Sylve handles jails these days
+#  - name: add jail config files
+#    ansible.builtin.template:
+#      src: "../../templates/jail.conf.d/{{ item }}"
+#      dest: "/etc/jail.conf.d/{{ item }}"
+#      owner: root
+#      group: wheel
+#      mode: '0644'
+#    loop:
+#      - 'dshs-radius3.conf'
+#      - 'dshs-radius4.conf'
+#  - name: enable jail rc.conf
+#    community.general.sysrc:
+#      name: 'jail_enable'
+#      value: "yes"
 # Need to do this by hand as it doesn't work currently
 #  - name: enable jails
 #    community.general.sysrc:
@@ -30,10 +31,10 @@
 #      value_present: '{{ item }}'
 #    loop:
 #      - nc
-  - name: start jail
-    ansible.builtin.service:
-      name: jail
-      state: started
+#  - name: start jail
+#    ansible.builtin.service:
+#      name: jail
+#      state: started
   - name: enable fusefs
     ansible.builtin.lineinfile:
       path: /boot/loader.conf
