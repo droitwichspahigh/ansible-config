@@ -19,5 +19,6 @@ shells/zsh
 sysutils/ansible
 sysutils/runit
 sysutils/screen
+sysutils/sylve
 sysutils/vm-bhyve
 textproc/ydiff
