@@ -44,6 +44,7 @@
       - { src: poudriere_cron, dest: /etc/cron.d/poudriere }
       - { src: src-env.conf, dest: /etc/src-env.conf }
       - { src: poudriere.d/pkglist-dshs, dest: /usr/local/etc/poudriere.d/pkglist-dshs }
+      - { src: poudriere.d/pkglist-dshs-frigate, dest: /usr/local/etc/poudriere.d/pkglist-dshs-frigate }
       - { src: poudriere.d/pkglist-dshs-mailserver, dest: /usr/local/etc/poudriere.d/pkglist-dshs-mailserver }
       - { src: poudriere.d/pkglist-dshs-netbox, dest: /usr/local/etc/poudriere.d/pkglist-dshs-netbox }
       - { src: poudriere.d/pkglist-dshs-webserver, dest: /usr/local/etc/poudriere.d/pkglist-dshs-webserver }
