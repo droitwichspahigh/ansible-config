@@ -4,6 +4,7 @@ dshs:
       hosts:
         dshs-anp-ref1.dshs.local:
         dshs-snipeit.dshs.local:
+        dshs-screens.dshs.local:
       children:
         mailserver:
           hosts:
