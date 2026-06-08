@@ -46,6 +46,14 @@ dshs_group_main {
 			Tunnel-Medium-Type = 6
 			Tunnel-Private-Group-Id = 200
 		}
+
+	} elsif ("%{User-Name}" =~ /[Ss]teenton[Ee]/) {
+		update reply {
+			Reply-Message = "Put ES in the WiFi VLAN so she can use her iPad with Spacedesk"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
+		}
 	} elsif ("%{User-Name}" =~ /[Bb]rown[Dd][Gg]/) {
 		update reply {
 			Reply-Message = "Put DGB in the WiFi VLAN so he can use his iPad with AirServer"
