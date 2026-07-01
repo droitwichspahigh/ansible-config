@@ -4,9 +4,38 @@
   hosts: all
   become: true
   tasks:
+  - name: enable mail- no need for newaliases as dma uses the flat text file
+    ansible.builtin.lineinfile:
+      path: /etc/dma/dma.conf
+      line: "{{ item.line }}"
+      regexp: "{{ item.regexp }}"
+      create: true
+    loop:
+      - { regexp: '^[# ]*SMARTHOST ', line: 'SMARTHOST dshs-mail.dshs.local' }
+  - name: redirect root mail
+    ansible.builtin.lineinfile:
+      path: /etc/mail/aliases
+      line: "{{ item.line }}"
+      regexp: "{{ item.regexp }}"
+      create: true
+    loop:
+      - { regexp: '^[# ]*root: ', line: 'root: services_destination@droitwichspahigh.worcs.sch.uk' }
   - name: enable periodic script
     ansible.builtin.lineinfile:
       path: /etc/periodic.conf
-      regexp: ^daily_clean_disks_enable
-      line: daily_clean_disks_enable=no
+      line: "{{ item.line }}"
+      regexp: "{{ item.regexp }}"
       create: true
+    loop:
+      - { regexp: '^daily_clean_disks_enable', line: 'daily_clean_disks_enable=yes' }
+      - { regexp: '^daily_clean_disks_files', line: 'daily_clean_disks_files="a.out *.core *.CKP .emacs_[0-9]*"' }
+      - { regexp: '^daily_clean_disks_verbose', line: 'daily_clean_disks_verbose=no' }
+      - { regexp: '^daily_show_success', line: 'daily_show_success=no' }
+      - { regexp: '^daily_show_info', line: 'daily_show_info=no' }
+      - { regexp: '^daily_status_security_inline=yes', line: 'daily_status_security_inline=yes' }
+      - { regexp: '^security_show_success', line: 'security_show_success=no' }
+      - { regexp: '^security_show_info', line: 'security_show_info=no' }
+      - { regexp: '^weekly_show_success', line: 'weekly_show_success=no' }
+      - { regexp: '^weekly_show_info', line: 'weekly_show_info=no' }
+      - { regexp: '^monthly_show_success', line: 'monthly_show_success=no' }
+      - { regexp: '^monthly_show_info', line: 'monthly_show_info=no' }
