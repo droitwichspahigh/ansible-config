@@ -19,7 +19,7 @@
       regexp: "{{ item.regexp }}"
       create: true
     loop:
-      - { regexp: '^[# ]*root: ', line: 'root: services_destination@droitwichspahigh.worcs.sch.uk' }
+      - { regexp: '^[# ]*root: ', line: '{{ "root: services.destination" ~ "@" ~ "droitwichspahigh.worcs.sch.uk" }}' }
   - name: enable periodic script
     ansible.builtin.lineinfile:
       path: /etc/periodic.conf
