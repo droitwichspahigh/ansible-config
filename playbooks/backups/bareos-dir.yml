@@ -21,6 +21,7 @@
       group: bareos
       mode: '0640'
     loop:
+      - 'fileset/LinuxAll.conf'
       - 'fileset/UNIX.conf'
       - 'fileset/UNIX-zfs-vss.conf'
       - 'fileset/Windows All Drives.conf'
