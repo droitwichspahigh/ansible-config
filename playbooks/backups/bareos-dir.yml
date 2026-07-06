@@ -26,6 +26,7 @@
       - 'fileset/UNIX-zfs-vss.conf'
       - 'fileset/Windows All Drives.conf'
       - 'job/BackupCatalog.conf'
+      - 'job/consolidate.conf'
       - 'job/sneakernet-diff-copy.conf'
       - 'job/sneakernet-full-copy.conf'
       - 'job/sneakernet-inc-copy.conf'
