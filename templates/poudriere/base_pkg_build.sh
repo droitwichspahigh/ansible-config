@@ -3,7 +3,7 @@
 srcdir=/poudriere/data/src
 # Need the suffix or Poudriere uses builtin manifests
 # and refuses to use our tarballs
-srcvers="releng-14.3:14.3-RELEASE-dshs releng-15.0:15.0-RELEASE-dshs"
+srcvers="releng-15.1:15.1-RELEASE-dshs"
 archs=${1:-amd64}
 
 poudriere=/usr/local/bin/poudriere
@@ -74,7 +74,9 @@ bulkjail() {
 	#$poudriere bulk -j $_jail -p default -b quarterly $_packagelists
 }
 
-if [ "$(date +%w)" -eq "6" ]; then
+#if [ "$(date +%w)" -eq "6" ]; then
+if [ -f "/buildeverything" ]; then
+	rm /buildeverything
 	buildeverything=yes
 fi
 buildports=yes
