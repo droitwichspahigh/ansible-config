@@ -68,6 +68,13 @@ dshs_group_main {
 			Tunnel-Medium-Type = 6
 			Tunnel-Private-Group-Id = 200
 		}
+	}  elsif ("%{User-Name}" =~ /^DSHS-IPAD-/) {
+		update reply {
+			Reply-Message = "[MAIN] [IPAD] Jamf-managed iPad (%{User-Name}), assigning to WiFi VLAN"
+			Tunnel-Type = VLAN
+			Tunnel-Medium-Type = 6
+			Tunnel-Private-Group-Id = 200
+		}
 	} elsif ("%{exec:/usr/bin/id %{User-Name}}" =~ /\(students-year1[23]\)/) {
 		# Put sixth formers into 6F VLAN (102); 10.16.66.0/23
 		update reply {
