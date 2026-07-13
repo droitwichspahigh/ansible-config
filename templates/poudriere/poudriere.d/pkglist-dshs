@@ -3,6 +3,7 @@ devel/git
 editors/vim
 mail/msmtp
 misc/compat13x
+misc/compat14x
 net/freeradius3
 net/openldap26-client
 net/rclone
