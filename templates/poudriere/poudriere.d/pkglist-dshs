@@ -8,6 +8,9 @@ net/openldap26-client
 net/rclone
 net/rsync
 net-mgmt/adcli
+net-mgmt/zabbix74-agent
+net-mgmt/zabbix74-frontend
+net-mgmt/zabbix74-server
 ports-mgmt/poudriere
 security/cyrus-sasl2-gssapi
 security/nmap
