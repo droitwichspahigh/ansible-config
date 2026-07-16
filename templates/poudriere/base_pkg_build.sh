@@ -41,7 +41,15 @@ mktarball() {
 		TARGET=$arch TARGET_ARCH=$arch ftp >$arch-tarballs/$version/releaselog 2>&1
 	echo "...[DONE]"
 	rm $arch-tarballs/$version/*.txz
-	mv $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/*.txz $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
+	cp $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/*.txz $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/ftp/MANIFEST $arch-tarballs/$version/
+
+	echo -n Building memstick image...
+	ln -sf /poudriere/pkgbase_repo $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/pkgbase-repo
+	make -C $src/release -DNOPORTS -DNODOC -DNOPKG \
+		TARGET=$arch TARGET_ARCH=$arch memstick >$arch-tarballs/$version/memsticklog 2>&1
+	mv $(make -C $src TARGET=$arch TARGET_ARCH=$arch -VMAKEOBJDIR)/release/memstick.img $arch-tarballs/$version
+
+	# Then add Bareos!
 }
 
 mkpjail() {
