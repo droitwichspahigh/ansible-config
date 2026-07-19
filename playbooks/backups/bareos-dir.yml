@@ -43,6 +43,8 @@
       - 'pool/Incremental.conf'
       - 'pool/Sneakernet-full.conf'
       - 'pool/Sneakernet-other.conf'
+      - 'schedule/WeeklyCycle.conf'
+      - 'schedule/WeeklyCycle-AI.conf'
   - name: configure bareos-dir
     ansible.builtin.template:
       src: "../../templates/bareos/bareos-dir.d/{{ item }}"
