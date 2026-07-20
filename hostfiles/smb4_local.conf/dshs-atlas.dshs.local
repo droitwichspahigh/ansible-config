@@ -16,3 +16,7 @@
 	vfs objects = zfsacl
 	path = /kahuna/isos
 	writeable = Yes
+[3cx_storage]
+	vfs objects = zfsacl
+	path = /kahuna/3cx_storage
+	writeable = Yes
