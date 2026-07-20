@@ -18,5 +18,5 @@
 	writeable = Yes
 [3cx_storage]
 	vfs objects = zfsacl
-	path = /kahuna/3cx_storage
+	path = /3cx_storage
 	writeable = Yes
