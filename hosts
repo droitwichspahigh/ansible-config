@@ -46,6 +46,9 @@ dshs:
             dshs-hv03.dshs.local:
             dshs-hv06.dshs.local:
             dshs-sylve.dshs.local:
+        zabbix-server:
+          hosts:
+            zabbix.dshs.local:
     workstation:
       hosts:
         dshs-cmr01.dshs.local:
