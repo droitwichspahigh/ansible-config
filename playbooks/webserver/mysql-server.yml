@@ -6,7 +6,7 @@
   tasks:
   - name: install mysql-server
     pkgng:
-      name: mysql80-server
+      name: mysql84-server
   - name: add mysql runsv directory
     ansible.builtin.file:
       path: /etc/sv/mysql
