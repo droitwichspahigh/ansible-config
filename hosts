@@ -22,6 +22,9 @@ dshs:
             dshs-atlas.dshs.local:
             dshs-newton.dshs.local:
           children:
+            zabbix-server:
+              hosts:
+                zabbix.dshs.local:
             package_builder:
               hosts:
                 dshs-builder.dshs.local:
@@ -46,9 +49,6 @@ dshs:
             dshs-hv03.dshs.local:
             dshs-hv06.dshs.local:
             dshs-sylve.dshs.local:
-        zabbix-server:
-          hosts:
-            zabbix.dshs.local:
     workstation:
       hosts:
         dshs-cmr01.dshs.local:
