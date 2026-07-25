@@ -1,0 +1,26 @@
+---
+
+- name: install and enable zabbix-server
+  hosts: all
+  become: true
+  tasks:
+  - name: install zabbix-server
+    community.general.pkgng:
+      name: net-mgmt/zabbix74-server net-mgmt/zabbix74-frontend
+  - name: add zabbix-server runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/zabbix_server
+      state: directory
+      mode: '0755'
+  - name: add zabbix-server runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/zabbix_server_run
+      dest: /etc/sv/zabbix_server/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable zabbix-server boot
+    ansible.builtin.file:
+      src: /etc/sv/zabbix_server
+      dest: /var/service/zabbix_server
+      state: link

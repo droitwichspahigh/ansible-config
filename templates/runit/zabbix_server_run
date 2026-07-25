@@ -1,0 +1,5 @@
+#!/bin/sh
+
+install -d -m 0755 -o zabbix -g zabbix /var/run/zabbix /var/log/zabbix
+
+exec /usr/local/sbin/zabbix_server -fc /usr/local/etc/zabbix74/zabbix_server.conf
