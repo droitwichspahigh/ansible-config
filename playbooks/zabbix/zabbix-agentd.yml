@@ -1,0 +1,33 @@
+---
+
+- name: install and enable zabbix-agentd
+  hosts: all
+  become: true
+  tasks:
+  - name: install zabbix-agentd
+    community.general.pkgng:
+      name: net-mgmt/zabbix74-agent
+  - name: add zabbix-agentd config file
+    ansible.builtin.template:
+      src: ../../templates/zabbix/zabbix_agentd.conf
+      dest: /usr/local/etc/zabbix74/zabbix_agentd.conf
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: add zabbix-agentd runsv directory
+    ansible.builtin.file:
+      path: /etc/sv/zabbix_agentd
+      state: directory
+      mode: '0755'
+  - name: add zabbix-agentd runsv file
+    ansible.builtin.template:
+      src: ../../templates/runit/zabbix_agentd_run
+      dest: /etc/sv/zabbix_agentd/run
+      owner: root
+      group: wheel
+      mode: '0755'
+  - name: enable zabbix-agentd boot
+    ansible.builtin.file:
+      src: /etc/sv/zabbix_agentd
+      dest: /var/service/zabbix_agentd
+      state: link

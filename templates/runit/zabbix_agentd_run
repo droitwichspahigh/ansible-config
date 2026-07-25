@@ -1,0 +1,12 @@
+#!/bin/sh
+
+zabbix_versiondir=zabbix74
+
+install -d -m 0755 -o zabbix -g zabbix /var/run/zabbix /var/log/zabbix
+
+install -d -m 0700 -o zabbix -g zabbix /usr/local/etc/$zabbix_versiondir/certs
+
+install -m 0600 -o zabbix -g zabbix /etc/ssl/certmonger-fullchain.crt /usr/local/etc/$zabbix_versiondir/certs/
+install -m 0600 -o zabbix -g zabbix /etc/ssl/private/certmonger.key /usr/local/etc/$zabbix_versiondir/certs/
+
+exec /usr/local/sbin/zabbix_agentd -fc /usr/local/etc/$zabbix_versiondir/zabbix_agentd.conf
