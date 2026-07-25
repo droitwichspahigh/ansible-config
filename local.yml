@@ -47,4 +47,5 @@
 - ansible.builtin.import_playbook: playbooks/mail/opendkim.yml
 - ansible.builtin.import_playbook: playbooks/mail/postsrsd.yml
 - ansible.builtin.import_playbook: playbooks/rclone/rclone.yml
+- ansible.builtin.import_playbook: playbooks/zabbix/zabbix-agentd.yml
 - ansible.builtin.import_playbook: playbooks/zabbix/zabbix-server.yml
