@@ -1,7 +1,7 @@
 ---
 
 - name: install and enable zabbix-server
-  hosts: all
+  hosts: zabbix-server
   become: true
   tasks:
   - name: install zabbix-server
