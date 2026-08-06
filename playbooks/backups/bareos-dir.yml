@@ -31,6 +31,7 @@
       - 'job/atlas-full-copy.conf'
       - 'job/atlas-inc-copy.conf'
       - 'job/consolidate.conf'
+      - 'job/dshs-dc03-image.conf'
       - 'jobdefs/Hyper-V.conf'
       - 'jobdefs/UNIX.conf'
       - 'jobdefs/UNIX-zfs-vss.conf'
