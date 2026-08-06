@@ -3,8 +3,3 @@
    writable = yes
    browsable = yes
    vfs objects = zfsacl
-
-   create mask = 0600
-   directory mask = 0700
-   
-   write list = "Domain Computers"
