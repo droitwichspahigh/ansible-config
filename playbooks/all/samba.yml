@@ -76,7 +76,6 @@
       state: link
     loop:
       - smbd
-      - nmbd
       - winbindd
   - name: add samba db directory
     ansible.builtin.file:
@@ -90,10 +89,9 @@
       service_dir: /var/service
     loop:
       - smbd
-      - nmbd
       - winbindd
     when: local_conf.changed or conf.changed
-  - name: remove old files
+  - name: remove old files including stopping nmbd
     ansible.builtin.file:
       path: "{{ item }}"
       state: absent
@@ -102,6 +100,7 @@
       - /etc/cron.d/adcli_update
       - /etc/cron.d/wpa_supplicant_update_keytab_update
       - /var/db/samba4/wpa_supplicant_keytab_update.sh
+      - /var/service/nmbd
 #  - name: add password reset script
 #    ansible.builtin.template:
 #      src: ../../templates/wpa_supplicant_keytab_update.sh
