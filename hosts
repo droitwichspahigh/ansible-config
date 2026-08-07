@@ -13,7 +13,10 @@ dshs:
           hosts:
             dshs-atlas.dshs.local:
             dshs-backup2.dshs.local:
-            dshs-backup-j1.dshs.local:
+          children:
+            backup_controller:
+              hosts:
+                dshs-backup-j1.dshs.local:
         rclone:
           hosts:
             dshs-backup2.dshs.local:
