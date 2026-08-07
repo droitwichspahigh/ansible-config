@@ -1,0 +1,12 @@
+# PAM configuration for the "bareos" service
+#
+
+# auth
+auth            sufficient      pam_unix.so             no_warn
+auth            required        pam_sss.so              use_first_pass
+
+# account
+account         required        pam_login_access.so
+account         sufficient      pam_sss.so              ignore_unknown_user ignore_authinfo_unavail
+account         requisite       pam_unix.so
+account         optional        pam_exec.so             /bin/sh /usr/local/etc/bareos/create_console_user.sh

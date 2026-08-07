@@ -57,6 +57,7 @@
       mode: '0750'
     loop:
       - '../copy_nucleus_etc_bareos.sh'
+      - '../create_console_user.sh'
   - name: remove irrelevant files
     ansible.builtin.file:
       path: "/usr/local/etc/bareos/bareos-dir.d/{{ item }}"
@@ -71,9 +72,10 @@
       dest: "{{ item.dest }}"
       owner: root
       group: wheel
-      mode: '0640'
+      mode: '0644'
     loop:
       - { src: '../../templates/apache24/modules.d/250_bareos.conf', dest: '/usr/local/etc/apache24/modules.d/250_bareos.conf' }
+      - { src: '../../templates/pam.d/bareos', dest: '/usr/local/etc/pam.d/bareos' }
   - name: add bareos runsv directory
     ansible.builtin.file:
       path: /etc/sv/bareos_dir
