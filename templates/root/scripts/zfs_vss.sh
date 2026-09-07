@@ -54,6 +54,13 @@ if zfs list -t snapshot -o name | grep -q $snapname; then
 	exit 1
 fi
 
+# We'll make the zfs_vss_copy directory as a lock
+
+if ! mkdir /zfs_vss_copy; then
+	echo "Destination dir /zfs_vss_copy already exists, bailing"
+	exit 1
+fi
+
 # Get the zpools and snapshot
 
 for pool in $(zpool list -Ho name); do
@@ -61,13 +68,6 @@ for pool in $(zpool list -Ho name); do
 	zfs hold -r zfs_vss $pool@$snapname
 	zfs destroy -dr $pool@$snapname
 done
-
-# Remount the snapshots in temporary area
-
-if ! mkdir /zfs_vss_copy; then
-	echo "Destination dir /zfs_vss_copy already exists, bailing"
-	exit 1
-fi
 
 mount -t zfs | while read fs _junk mountpoint options; do
 	mount -t zfs $fs@$snapname /zfs_vss_copy$mountpoint
