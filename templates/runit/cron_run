@@ -2,4 +2,7 @@
 
 sv start sssd || exit 2
 
+# Enable nsswitch to work properly
+sleep 10
+
 exec cron -sn
