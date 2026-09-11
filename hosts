@@ -20,6 +20,7 @@ dshs:
         webserver:
           hosts:
             dshs-atlas.dshs.local:
+            dshs-mysql.dshs.local:
             dshs-newton.dshs.local:
           children:
             zabbix-server:
