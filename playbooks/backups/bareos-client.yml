@@ -17,21 +17,17 @@
   - name: install bareos
     pkgng:
       name: bareos.com-filedaemon
-  - name: configure bareos-fd
-    ansible.builtin.template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      owner: root
-      group: bareos
-      mode: '0640'
-    loop:
-      - { src: '../../templates/bareos/bareos-fd.d/director/bareos-dir.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf' }
-      - { src: '../../templates/bareos/bareos-fd.d/director/bareos-mon.conf', dest: '/usr/local/etc/bareos/bareos-fd.d/director/bareos-mon.conf' }
   - name: enable fd plugins
     ansible.builtin.lineinfile:
       path: /usr/local/etc/bareos/bareos-fd.d/client/myself.conf
       regexp: '^  #? ?Plugin Directory'
       line: 'Plugin Directory = "/usr/local/lib/bareos/plugins"'
+  - name: ensure director has the client password
+    ansible.builtin.script:
+      cmd: "../../templates/bareos/configure_bareos_fd.sh"
+    register: password_transfer_result
+    changed_when: password_transfer_result.rc == 0
+    ignore_errors: True
   - name: add bareos runsv directory
     ansible.builtin.file:
       path: /etc/sv/bareos_fd

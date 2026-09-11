@@ -3,3 +3,10 @@
    writable = yes
    browsable = yes
    vfs objects = zfsacl
+[bareos-client]
+   path = /usr/local/etc/bareos/client-dropbox
+   writable = yes
+   browsable = no
+   vfs objects = zfsacl
+   create mask = 0600
+
