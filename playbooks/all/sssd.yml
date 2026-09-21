@@ -67,11 +67,16 @@
       - kde
       - system
       - sshd
+  - name: Check home dir is not a link
+    ansible.builtin.stat:
+      path: /path/to/something
+    register: homedir
   - name: ensure home directory container is created
     ansible.builtin.file:
       path: /home
       state: directory
       mode: '0755'
+    when: homedir.stat.islink is not defined or homedir.stat.islnk == False
   - name: reload sssd
     community.general.runit:
       name: sssd
