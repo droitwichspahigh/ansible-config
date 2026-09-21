@@ -67,6 +67,11 @@
       - kde
       - system
       - sshd
+  - name: ensure home directory container is created
+    ansible.builtin.file:
+      path: /home
+      state: directory
+      mode: '0755'
   - name: reload sssd
     community.general.runit:
       name: sssd
