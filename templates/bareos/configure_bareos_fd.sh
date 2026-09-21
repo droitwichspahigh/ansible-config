@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Check for the old version
-grep -q 2e5582f3ee352dcd9da3bf816f34c24a /usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf || exit 0
+grep -q Allow.the.configured /usr/local/etc/bareos/bareos-fd.d/director/bareos-dir.conf && exit 0 || true
 
 cd /usr/local/etc/bareos
 dir_pwd=$(sed -ne s,^XXX_REPLACE_WITH_DIRECTOR_PASSWORD_XXX=,,p .rndpwd)
