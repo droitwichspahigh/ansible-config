@@ -4,9 +4,9 @@
   hosts: backup_controller
   become: true
   tasks:
-  - name: install bareos
-    pkgng:
-      name: bareos.com-director bareos.com-bconsole bareos.com-tools postgresql17-server
+#  - name: install bareos
+#    pkgng:
+#      name: bareos.com-director bareos.com-bconsole bareos.com-tools postgresql17-server
   - name: enable postgresql
     community.general.sysrc:
       name: '{{ item }}'

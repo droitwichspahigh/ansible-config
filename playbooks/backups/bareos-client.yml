@@ -4,19 +4,19 @@
   hosts: all
   become: true
   tasks:
-  - name: remove bareos-old-style
-    pkgng:
-      name: bareos-client
-      state: absent
-    register: old_pkg
-  - name: remove all old configs
-    ansible.builtin.file:
-      path: /usr/local/etc/bareos
-      state: absent
-    when: old_pkg.changed
-  - name: install bareos
-    pkgng:
-      name: bareos.com-filedaemon
+#  - name: remove bareos-old-style
+#    pkgng:
+#      name: bareos-client
+#      state: absent
+#    register: old_pkg
+#  - name: remove all old configs
+#    ansible.builtin.file:
+#      path: /usr/local/etc/bareos
+#      state: absent
+#    when: old_pkg.changed
+#  - name: install bareos
+#    pkgng:
+#      name: bareos-client
   - name: enable fd plugins
     ansible.builtin.lineinfile:
       path: /usr/local/etc/bareos/bareos-fd.d/client/myself.conf

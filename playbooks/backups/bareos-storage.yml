@@ -4,9 +4,9 @@
   hosts: backup_storage
   become: true
   tasks:
-  - name: install bareos
-    pkgng:
-      name: bareos.com-storage archivers/py-borgbackup
+#  - name: install bareos
+#    pkgng:
+#      name: bareos.com-storage archivers/py-borgbackup
   - name: configure bareos-sd
     ansible.builtin.template:
       src: "../../templates/bareos/bareos-sd.d/{{ item }}"
