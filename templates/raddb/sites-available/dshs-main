@@ -759,6 +759,39 @@ accounting {
 	#  Filter attributes from the accounting response.
 	attr_filter.accounting_response
 
+	# 1. Map the dynamic filtering profile based on the incoming network VLAN
+	if (&Framed-IP-Address =~ /^10\.16\.8[0-3]\./) {
+	    # Main Wi-Fi VLAN (Host-Based / Managed Devices)
+	    # Default to strict Pupil filtering until the WUA Client loads on user login
+	    update request {
+		Filter-Id = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+	    }
+	} elsif (&Framed-IP-Address =~ /^10\.16\.6[67]\./) {
+	    # Sixth Formers / Key Stage 5 VLAN
+	    update request {
+		Filter-Id = "SBB_KS5_Web_Filtering@NSW-00115@OVLP3"
+	    }
+	} elsif (&Framed-IP-Address =~ /^10\.16\.8[45]\./) {
+	    # Staff BYOD VLAN
+	    update request {
+		Filter-Id = "SBB_Staff_Web_Filtering@NSW-00115@OVLP3"
+	    }
+	} else {
+	    # Fallback security baseline just in case a packet escapes from an untracked VLAN
+	    update request {
+		Filter-Id = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+	    }
+	}
+
+	# 2. Enforce the required username and IP mapping attributes mandated by the ISP
+	update request {
+	    User-Name = "%{User-Name}"
+	}
+
+	update control {
+	    Proxy-To-Realm := "netsweeper_route"
+	}
+
 	#
 	#  See "Autz-Type Status-Server" for how this works.
 	#

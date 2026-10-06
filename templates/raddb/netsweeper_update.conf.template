@@ -1,0 +1,24 @@
+# --- Schools Broadband Netsweeper Accounting Forwarding ---
+
+home_server sbb_netsweeper_acct {
+    type     = acct
+    ipaddr   = netsweeper0.schoolsbroadband.net
+    port     = 1813
+    secret   = ""
+    
+    # Optional but recommended safety limits
+    response_timeout = 2.0
+    zombie_period = 30
+    revive_interval = 60
+}
+
+home_server_pool sbb_netsweeper_pool {
+    type        = fail-over
+    home_server = sbb_netsweeper_acct
+}
+
+# Replicate accounting traffic to Netsweeper
+realm netsweeper_route {
+    acct_pool = sbb_netsweeper_pool
+}
+
