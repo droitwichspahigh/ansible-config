@@ -764,22 +764,22 @@ accounting {
 	    # Main Wi-Fi VLAN (Host-Based / Managed Devices)
 	    # Default to strict Pupil filtering until the WUA Client loads on user login
 	    update request {
-		Filter-Id = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+		Class = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
 	    }
 	} elsif (&Framed-IP-Address =~ /^10\.16\.6[67]\./) {
 	    # Sixth Formers / Key Stage 5 VLAN
 	    update request {
-		Filter-Id = "SBB_KS5_Web_Filtering@NSW-00115@OVLP3"
+		Class = "SBB_KS5_Web_Filtering@NSW-00115@OVLP3"
 	    }
 	} elsif (&Framed-IP-Address =~ /^10\.16\.8[45]\./) {
 	    # Staff BYOD VLAN
 	    update request {
-		Filter-Id = "SBB_Staff_Web_Filtering@NSW-00115@OVLP3"
+		Class = "SBB_Staff_Web_Filtering@NSW-00115@OVLP3"
 	    }
 	} else {
 	    # Fallback security baseline just in case a packet escapes from an untracked VLAN
 	    update request {
-		Filter-Id = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+		Class = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
 	    }
 	}
 
