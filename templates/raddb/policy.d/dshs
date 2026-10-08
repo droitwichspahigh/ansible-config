@@ -2,6 +2,11 @@
 dshs_group_main {	
 	rewrite_called_station_id
 
+	update reply {
+		# Tell the Wi-Fi Access Points to send an accounting update every 10 minutes (600 seconds)
+		Acct-Interim-Interval = 600
+	}
+
 	# First, we handle logins from DSHS Backup for speed
 	if ("%{Called-Station-SSID}" == "DSHS Backup") {
 		if ("%{User-Name}" =~ /^host\/([^.]*)\.dshs\.local/) {
