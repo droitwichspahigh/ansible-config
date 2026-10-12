@@ -763,8 +763,14 @@ accounting {
 	if (&Framed-IP-Address =~ /^10\.16\.8[0-3]\./) {
 	    # Main Wi-Fi VLAN (Host-Based / Managed Devices)
 	    # Default to strict Pupil filtering until the WUA Client loads on user login
-	    update request {
-		Class = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+	    if ("%{User-Name}" =~ /^[Pp]ope[Aa][Nn]|^[Ss]teenton[Ee]|[Bb]rown[Dd][Gg]/) {
+		update request {
+		    Class = "SBB_Staff_Web_Filtering@NSW-00115@OVLP3"
+		}
+	    } else {
+		update request {
+		    Class = "SBB_Pupil_Web_Filtering@NSW-00115@OVLP3"
+		}
 	    }
 	} elsif (&Framed-IP-Address =~ /^10\.16\.6[67]\./) {
 	    # Sixth Formers / Key Stage 5 VLAN
