@@ -794,8 +794,18 @@ accounting {
 	    User-Name = "%{User-Name}"
 	}
 
-	update control {
-	    Proxy-To-Realm := "netsweeper_route"
+        # 3. Intercept the Proxy Stream: Protect Netsweeper from Roaming Race Conditions
+	if (Acct-Status-Type == "Stop") {
+	    # Log an internal debug flag locally, but do NOT assign Proxy-To-Realm.
+	    # This completely stops the packet from reaching the Schools Broadband tunnel.
+	    update control {
+		Tmp-String-0 = "Suppressing Stop to Netsweeper"
+	    }
+	} else {
+	    # Any other record (Starts, Interims) gets forwarded to the tunnel instantly
+	    update control {
+		Proxy-To-Realm := "netsweeper_route"
+	    }
 	}
 
 	#
