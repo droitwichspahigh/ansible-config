@@ -7,3 +7,13 @@
   - name: install workstation pkgs
     pkgng:
       name: "{{ lookup('file', '../../templates/poudriere/poudriere.d/pkglist-dshs-workstation') }}"
+  - name: configure Firefox for negotiate
+    ansible.builtin.template:
+      src: '../../templates/{{ item }}'
+      dest: '/usr/local/{{ item }}'
+      owner: root
+      group: wheel
+      mode: '0644'
+    loop:
+      - lib/firefox/dshs-negotiate.cfg
+      - lib/firefox/defaults/pref/local-settings.js
