@@ -30,6 +30,20 @@
     community.general.sysrc:
       name: syslogd_flags
       value: '-4 -a 10.16.4.0/22:*'
+  - name: configure syslogd for Kerberos events
+    ansible.builtin.copy:
+      src: '../../templates/syslog.d/nxlog.conf'
+      dest: '/etc/syslog.d/nxlog.conf'
+      owner: root
+      group: wheel
+      mode: '0644'
+  - name: add script to inject Netsweeper stuff
+    ansible.builtin.copy:
+      src: '../../templates/raddb/radinject.sh'
+      dest: '/usr/local/etc/raddb/radinject.sh'
+      owner: root
+      group: wheel
+      mode: '0755'
   - name: activate configuration for mods
     ansible.builtin.file:
       src: '/usr/local/etc/raddb/{{ item.class }}s-available/{{ item.name }}'
