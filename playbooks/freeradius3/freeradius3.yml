@@ -26,6 +26,10 @@
       - mods-available/mschap
       - mods-available/eap-dshs
       - mods-available/exec
+  - name: enable remote syslogd
+    community.general.sysrc:
+      name: syslogd_flags
+      value: '-4 -a 10.16.4.0/22:*'
   - name: activate configuration for mods
     ansible.builtin.file:
       src: '/usr/local/etc/raddb/{{ item.class }}s-available/{{ item.name }}'
