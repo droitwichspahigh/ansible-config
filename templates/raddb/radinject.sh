@@ -98,5 +98,6 @@ esac
 echo "User-Name = '$username', \
 	Framed-IP-Address = $ip, \
 	Acct-Status-Type = Start, \
+	NAS-Identifier = 'Updated from Kerberos login',
 	Class = 'SBB_$class@NSW-00115@OVLP3'" | \
     /usr/local/bin/radclient -x ${RADADDR}:1813 acct "$RADSECRET"
