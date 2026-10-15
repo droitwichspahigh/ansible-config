@@ -791,6 +791,7 @@ accounting {
 
 	# 2. Enforce the required username and IP mapping attributes mandated by the ISP
 	update request {
+	    NAS-Identifier := "RADIUS: %{Called-Station-Id}"
 	    User-Name = "%{User-Name}"
 	}
 
