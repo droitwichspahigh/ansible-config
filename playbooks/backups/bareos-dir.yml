@@ -48,6 +48,7 @@
       - 'pool/Offsite-inc.conf'
       - 'schedule/WeeklyCycle.conf'
       - 'schedule/WeeklyCycle-AI.conf'
+      - 'schedule/WeeklyCycle-Consolidate.conf'
   - name: configure bareos-dir
     ansible.builtin.template:
       src: "../../templates/bareos/bareos-dir.d/{{ item }}"
