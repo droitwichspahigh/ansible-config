@@ -26,7 +26,7 @@ dshs:
             zabbix-server:
               hosts:
                 zabbix.dshs.local:
-            webproxy-server:
+            webproxy_server:
               hosts:
                 dshs-webproxy.dshs.local:
             package_builder:
