@@ -59,8 +59,8 @@
       owner: root
       group: wheel
       mode: '0755'
-  - name: restart if necessary
-    community.general.runit:
-      name: bareos_fd
-      state: restarted
-    when: old_pkg.changed
+#  - name: restart if necessary
+#    community.general.runit:
+#      name: bareos_fd
+#      state: restarted
+#    when: old_pkg.changed
