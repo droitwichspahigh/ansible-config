@@ -9,4 +9,7 @@
    browsable = no
    vfs objects = zfsacl
    create mask = 0600
-
+[switch-config-backups]
+   path = /switch_backups
+   writable = no
+   vfs objects = zfsacl
