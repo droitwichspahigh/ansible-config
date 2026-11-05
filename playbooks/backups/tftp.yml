@@ -1,0 +1,24 @@
+---
+
+- name: install and activate tftpd
+  hosts: backup_controller
+  become: true
+  tasks:
+  - name: enable inetd
+    community.general.sysrc:
+      name: '{{ item }}'
+      value: 'yes'
+    loop:
+      - inetd_enable
+  - name: configure inetd for tftpd
+    ansible.builtin.lineinfile:
+      path: /etc/inetd.conf
+      regexp: "^#?tftp	dgram	udp	"
+      line: "tftp	dgram	udp	wait	nobody	/usr/libexec/tftpd	tftpd -l -S -s /tftp"
+  - name: ensure switch backup dir exists
+    ansible.builtin.file:
+      path: '/tftp'
+      state: directory
+      mode: '0755'
+      owner: nobody
+      group: nobody
