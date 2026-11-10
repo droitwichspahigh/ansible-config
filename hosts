@@ -23,7 +23,7 @@ dshs:
             dshs-mysql.dshs.local:
             dshs-newton.dshs.local:
           children:
-            zabbix-server:
+            zabbix_server:
               hosts:
                 zabbix.dshs.local:
             webproxy_server:
