@@ -1,5 +1,6 @@
 archivers/php84-zlib
 converters/php84-mbstring
+databases/mariadb118-server
 databases/mysql84-server
 databases/php84-mysqli
 databases/php84-pdo_sqlite
