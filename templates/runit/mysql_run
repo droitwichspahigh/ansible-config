@@ -1,3 +1,10 @@
 #!/bin/sh
 
-exec chpst -u mysql /usr/local/libexec/mysqld --defaults-extra-file=/var/db/mysql/my.cnf --basedir=/usr/local --datadir=/var/db/mysql --plugin-dir=/usr/local/lib/mysql/plugin --log-error=/var/db/mysql/$(hostname).err --pid-file=/var/db/mysql/pidfile
+install -d -o mysql /var/run/mysql
+
+if [ -f /var/db/mysql/my.cnf ]; then
+	exec chpst -u mysql /usr/local/libexec/mysqld --defaults-extra-file=/var/db/mysql/my.cnf --basedir=/usr/local --datadir=/var/db/mysql --plugin-dir=/usr/local/lib/mysql/plugin --log-error=/var/db/mysql/$(hostname).err --pid-file=/var/db/mysql/pidfile
+else
+	# Must be MariaDB
+	exec chpst -u mysql /usr/local/libexec/mysqld --defaults-extra-file=/usr/local/etc/mysql/my.cnf --basedir=/usr/local --datadir=/var/db/mysql --plugin-dir=/usr/local/lib/mysql/plugin --log-error=/var/db/mysql/$(hostname).err --pid-file=/var/db/mysql/pidfile
+fi
