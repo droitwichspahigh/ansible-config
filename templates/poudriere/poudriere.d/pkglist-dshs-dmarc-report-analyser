@@ -1,3 +1,4 @@
+databases/p5-DBD-MariaDB
 databases/p5-DBD-mysql
 databases/php84-pdo_mysql
 mail/dmarcts-report-parser
