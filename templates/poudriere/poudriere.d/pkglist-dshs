@@ -1,4 +1,5 @@
 archivers/py-borgbackup
+databases/openldap26-client
 devel/ccache
 devel/git
 editors/vim
@@ -6,7 +7,6 @@ mail/msmtp
 misc/compat13x
 misc/compat14x
 net/freeradius3
-net/openldap26-client
 net/rclone
 net/rsync
 net-mgmt/adcli
