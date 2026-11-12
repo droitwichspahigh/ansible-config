@@ -1,0 +1,33 @@
+---
+
+- name: install leantime deps and sync script
+  hosts: dshs-leantime.dshs.local
+  become: true
+  tasks:
+  - name: install php deps
+    community.general.pkgng:
+      name:
+        - php84-fileinfo
+        - php84-pdo_mysql
+        - php84-pecl-imagick
+  - name: create leantime dir
+    ansible.builtin.file:
+      path: /usr/local/www/leantime
+      state: directory
+      owner: www
+      group: www
+      mode: '0750'
+  - name: drop script in
+    ansible.builtin.template:
+      src: ../../templates/leantime/leantime-ad-sync.sh
+      dest: /usr/local/www/leantime/leantime-ad-sync.sh
+      owner: root
+      group: 'domain admins'
+      mode: '0750'
+  - name: schedule
+    ansible.builtin.template:
+      src: ../../templates/cron.d/leantime_ad_sync
+      dest: /etc/cron.d/leantime_ad_sync
+      owner: root
+      group: wheel
+      
