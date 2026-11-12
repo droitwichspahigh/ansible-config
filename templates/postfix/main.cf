@@ -698,7 +698,7 @@ non_smtpd_milters = unix:private/dkim-sign
 
 smtpd_sasl_auth_enable = yes
 smtpd_sasl_type = cyrus
-smtpd_sasl_path = Sendmail
+smtpd_sasl_path = smtpd
 smtpd_sasl_security_options = noanonymous
 smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
 smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
