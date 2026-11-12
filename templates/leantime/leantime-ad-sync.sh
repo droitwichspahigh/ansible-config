@@ -75,11 +75,12 @@ BEGIN { RS=""; FS="\n" }
   }
   login_id = (mail != "") ? mail : upn
   if (login_id != "") {
-    printf "UPDATE zp_user SET firstname = IF(\047%s\047 != \047\047, \047%s\047, firstname), lastname = IF(\047%s\047 != \047\047, \047%s\047, lastname), jobTitle = \047%s\047, phone = \047%s\047 WHERE LOWER(username) = \047%s\047;\n",
+    printf "UPDATE zp_user SET firstname = IF(\047%s\047 != \047\047, \047%s\047, firstname), lastname = IF(\047%s\047 != \047\047, \047%s\047, lastname), jobTitle = \047%s\047, phone = \047%s\047, department = \047%s\047 WHERE LOWER(username) = \047%s\047;\n",
       sql_esc(given), sql_esc(given),
       sql_esc(sn), sql_esc(sn),
       sql_esc(title),
       sql_esc(phone),
+      sql_esc(dept),
       tolower(sql_esc(login_id))
   }
 }' | mysql -h "$lean_db_host" -u "$lean_db_user" -p"$lean_db_password" "$lean_db_database" 2>&1 | grep -v " Using a password"
