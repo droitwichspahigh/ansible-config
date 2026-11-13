@@ -62,7 +62,7 @@ function sql_esc(s) {
 }
 BEGIN { RS=""; FS="\n" }
 {
-  mail=""; upn=""; given=""; sn=""; title=""; dept=""
+  mail=""; upn=""; given=""; sn=""; title=""; dept=""; phone=""
   for (i=1; i<=NF; i++) {
     sub(/\r$/, "", $i)
     if ($i ~ /^mail: /) mail=substr($i, 7)
