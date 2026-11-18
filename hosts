@@ -6,6 +6,8 @@ dshs:
         dshs-snipeit.dshs.local:
         dshs-screens.dshs.local:
       children:
+        proxy:
+          dshs-proxy01.dhs.local:
         mailserver:
           hosts:
             dshs-mail.dshs.local:
@@ -27,9 +29,6 @@ dshs:
             zabbix_server:
               hosts:
                 zabbix.dshs.local:
-            webproxy_server:
-              hosts:
-                dshs-webproxy.dshs.local:
             package_builder:
               hosts:
                 dshs-builder.dshs.local:
