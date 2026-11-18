@@ -5,6 +5,9 @@
 #
 # It also reads the database credentials from the Leantime config
 # file.
+#
+# It also disables the "My Project" creation on login, needs reapplying
+# after every upgrade, so repeat
 
 # Configurables
 
@@ -84,3 +87,5 @@ BEGIN { RS=""; FS="\n" }
       tolower(sql_esc(login_id))
   }
 }' | mysql -h "$lean_db_host" -u "$lean_db_user" -p"$lean_db_password" "$lean_db_database" 2>&1 | grep -v " Using a password"
+
+sed -i '' 's,^[[:space:]]*app()->make(Helper::class)->ensureDefaultProject(,if (false) &,' $(dirname $0)/app/Domain/Projects/Middleware/CurrentProject.php
