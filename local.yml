@@ -51,3 +51,4 @@
 - ansible.builtin.import_playbook: playbooks/rclone/rclone.yml
 - ansible.builtin.import_playbook: playbooks/zabbix/zabbix-agentd.yml
 - ansible.builtin.import_playbook: playbooks/zabbix/zabbix-server.yml
+- ansible.builtin.import_playbook: playbooks/leantime/leantime_deps.yml
