@@ -7,7 +7,8 @@ dshs:
         dshs-screens.dshs.local:
       children:
         proxy:
-          dshs-proxy01.dshs.local:
+          hosts:
+            dshs-proxy01.dshs.local:
         mailserver:
           hosts:
             dshs-mail.dshs.local:
